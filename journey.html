@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLARS Jurisdiction Journey | Multi-Jurisdiction Data Flow Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- No additional styles needed as all have been moved to glars.css -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo-link"><div class="logo">GLARS<span>.</span></div></a>
+            <div class="header-actions">
+                <a href="index.html" id="home-btn" class="top-right-btn">Home</a>
+                <a href="evolution.html" id="evolution-btn" class="top-right-btn">Evolution</a>
+                <a href="glars-deep.html" id="deep-btn" class="top-right-btn">Deep Dive</a>
+                <button id="theme-toggle" class="top-right-btn theme-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Multi-Jurisdiction Data Journey</h1>
+                <p>Visualizing the complex interplay of legal frameworks in cross-border data flows</p>
+            </div>
+        </div>
+        
+        <div class="journey-container">
+            <div class="journey-diagram">
+                <!-- SVG for connection lines -->
+                <svg class="connection-lines" width="100%" height="100%" viewBox="0 0 1000 800" preserveAspectRatio="none">
+                    <!-- UK to US connection -->
+                    <path class="arrow-line" d="M250,120 C350,150 400,200 500,200" fill="none" marker-end="url(#arrow)" style="stroke: rgba(24, 144, 255, 0.6);"></path>
+                    
+                    <!-- US to India connection -->
+                    <path class="arrow-line" d="M500,200 C600,250 650,300 750,280" fill="none" marker-end="url(#arrow)" style="stroke: rgba(24, 144, 255, 0.6);"></path>
+                    
+                    <!-- India back to UK connection (data return) -->
+                    <path class="arrow-line" d="M750,280 C650,400 500,450 250,400" fill="none" marker-end="url(#arrow)" style="stroke: rgba(24, 144, 255, 0.6);"></path>
+                    
+                    <!-- US global reach -->
+                    <path class="overlay-line" d="M500,200 C500,300 650,350 750,280" fill="none" style="stroke: rgba(245, 34, 45, 0.4);"></path>
+                    <path class="overlay-line" d="M500,200 C400,300 300,350 250,400" fill="none" style="stroke: rgba(245, 34, 45, 0.4);"></path>
+                    
+                    <!-- Markers -->
+                    <defs>
+                        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                                markerWidth="6" markerHeight="6"
+                                orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(24, 144, 255, 0.6)"/>
+                        </marker>
+                    </defs>
+                </svg>
+                
+                <!-- UK TLD Entity -->
+                <div class="entity">
+                    <div class="entity-header">
+                        <img src="https://flagcdn.com/w80/gb.png" alt="UK Flag" class="entity-flag">
+                        <div>
+                            <h3 class="entity-title">UK TLD (.uk domain)</h3>
+                            <p class="entity-subtitle">Legal Registration Jurisdiction</p>
+                        </div>
+                    </div>
+                    
+                    <p>A .uk domain suggests UK registration, creating the first legal jurisdiction touchpoint regardless of where the site is hosted or managed.</p>
+                    
+                    <div class="jurisdiction-agencies">
+                        <h4>UK Government Agencies with Legal Authority</h4>
+                        <ul class="agency-list">
+                            <li><strong>GCHQ</strong> (Government Communications Headquarters)</li>
+                            <li><strong>MI5</strong> (Security Service)</li>
+                            <li><strong>Home Office</strong></li>
+                            <li><strong>National Crime Agency</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="jurisdiction-factors">
+                        <div class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">⚖️</div>
+                            <div>
+                                <strong>Investigatory Powers Act</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Grants GCHQ and MI5 broad data access powers with technical capability notices.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-medium">
+                            <div class="factor-icon">🔍</div>
+                            <div>
+                                <strong>UK Data Security Act</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Grants UK Home Office authority to mandate data security standards for companies with .uk domains.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- US Company Entity -->
+                <div class="entity">
+                    <div class="entity-header">
+                        <img src="https://flagcdn.com/w80/us.png" alt="US Flag" class="entity-flag">
+                        <div>
+                            <h3 class="entity-title">US Corporate Jurisdiction</h3>
+                            <p class="entity-subtitle">Service Provider & Corporate Control</p>
+                        </div>
+                    </div>
+                    
+                    <p>The US-based company operating the service creates a powerful secondary jurisdiction through corporate control, regardless of server location.</p>
+                    
+                    <div class="jurisdiction-agencies">
+                        <h4>US Government Agencies with Legal Authority</h4>
+                        <ul class="agency-list">
+                            <li><strong>FBI</strong> (Federal Bureau of Investigation)</li>
+                            <li><strong>NSA</strong> (National Security Agency)</li>
+                            <li><strong>DOJ</strong> (Department of Justice)</li>
+                            <li><strong>FISC</strong> (Foreign Intelligence Surveillance Court)</li>
+                            <li><strong>DHS</strong> (Department of Homeland Security)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="jurisdiction-factors">
+                        <div class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">📜</div>
+                            <div>
+                                <strong>CLOUD Act</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Allows DOJ and FBI to compel US companies to provide data regardless of where it's stored.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">🔐</div>
+                            <div>
+                                <strong>National Security Letters</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Enables FBI to issue secret demands for data with gag orders, limiting transparency.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-medium">
+                            <div class="factor-icon">🌐</div>
+                            <div>
+                                <strong>Executive Order 12333</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Authorizes NSA signals intelligence collection outside the US with minimal oversight.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- India Hosting Entity -->
+                <div class="entity">
+                    <div class="entity-header">
+                        <img src="https://flagcdn.com/w80/in.png" alt="India Flag" class="entity-flag">
+                        <div>
+                            <h3 class="entity-title">India Data Storage</h3>
+                            <p class="entity-subtitle">Physical Server Location</p>
+                        </div>
+                    </div>
+                    
+                    <p>Physical data storage in India creates a third legal jurisdiction with its own access powers, regardless of corporate control.</p>
+                    
+                    <div class="jurisdiction-agencies">
+                        <h4>Indian Government Agencies with Legal Authority</h4>
+                        <ul class="agency-list">
+                            <li><strong>CERT-In</strong> (Indian Computer Emergency Response Team)</li>
+                            <li><strong>Intelligence Bureau</strong></li>
+                            <li><strong>NATGRID</strong> (National Intelligence Grid)</li>
+                            <li><strong>Reserve Bank of India</strong></li>
+                            <li><strong>Ministry of Electronics and IT</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="jurisdiction-factors">
+                        <div class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">📱</div>
+                            <div>
+                                <strong>Information Technology Act</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Section 69 enables Indian CERT and Intelligence Bureau to intercept and decrypt data.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-medium">
+                            <div class="factor-icon">📝</div>
+                            <div>
+                                <strong>Data Localization Requirements</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Reserve Bank of India mandates local storage and processing for payment data.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-medium">
+                            <div class="factor-icon">🔒</div>
+                            <div>
+                                <strong>Telecommunications Interception</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>NATGRID can access telecommunications data with authorization from Home Secretary.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jurisdiction Interaction Section -->
+                <div class="interaction">
+                    <h3 class="interaction-title">Jurisdiction Interactions</h3>
+                    <p>These three jurisdictions don't operate in isolation - they interact in ways that can amplify risk:</p>
+                    
+                    <div class="jurisdiction-factors">
+                        <div id="jurisdiction-factors" class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">🔄</div>
+                            <div>
+                                <strong>UK-US Mutual Legal Assistance</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Five Eyes agreement enables NSA, GCHQ, and CSE to share intelligence across borders.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-high">
+                            <div class="factor-icon">🌍</div>
+                            <div>
+                                <strong>Corporate Control Leverage</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>DOJ can compel US parent company to access data in India, bypassing local jurisdictions.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="jurisdiction-factor factor-medium">
+                            <div class="factor-icon">⚖️</div>
+                            <div>
+                                <strong>Jurisdictional Conflicts</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Competing claims between GCHQ/MI5, FBI/NSA, and Indian CERT/NATGRID create legal uncertainty.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GLARS Vector Notation -->
+            <h3>GLARS Vector Representation</h3>
+            <div class="vector-notation">
+                GLARS:1.0/JO:65/AP:85/TR:70/EX:90/TP:40/EI:15/SS:20/J:UK-US:1.3/J:US-IN:1.1/J:UK-IN:0.9/CC:US/DS:IN/TLD:UK/T:HEF:1.2/I:corporate:1.4
+            </div>
+            
+            <div class="formula-card">
+                <h3>Risk Assessment Analysis</h3>
+                <div class="formula">
+                    <p class="formula-text">GLARS = max(UK, US, India) + JurisInteraction(UK, US) + CorpControl(US) = 78</p>
+                </div>
+                <div class="formula-explanation">
+                    <div class="example-rows">
+                        <div>
+                            <div class="example-header">GLARS Base Score</div>
+                            <div>78/100 <span class="risk-badge risk-badge-high">High</span></div>
+                            <p>Legal framework assessment across all three jurisdictions using maximum risk approach.</p>
+                        </div>
+                        
+                        <div>
+                            <div class="example-header">Corporate Impact</div>
+                            <div>US Corporate Control <span class="risk-badge risk-badge-high">Amplifying</span></div>
+                            <p>US jurisdiction extends globally through corporate control regardless of data location.</p>
+                        </div>
+                        
+                        <div>
+                            <div class="example-header">Interaction Effect</div>
+                            <div>Five Eyes Cooperation <span class="risk-badge risk-badge-high">Amplifying</span></div>
+                            <p>UK-US intelligence sharing creates multiplicative rather than additive risk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-header">
+                    <div class="info-icon">💡</div>
+                    <h3>Why GLARS Is Essential</h3>
+                </div>
+                <p>This visualization demonstrates why traditional single-jurisdiction risk assessment fails in modern cloud environments. GLARS provides:</p>
+                <ul style="padding-left: 1.5rem; margin: 1rem 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Multi-dimensional analysis</strong>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                            <li>Captures TLD, corporate control, and physical hosting jurisdictions</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Jurisdiction interaction modeling</strong>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                            <li>Accounts for legal cooperation agreements and conflicts</li>
+                            <li>Aligns with the <a href="glars-evolution.html#enhancement-5">Jurisdiction Interaction Model</a> in GLARS Evolution</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Vector notation</strong>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                            <li>Enables precise communication of complex risk factors</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Quantified risk scoring</strong>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                            <li>Turns subjective assessments into measurable metrics</li>
+                        </ul>
+                    </li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Decision support</strong>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                            <li>Provides actionable insights for architecture and compliance decisions</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Without a framework like GLARS, organizations miss critical cross-border legal risks that can lead to compliance failures and data sovereignty challenges.</p>
+            </div>
+            
+            <div class="call-to-action">
+                <h3>Ready to analyze your own multi-jurisdiction scenarios?</h3>
+                <p>Apply GLARS methodology to your specific data flows and uncover hidden jurisdictional risks.</p>
+                <div class="cta-buttons">
+                    <a href="index.html" class="cta-button primary">Learn About GLARS</a>
+                    <a href="evolution.html" class="cta-button secondary">Explore GLARS Evolution</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2025 GLARS. An open methodology for quantifying jurisdictional risks in data sovereignty assessments.</p>
+                <p class="footer-attribution">This project is a <a href="https://splinters.io" target="_blank" rel="noopener">Splinters.io</a> 001.5 project via <a href="https://www.linkedin.com/in/thecontractor/" target="_blank" rel="noopener">John Carroll</a></p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>
