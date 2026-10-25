@@ -78,6 +78,7 @@ code, pre, kbd { font-family: var(--mono); }
 
 /* ---------- Buttons and links ---------- */
 .actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.actions.spaced { margin-top: 36px; }
 .button {
   display: inline-flex;
   justify-content: center;
@@ -133,6 +134,92 @@ code, pre, kbd { font-family: var(--mono); }
 .quote p { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; }
 .quote footer { font: 11px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
 
+/* ---------- Inner pages ---------- */
+.page-head { max-width: 1050px; padding: 65px 0 20px; }
+.page-head h1 { font-size: clamp(40px, 5.5vw, 78px); }
+.page-head .question { font-size: clamp(26px, 2.8vw, 38px); margin: 26px 0 0; display: inline-block; box-shadow: inset 0 -.115em var(--gold); }
+.page-head .lead { font-size: 20px; max-width: 760px; margin: 28px 0 0; }
+
+/* Ratings: the only colour on the page is gold, so severity is carried by fill and outline. */
+.tag {
+  display: inline-block;
+  font: 10px/1 var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 5px 7px 4px;
+  border: 1px solid var(--ink);
+  vertical-align: 3px;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+.tag.high { background: var(--ink); color: var(--bg); }
+.tag.amplifying { background: var(--gold); border-color: var(--gold); }
+.tag.medium, .tag.mitigating, .tag.variable { background: transparent; }
+
+.power-list { list-style: none; margin: 18px 0 0; padding: 0; }
+.power-list li { border-top: 1px solid var(--line); padding: 14px 0; }
+.power-list strong { font-weight: 600; }
+.power-list p { font-size: 14px; margin: 6px 0 0; color: var(--ink); }
+.agency-list { list-style: none; margin: 14px 0 0; padding: 0; font-size: 14px; }
+.agency-list li { padding: 3px 0; }
+.agency-list b { font-weight: 600; }
+.sub-label { font: 10px/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 22px 0 0; }
+
+.formula {
+  font: 15px/1.6 var(--mono);
+  background: var(--panel);
+  border-left: 4px solid var(--gold);
+  padding: 16px 18px;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+.formula p { margin: 0; }
+.vector { font: 13px/1.7 var(--mono); background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; margin: 14px 0 0; overflow-wrap: anywhere; }
+.score-big { font-size: clamp(64px, 9vw, 130px); font-weight: 600; letter-spacing: -.06em; line-height: .9; }
+.score-big small { font-size: .3em; letter-spacing: -.02em; color: var(--muted); }
+.note { border-left: 4px solid var(--ink); padding: 4px 0 4px 18px; margin: 24px 0 0; font-size: 15px; max-width: 770px; }
+.note strong { font-weight: 600; }
+
+.data-table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 15px; }
+.data-table th { text-align: left; font: 10px/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 0 12px 10px 0; border-bottom: 1px solid var(--ink); }
+.data-table td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.data-table td:first-child { font-weight: 600; }
+
+.step-list { counter-reset: step; list-style: none; padding: 0; margin: 14px 0 0; }
+.step-list li { counter-increment: step; display: grid; grid-template-columns: 34px 1fr; padding: 6px 0; font-size: 15px; }
+.step-list li::before { content: counter(step, decimal-leading-zero); font: 11px/2.1 var(--mono); color: var(--muted); }
+.plain-list { margin: 10px 0 0; padding-left: 18px; font-size: 15px; }
+.plain-list li { padding: 3px 0; }
+
+/* ---------- Documentation layout (deep dive) ---------- */
+.docs { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 60px; margin-top: 20px; }
+.docs-nav { align-self: start; position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y: auto; }
+.docs-nav ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.docs-nav li { counter-increment: toc; }
+.docs-nav a { display: grid; grid-template-columns: 26px 1fr; padding: 9px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 13px; }
+.docs-nav a::before { content: counter(toc, decimal-leading-zero); font: 10px/1.9 var(--mono); color: var(--muted); }
+.docs-nav a:hover { border-color: var(--ink); }
+
+.prose { max-width: 860px; }
+.prose > h2 { font-size: clamp(28px, 3vw, 40px); border-top: 1px solid var(--ink); padding-top: 26px; margin: 60px 0 22px; scroll-margin-top: 20px; }
+.prose > h2:first-child { margin-top: 0; }
+.prose h3 { margin: 36px 0 14px; scroll-margin-top: 20px; }
+.prose h4 { margin: 26px 0 10px; }
+.prose p, .prose li { font-size: 16px; }
+.prose ul, .prose ol { padding-left: 20px; margin: 0 0 18px; }
+.prose li { padding: 3px 0; }
+.prose li > p { margin: 0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 18px 0 26px; font-size: 14px; display: block; overflow-x: auto; }
+.prose th { text-align: left; font: 10px/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 400; padding: 0 14px 10px 0; border-bottom: 1px solid var(--ink); }
+.prose td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose blockquote { border-left: 4px solid var(--gold); margin: 0 0 20px; padding: 2px 0 2px 20px; }
+.prose blockquote p { font-size: 18px; letter-spacing: -.01em; }
+.prose pre { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--gold); padding: 16px 18px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0 0 22px; }
+.prose code { font-size: .9em; }
+.prose :not(pre) > code { background: var(--gold-soft); padding: 1px 5px; }
+.prose .callout { border: 1px solid var(--ink); padding: 20px 22px 4px; margin: 0 0 22px; }
+.prose .references li { font-size: 14px; overflow-wrap: anywhere; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .masthead { grid-template-columns: 1fr; }
@@ -141,6 +228,8 @@ code, pre, kbd { font-family: var(--mono); }
   .hero { grid-template-columns: 1fr; gap: 50px; padding-top: 45px; }
   .section-grid { grid-template-columns: 1fr; gap: 10px; }
   .ruled-grid { grid-template-columns: 1fr 1fr; }
+  .docs { grid-template-columns: 1fr; gap: 30px; }
+  .docs-nav { position: static; max-height: none; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
