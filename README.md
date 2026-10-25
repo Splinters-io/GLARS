@@ -17,37 +17,29 @@ GLARS is an objective, apolitical framework for quantifying jurisdictional risks
 
 ## Project Structure
 
-- `index.html` - Main landing page
-- `evolution.html` - GLARS Evolution roadmap
-- `journey.html` - Multi-jurisdiction data journey visualization
-- `glars-deep.html` - Comprehensive deep dive into GLARS (HTML-based)
-- `glars-rfc.md` - GLARS specification in Markdown format (used to generate HTML content)
-- `css/style.css` - Combined CSS styles
-- `js/main.js` - JavaScript functionality
-- `_headers` - HTTP headers for GitHub Pages
-- `_redirects` - URL redirects for GitHub Pages
+- `index.html` - Home page
+- `journey.html` - Worked example: one service across three jurisdictions
+- `evolution.html` - Roadmap: five planned enhancements
+- `glars-deep.html` - The method: the full specification
+- `glars-deep.md` - The specification in Markdown. It is not used to build the site, so edit it alongside `glars-deep.html`.
+- `css/glars.css` - All styles. The look follows Information Security North Star: cream, black and gold.
+- `CNAME` - Custom domain for GitHub Pages (`www.glars.io`)
+
+The site is plain HTML and CSS with no JavaScript, web fonts or third-party assets. GitHub Pages serves the `main` branch.
 
 ## Local Development
 
-To preview the site locally:
+Serve the folder with any static web server, for example:
 
-1. Install a local web server:
-   ```
-   npm install -g http-server
-   ```
+```
+python3 -m http.server 8080
+```
 
-2. Run the server:
-   ```
-   http-server .
-   ```
+Then open `http://localhost:8080`.
 
-3. Open your browser to `http://localhost:8080`
+## References
 
-## Customization
-
-- Update `css/style.css` to change the site's appearance
-- Modify `js/main.js` to adjust interactive behavior
-- Edit the HTML files to update content
+The references in the method were checked on 25 October 2026. When adding one, link the primary source where there is one, and check that the citation (title, year, number) matches what the link shows.
 
 ## License
 

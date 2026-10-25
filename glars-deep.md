@@ -276,17 +276,16 @@ GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55/T:HEF:1.1/TV:1.05/GS:0.95/
 
 ## Implementation Guidance
 
-![Implementation Steps](https://via.placeholder.com/800x10/34c759/000000?text=+)
 
 | Implementation Step | Description |
 | ------------------ | ----------- |
-| ![1](https://via.placeholder.com/20/34c759/000000?text=1) **Establish process** | Create a consistent assessment methodology |
-| ![2](https://via.placeholder.com/20/34c759/000000?text=2) **Maintain legal database** | Keep jurisdictional frameworks up-to-date |
-| ![3](https://via.placeholder.com/20/34c759/000000?text=3) **Document assumptions** | Record assessment rationale and evidence |
-| ![4](https://via.placeholder.com/20/34c759/000000?text=4) **Schedule reviews** | Periodically reassess as legal landscapes change |
-| ![5](https://via.placeholder.com/20/34c759/000000?text=5) **Vector documentation** | Capture both scores and vector notation |
-| ![6](https://via.placeholder.com/20/34c759/000000?text=6) **Contextual weighting** | Adjust based on organizational specifics |
-| ![7](https://via.placeholder.com/20/34c759/000000?text=7) **GRC integration** | Incorporate into broader governance frameworks |
+| **Establish process** | Create a consistent assessment methodology |
+| **Maintain legal database** | Keep jurisdictional frameworks up-to-date |
+| **Document assumptions** | Record assessment rationale and evidence |
+| **Schedule reviews** | Periodically reassess as legal landscapes change |
+| **Vector documentation** | Capture both scores and vector notation |
+| **Contextual weighting** | Adjust based on organizational specifics |
+| **GRC integration** | Incorporate into broader governance frameworks |
 
 ## Use Cases
 
@@ -476,7 +475,7 @@ Parent-subsidiary relationships creating exposures
 
 8. Investigatory Powers Act 2016 (UK). Available at: https://www.legislation.gov.uk/ukpga/2016/25/contents
 
-9. UK Home Office. (2018). "Technical Capability Notices under the Investigatory Powers Act 2016." Available at: https://www.gov.uk/government/publications/technical-capability-notices
+9. Investigatory Powers Act 2016 (UK), section 253: Technical capability notices. Available at: https://www.legislation.gov.uk/ukpga/2016/25/section/253
 
 10. European Union. (2016). "Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation)." Official Journal of the European Union, L119, 1-88. Available at: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679
 
@@ -484,7 +483,7 @@ Parent-subsidiary relationships creating exposures
 
 12. European Union. (1996). "Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases." Available at: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A31996L0009
 
-13. Germany. (2021). "Gesetz zur Anpassung des Datenschutzrechts an die Verordnung (EU) 2016/679 und zur Umsetzung der Richtlinie (EU) 2016/680 (Datenschutz-Anpassungs- und Umsetzungsgesetz EU - DSAnpUG-EU)." Available at: https://www.gesetze-im-internet.de/bdsg_2018/
+13. Germany. (2017). "Bundesdatenschutzgesetz (BDSG)", Federal Data Protection Act, enacted by the Datenschutz-Anpassungs- und -Umsetzungsgesetz EU (DSAnpUG-EU) of 30 June 2017, in force 25 May 2018. Available at: https://www.gesetze-im-internet.de/bdsg_2018/
 
 14. France. (2018). "Loi n° 2018-493 du 20 juin 2018 relative à la protection des données personnelles." Available at: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037085952/
 
@@ -494,42 +493,40 @@ Parent-subsidiary relationships creating exposures
 
 16. Information Technology Act, 2000 (India), Section 69. Available at: https://www.meity.gov.in/content/information-technology-act-2000
 
-17. Ministry of Home Affairs, Government of India. (2019). "NATGRID: National Intelligence Grid." Available at: https://www.mha.gov.in/sites/default/files/NATGRID_23012019.pdf
 
-18. Reserve Bank of India. (2018). "Storage of Payment System Data." RBI/2017-18/153. Available at: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11244
+17. Reserve Bank of India. (2018). "Storage of Payment System Data." RBI/2017-18/153. Available at: https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11244
 
-19. China. (2017). "Cybersecurity Law of the People's Republic of China." Available at: http://www.cac.gov.cn/2016-11/07/c_1119867116.htm
+18. China. (2017). "Cybersecurity Law of the People's Republic of China." Available at: http://www.cac.gov.cn/2016-11/07/c_1119867116.htm
 
-20. China. (2021). "Data Security Law of the People's Republic of China." Available at: http://www.npc.gov.cn/npc/c30834/202106/7c9af12f51334a73b56d7938f99a788a.shtml
+19. China. (2021). "Data Security Law of the People's Republic of China." National People's Congress, English translation. Available at: http://en.npc.gov.cn.cdurl.cn/2021-06/10/c_689311.htm
 
-21. China. (2021). "Personal Information Protection Law of the People's Republic of China." Available at: http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml
+20. China. (2021). "Personal Information Protection Law of the People's Republic of China." National People's Congress, English translation. Available at: http://en.npc.gov.cn.cdurl.cn/2021-12/29/c_694559.htm
 
-22. Japan. (2003). "Act on the Protection of Personal Information (Act No. 57 of 2003)." Available at: https://www.ppc.go.jp/files/pdf/Act_on_the_Protection_of_Personal_Information.pdf
+21. Japan. (2003). "Act on the Protection of Personal Information (Act No. 57 of 2003)." Available at: https://www.ppc.go.jp/files/pdf/Act_on_the_Protection_of_Personal_Information.pdf
 
-23. Australia. (2018). "Telecommunications and Other Legislation Amendment (Assistance and Access) Act 2018." Available at: https://www.legislation.gov.au/Details/C2018A00148
+22. Australia. (2018). "Telecommunications and Other Legislation Amendment (Assistance and Access) Act 2018." Available at: https://www.legislation.gov.au/Details/C2018A00148
 
-24. Singapore. (2012). "Personal Data Protection Act 2012." Available at: https://sso.agc.gov.sg/Act/PDPA2012
+23. Singapore. (2012). "Personal Data Protection Act 2012." Available at: https://sso.agc.gov.sg/Act/PDPA2012
 
-25. New Zealand. (2020). "Privacy Act 2020." Available at: https://www.legislation.govt.nz/act/public/2020/0031/latest/LMS23223.html
+24. New Zealand. (2020). "Privacy Act 2020." Available at: https://www.legislation.govt.nz/act/public/2020/0031/latest/LMS23223.html
 
-26. South Korea. (2011). "Personal Information Protection Act." Available at: https://www.law.go.kr/LSW/eng/engLsSc.do?menuId=2&section=lawNm&query=personal+information&x=0&y=0#liBgcolor0
+25. South Korea. (2011). "Personal Information Protection Act." Available at: https://www.law.go.kr/LSW/eng/engLsSc.do?menuId=2&section=lawNm&query=personal+information&x=0&y=0#liBgcolor0
 
 ### Middle East and Africa
 
-27. Israel. (2017). "Protection of Privacy Law 5741-1981 (as amended)." Available at: https://www.gov.il/he/departments/legalInfo/legislation_privacy
+26. Israel. (1981). "Protection of Privacy Law, 5741-1981 (as amended)." Available at: https://www.gov.il/he/departments/legalInfo/legislation_privacy
 
-28. United Arab Emirates. (2019). "Federal Law No. 2 of 2019 on the Use of Information and Communication Technology in Health Fields." Available at: https://u.ae/en/information-and-services/health-and-fitness/e-health
 
-29. South Africa. (2013). "Protection of Personal Information Act 4 of 2013." Available at: https://www.gov.za/documents/protection-personal-information-act
+27. South Africa. (2013). "Protection of Personal Information Act 4 of 2013." Available at: https://www.gov.za/documents/protection-personal-information-act
 
 ### International Agreements and Organizations
 
-30. Cox, J. (2018). "The Five Eyes: The Intelligence Alliance of the Anglosphere." UK Defense Journal. Available at: https://ukdefencejournal.org.uk/the-five-eyes-the-intelligence-alliance-of-the-anglosphere/
+28. Tossini, J. V. (2020). "The Five Eyes – The Intelligence Alliance of the Anglosphere." UK Defence Journal. Available at: https://ukdefencejournal.org.uk/the-five-eyes-the-intelligence-alliance-of-the-anglosphere/
 
-31. Office of the Director of National Intelligence. (2016). "Statistical Transparency Report Regarding the Use of National Security Authorities." Available at: https://www.dni.gov/files/documents/icotr/ic_transparecy_report_cy2015_-_final.pdf
+29. Office of the Director of National Intelligence. (2016). "Statistical Transparency Report Regarding the Use of National Security Authorities." Available at: https://www.dni.gov/files/documents/icotr/ic_transparecy_report_cy2015_-_final.pdf
 
-32. United Nations. (2014). "The right to privacy in the digital age." Human Rights Council Resolution 28/16. Available at: https://documents-dds-ny.un.org/doc/UNDOC/GEN/G15/068/78/PDF/G1506878.pdf
+30. United Nations. (2015). "The right to privacy in the digital age." Human Rights Council Resolution 28/16. Available at: https://documents-dds-ny.un.org/doc/UNDOC/GEN/G15/068/78/PDF/G1506878.pdf
 
-33. Council of Europe. (1981). "Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data." European Treaty Series No. 108. Available at: https://rm.coe.int/1680078b37
+31. Council of Europe. (1981). "Convention for the Protection of Individuals with regard to Automatic Processing of Personal Data." European Treaty Series No. 108. Available at: https://rm.coe.int/1680078b37
 
 
