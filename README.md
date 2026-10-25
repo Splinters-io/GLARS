@@ -17,22 +17,38 @@ GLARS is an objective, apolitical framework for quantifying jurisdictional risks
 
 ## Project Structure
 
-- `index.html` - Home page
-- `journey.html` - Worked example: one service across three jurisdictions
-- `evolution.html` - Roadmap: five planned enhancements
-- `glars-deep.html` - The method: the full specification
-- `glars-deep.md` - The specification in Markdown. It is not used to build the site, so edit it alongside `glars-deep.html`.
-- `css/glars.css` - All styles. The look follows Information Security North Star: cream, black and gold.
-- `CNAME` - Custom domain for GitHub Pages (`www.glars.io`)
+Everything published is in `public/`:
 
-The site is plain HTML and CSS with no JavaScript, web fonts or third-party assets. GitHub Pages serves the `main` branch.
+- `public/index.html` - Home page
+- `public/journey.html` - Worked example: one service across three jurisdictions
+- `public/evolution.html` - Roadmap: five planned enhancements
+- `public/glars-deep.html` - The method: the full specification
+- `public/css/glars.css` - All styles. The look follows Information Security North Star: cream, black and gold.
+- `public/_headers` - Cloudflare response headers, including a strict Content Security Policy
+
+Outside it, and not published:
+
+- `glars-deep.md` - The specification in Markdown. It is not used to build the site, so edit it alongside `public/glars-deep.html`.
+- `wrangler.toml` - Cloudflare Pages configuration
+
+The site is plain HTML and CSS with no JavaScript, web fonts or third-party assets. The Content Security Policy enforces that: an inline style or script will be blocked.
+
+## Hosting
+
+Cloudflare Pages, connected to this repository. Pushing to `main` deploys; other branches get preview deployments.
+
+- Build command: none
+- Build output directory: `public`
+- Custom domains: `glars.io` and `www.glars.io`
+
+If the domain is proxied through Cloudflare, keep Rocket Loader, Email Obfuscation, Web Analytics automatic injection and Zaraz switched off: they inject scripts that the Content Security Policy blocks.
 
 ## Local Development
 
-Serve the folder with any static web server, for example:
+Serve the published folder with any static web server, for example:
 
 ```
-python3 -m http.server 8080
+python3 -m http.server 8080 --directory public
 ```
 
 Then open `http://localhost:8080`.
