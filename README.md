@@ -28,7 +28,10 @@ Everything under `public/` is published; nothing else in the repository is.
 - `public/js/theme.js` - Applies a saved light/dark preference before first paint
 - `public/js/main.js` - Theme toggle and table-of-contents tracking
 - `public/js/calculator.js` - Calculator scoring, vector parsing and examples
+- `public/js/journey.js` - The "Follow the data" timeline on the Journey page
 - `public/data/examples.json` - Calculator examples and explainers
+- `public/data/scoring-guide.json` - Per-component questions and measuring-stick bands
+- `public/data/journey.json` - Journey stages, the powers at each stage and the links between them
 - `public/fonts/` - Self-hosted Source Serif 4, Inter and JetBrains Mono (latin subsets, SIL OFL)
 - `public/_headers` - Security headers and caching (Cloudflare)
 - `public/_redirects` - Path redirects (Cloudflare)

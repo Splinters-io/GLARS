@@ -52,12 +52,37 @@
             <div class="hero-content">
                 <span class="eyebrow">Worked example</span>
                 <h1>Multi-Jurisdiction Data Journey</h1>
-                <p>Visualizing the complex interplay of legal frameworks in cross-border data flows</p>
+                <p>One customer record, followed from sign-up to a cross-border demand, and the legal powers that can reach it at each step.</p>
                 <p class="review-date">Legal position last reviewed October 2026. Illustrative, not legal advice.</p>
             </div>
         </div>
         
+        <section id="follow-the-data" class="flow" aria-labelledby="flow-title" hidden>
+            <div class="flow-head">
+                <h2 id="flow-title">Follow the data.</h2>
+                <p class="flow-meta">example.co.uk &middot; illustrative</p>
+            </div>
+            <p class="flow-lede">A UK customer signs up to a <code>.uk</code> service. The company running it is American and stores its data in India. Time runs along the line, from sign-up to a demand for the record. Each point off the line is a power that can reach the record at that stage.</p>
+            <div class="flow-filters"></div>
+            <div class="flow-chart">
+                <svg class="flow-lines" aria-hidden="true" focusable="false"></svg>
+                <ol class="flow-stages" aria-label="Stages of the data journey, in time order"></ol>
+            </div>
+            <ul class="flow-legend" aria-hidden="true">
+                <li><span class="flow-key flow-key-on"></span>Selected path</li>
+                <li><span class="flow-key"></span>Stage to power</li>
+                <li><span class="flow-key flow-key-link"></span>Link between powers</li>
+            </ul>
+            <p class="flow-summary"></p>
+            <div class="flow-evidence-head">
+                <h2>Evidence, on request.</h2>
+                <p class="flow-meta">Choose any stage or power</p>
+            </div>
+            <div class="flow-evidence" aria-live="polite"></div>
+        </section>
+
         <div class="journey-container">
+            <h2 class="journey-detail-title">Jurisdiction by jurisdiction</h2>
             <div class="journey-diagram">
                 
                 <!-- UK TLD Entity -->
@@ -283,7 +308,7 @@ GLARS = max(Base 73.25, EI 15, SS 20) = 73</p>
                 <div class="info-header">
                     <h3>Why GLARS Is Essential</h3>
                 </div>
-                <p>This visualization demonstrates why traditional single-jurisdiction risk assessment fails in modern cloud environments. GLARS provides:</p>
+                <p>This journey shows why traditional single-jurisdiction risk assessment fails in modern cloud environments. GLARS provides:</p>
                 <ul>
                     <li><strong>Multi-dimensional analysis</strong>
                         <ul>
@@ -341,5 +366,6 @@ GLARS = max(Base 73.25, EI 15, SS 20) = 73</p>
     </footer>
 
     <script src="/js/main.js" defer></script>
+    <script src="/js/journey.js" defer></script>
 </body>
 </html>
