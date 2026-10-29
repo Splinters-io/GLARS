@@ -1180,7 +1180,7 @@ td strong {
 .tl-stages.has-path .tl-power:not(.is-path),
 .tl-stages.has-path .tl-stage:not(.is-path) .tl-stage-head {
     opacity: 0.35;
-    filter: blur(1.5px);
+    filter: blur(0.75px);
 }
 
 .tl-stage-head {

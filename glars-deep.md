@@ -251,7 +251,7 @@ GLARS-P  = min(100, max(Base × M, EI × rEI, SS × rSS))
 
 **Measured and judged inputs.** The governance gap uses the World Bank Worldwide Governance Indicators (2026 release, 2025 data; governance scores 0–100), licensed CC BY 4.0. Which agreements and adequacy findings exist are facts from official texts. The size of each multiplier is a GLARS default rather than a published measure, so every weight can be changed in the calculator, and changed weights travel with the shared link.
 
-**Example.** A UK asker with the Base score of 73 for data held in the US: Five Eyes ×1.10, CLOUD Act agreement ×1.05, UK adequacy for certified US organisations ×0.95 and a governance gap of ×1.05 give M = 1.15, so the Perspective score is 84. A German asker for the same data gets 74: EU adequacy and a governance gap apply, but not Five Eyes or the CLOUD Act agreement.
+**Example.** A UK asker with the Base score of 83 for data held in the US: Five Eyes ×1.10, CLOUD Act agreement ×1.05, UK adequacy for certified US organisations ×0.95 and a governance gap of ×1.05 give M = 1.15, so the Perspective score is 95. A German asker for the same data gets 83: EU adequacy and a governance gap apply, but not Five Eyes or the CLOUD Act agreement.
 
 This is a first step towards the Jurisdiction Interaction Model: it covers the relationship between the asker and one jurisdiction, not yet how several jurisdictions holding the same data combine.
 
