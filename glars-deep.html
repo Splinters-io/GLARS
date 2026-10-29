@@ -3,170 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLARS Deep Dive | Geo-Legal Access Risk Score</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
-    <style>
-        .markdown-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .markdown-content h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #f0f0f0;
-        }
-        .markdown-content h2 {
-            font-size: 2rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1.25rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid #333333;
-            color: #f0f0f0;
-        }
-        .markdown-content h3 {
-            font-size: 1.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #f0f0f0;
-        }
-        .markdown-content p {
-            margin-bottom: 1.25rem;
-            color: #c0c0c0;
-        }
-        .markdown-content ul, .markdown-content ol {
-            margin-bottom: 1.25rem;
-            margin-left: 2rem;
-            color: #c0c0c0;
-        }
-        .markdown-content li {
-            margin-bottom: 0.75rem;
-        }
-        .markdown-content blockquote {
-            border-left: 3px solid #1890ff;
-            padding: 0.5rem 0 0.5rem 1.5rem;
-            margin: 1.5rem 0;
-            margin-left: 0;
-            color: #a0a0a0;
-            background-color: rgba(24, 144, 255, 0.1);
-            border-radius: 0 4px 4px 0;
-        }
-        .markdown-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-        }
-        .markdown-content table th, .markdown-content table td {
-            padding: 0.75rem;
-            border: 1px solid #333333;
-            text-align: left;
-        }
-        .markdown-content table th {
-            background-color: #1f1f1f;
-            font-weight: 600;
-        }
-        .markdown-content pre {
-            background-color: #1f1f1f;
-            padding: 1.25rem;
-            border-radius: 6px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border: 1px solid #333333;
-        }
-        .markdown-content code {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #1f1f1f;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            color: #1890ff;
-        }
-        .markdown-content hr {
-            border: none;
-            height: 1px;
-            background-color: #333333;
-            margin: 2.5rem 0;
-        }
-        .markdown-content img {
-            max-width: 100%;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-        }
-        .markdown-content div {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Light theme overrides */
-        body.light-theme .markdown-content h1,
-        body.light-theme .markdown-content h2,
-        body.light-theme .markdown-content h3 {
-            color: #333333;
-        }
-        body.light-theme .markdown-content h2 {
-            border-bottom: 1px solid #e0e0e0;
-        }
-        body.light-theme .markdown-content p,
-        body.light-theme .markdown-content ul,
-        body.light-theme .markdown-content ol {
-            color: #555555;
-        }
-        body.light-theme .markdown-content blockquote {
-            background-color: rgba(24, 144, 255, 0.05);
-            color: #666666;
-        }
-        body.light-theme .markdown-content table th, 
-        body.light-theme .markdown-content table td {
-            border: 1px solid #e0e0e0;
-        }
-        body.light-theme .markdown-content table th {
-            background-color: #f5f5f5;
-        }
-        body.light-theme .markdown-content pre {
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
-        }
-        body.light-theme .markdown-content code {
-            background-color: #f5f5f5;
-        }
-        body.light-theme .markdown-content hr {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <title>Deep Dive — GLARS Methodology</title>
+    <meta name="description" content="The full GLARS methodology: core legal components, embargo and sanctions factors, scoring, risk levels, transfer risk and vector notation.">
+    <link rel="canonical" href="https://www.glars.io/glars-deep">
+    <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GLARS">
+    <meta property="og:title" content="Deep Dive — GLARS Methodology">
+    <meta property="og:description" content="The full GLARS methodology: core legal components, embargo and sanctions factors, scoring, risk levels, transfer risk and vector notation.">
+    <meta property="og:url" content="https://www.glars.io/glars-deep">
+    <meta property="og:image" content="https://www.glars.io/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deep Dive — GLARS Methodology">
+    <meta name="twitter:description" content="The full GLARS methodology: core legal components, embargo and sanctions factors, scoring, risk levels, transfer risk and vector notation.">
+    <meta name="twitter:image" content="https://www.glars.io/og.png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/theme.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="logo-link"><div class="logo">GLARS<span>.</span></div></a>
-            <div class="header-actions">
-                <a href="index.html" id="home-btn" class="top-right-btn">Home</a>
-                <a href="journey.html" id="journey-btn" class="top-right-btn">Jurisdiction Journey</a>
-                <a href="evolution.html" id="evolution-btn" class="top-right-btn">Evolution</a>
-                <button id="theme-toggle" class="top-right-btn theme-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
-        </header>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="wordmark" aria-label="GLARS home">
+                <span class="wordmark-name">GLARS<span class="wordmark-dot">.</span></span>
+                <span class="wordmark-tag">Geo-Legal Access Risk Score</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="/">Overview</a>
+                <a href="/journey">Journey</a>
+                <a href="/evolution">Evolution</a>
+                <a href="/glars-deep" aria-current="page">Deep Dive</a>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+            </button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="container">
         
         <div class="hero-section">
             <div class="hero-content">
+                <span class="eyebrow">Methodology</span>
                 <h1>GLARS Deep Dive</h1>
                 <p>Comprehensive analysis of the Geo-Legal Access Risk Score framework</p>
             </div>
         </div>
         
-        <div class="markdown-content" id="markdown-content">
-            <h1>GLARS</h1>
-            <h1>Geo-Legal Access Risk Score</h1>
-            
-            <p><em>A framework for quantifying jurisdictional risks in data sovereignty assessments</em></p>
+        <div class="prose">
             
             <h2 id="contents">Contents</h2>
             
-            <ul>
+            <ul class="doc-contents">
                 <li><a href="#introduction">Introduction</a>
                     <ul>
                         <li><a href="#apolitical-principles">Apolitical Principles</a></li>
@@ -212,7 +107,7 @@
             
             <h2 id="terminology">Terminology</h2>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Term</th>
@@ -249,7 +144,7 @@
                         <td>The risk associated with moving data from one jurisdiction to another.</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <h2 id="glars-core-components">GLARS Core Components</h2>
             
@@ -261,7 +156,7 @@
                 <p>Evaluates the strength and independence of judicial review processes governing government access to data.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -286,7 +181,7 @@
                         <td>Availability of meaningful review mechanisms</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: In Germany, government agencies must obtain approval from an independent court before accessing stored communications data, with specific constraints on the target and scope. The court operates independently of the investigating agencies, creating strong judicial oversight (low JO score). In contrast, in some countries, intelligence agencies can access data with only internal executive branch approval or through secret courts with limited independence (high JO score).</p>
             
@@ -298,7 +193,7 @@
                 <p>Assesses the breadth and depth of legal authorities granted to government agencies for data access.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -323,7 +218,7 @@
                         <td>Claimed authority beyond borders</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: The US FISA Section 702 authorizes intelligence agencies to collect foreign intelligence information from non-US persons located abroad, including bulk collection capabilities. The CLOUD Act explicitly allows agencies to compel US-based providers to disclose data regardless of storage location. These broad powers result in a higher AP score compared to jurisdictions where agencies are limited to targeted collection with narrower scope.</p>
             
@@ -335,7 +230,7 @@
                 <p>Measures mandated technical capabilities that providers must implement to facilitate government access.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -364,7 +259,7 @@
                         <td>Powers to compel technical changes</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: The UK's Technical Capability Notices under the Investigatory Powers Act can compel providers to modify systems to enable interception and data collection. Australia's Assistance and Access Act allows authorities to require companies to create technical capabilities for accessing encrypted communications. These requirements create a high TR score compared to jurisdictions that don't mandate specific technical implementations for surveillance.</p>
             
@@ -376,7 +271,7 @@
                 <p>Evaluates the degree to which a jurisdiction's legal frameworks assert authority beyond their borders.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -401,7 +296,7 @@
                         <td>Powers based on corporate ownership structures</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: The US CLOUD Act explicitly claims authority over data held by US companies regardless of where the data is stored physically. Similarly, China's Data Security Law applies to data processing activities outside China that could harm China's national security. These expansive extraterritorial claims lead to higher EX scores compared to countries whose laws apply only to data within their territorial boundaries.</p>
             
@@ -413,7 +308,7 @@
                 <p>Analyses the visibility into government data access activities, including public reporting and notification.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -438,7 +333,7 @@
                         <td>Availability of meaningful access metrics</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: Estonia and several Nordic countries publish detailed annual transparency reports on government data access requests and warrants issued, allowing public scrutiny of surveillance activities. Conversely, some countries' intelligence agencies can issue access demands with indefinite gag orders, preventing service providers from disclosing even the existence of requests. Jurisdictions with extensive gag order provisions and minimal public reporting receive higher TP scores (higher risk).</p>
             
@@ -454,7 +349,7 @@
                 <p>Measures the severity of trade restrictions that prohibit or limit commercial activities with specific countries.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -483,7 +378,7 @@
                         <td>Conflicting legal requirements</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: The comprehensive US embargo against Cuba prohibits most transactions involving Cuban entities, including providing cloud services or data processing capabilities to Cuban companies. Similarly, EU embargoes against Russia restrict the export of certain technology and IT services. Organisations found violating these embargoes can face severe penalties, including substantial fines and criminal prosecution, resulting in high EI scores for these jurisdictions.</p>
             
@@ -495,7 +390,7 @@
                 <p>Evaluates targeted financial and economic restrictions affecting specific entities, individuals, or sectors.</p>
             </blockquote>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Key Factors</th>
@@ -524,7 +419,7 @@
                         <td>Available exemptions for essential services</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Example</strong>: US sanctions against entities on the Specially Designated Nationals (SDN) list prohibit US persons from providing any services, including cloud computing or data storage, to listed entities. US secondary sanctions can also apply to non-US persons who engage with sanctioned entities. For instance, a European cloud provider working with sanctioned Russian financial institutions could face US secondary sanctions, requiring extensive screening procedures and creating high SS scores for jurisdictions with many sanctioned entities.</p>
             
@@ -536,7 +431,7 @@
             
             <h3 id="base-score-calculation">Base Score Calculation</h3>
             
-            <pre><code class="language-swift">BaseScore = (JO × 0.2) + (AP × 0.25) + (TR × 0.15) + (EX × 0.25) + (TP × 0.15)</code></pre>
+            <pre><code>BaseScore = (JO × 0.2) + (AP × 0.25) + (TR × 0.15) + (EX × 0.25) + (TP × 0.15)</code></pre>
             
             <blockquote>
                 <p>The base score evaluates the fundamental legal risk dimensions, with Agency Powers and Extraterritoriality weighted more heavily due to their significant impact.</p>
@@ -544,7 +439,7 @@
             
             <h3 id="enhanced-score-with-trade-restrictions">Enhanced Score with Trade Restrictions</h3>
             
-            <pre><code class="language-swift">GLARSScore = max(BaseScore, EmbargoImpact, SanctionSeverity)</code></pre>
+            <pre><code>GLARSScore = max(BaseScore, EmbargoImpact, SanctionSeverity)</code></pre>
             
             <blockquote>
                 <p>The final GLARS score takes the highest risk value from legal frameworks, embargoes, or sanctions, as each dimension independently can create prohibitive risks.</p>
@@ -562,7 +457,7 @@
             
             <p><em>Strong legal protections with limited risk exposure</em></p>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Aspect</th>
@@ -583,7 +478,7 @@
                         <td>No significant targeted restrictions affecting data operations or entities in this jurisdiction</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Recommended controls</strong>: Standard security measures and routine compliance monitoring.</p>
             
@@ -591,7 +486,7 @@
             
             <p><em>Moderate access powers requiring enhanced controls</em></p>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Aspect</th>
@@ -612,7 +507,7 @@
                         <td>Some targeted restrictions requiring enhanced due diligence and screening procedures</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Recommended controls</strong>: Enhanced encryption, data minimization, jurisdictional isolation, and regular compliance reviews.</p>
             
@@ -620,7 +515,7 @@
             
             <p><em>Extensive access powers requiring significant mitigation</em></p>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Aspect</th>
@@ -641,7 +536,7 @@
                         <td>Extensive targeted restrictions creating significant compliance risks for entities operating in this jurisdiction</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <p><strong>Recommended controls</strong>: Data localization in lower-risk jurisdictions, entity separation, zero-knowledge architectures, or avoidance of jurisdiction entirely.</p>
             
@@ -651,11 +546,11 @@
             
             <h3 id="transfer-risk-formula">Transfer Risk Formula</h3>
             
-            <pre><code class="language-swift">TransferRisk = (EmbargoDiff + SanctionDiff + LegalDiff + CompetingJurisdictionsRisk) × DataClassMultiplier</code></pre>
+            <pre><code>TransferRisk = (EmbargoDiff + SanctionDiff + LegalDiff + CompetingJurisdictionsRisk) × DataClassMultiplier</code></pre>
             
             <h3 id="component-calculations">Component Calculations</h3>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Component</th>
@@ -690,7 +585,7 @@
                         <td>Adjustment based on data sensitivity</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <h2 id="vector-notation">Vector Notation</h2>
             
@@ -702,7 +597,7 @@
             
             <h3 id="components">Components</h3>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Vector Group</th>
@@ -737,11 +632,11 @@
                         <td>IRM=1.1 (Industry Risk), DSF=1.2 (Data Sensitivity)</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <h2 id="implementation-guidance">Implementation Guidance</h2>
             
-            <table>
+            <div class="table-scroll"><table>
                 <thead>
                     <tr>
                         <th>Implementation Step</th>
@@ -778,47 +673,47 @@
                         <td>Incorporate into broader governance frameworks</td>
                     </tr>
                 </tbody>
-            </table>
+            </table></div>
             
             <h2 id="use-cases">Use Cases</h2>
             
-            <div style="display:flex; flex-wrap:wrap; gap:10px;">
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+            <div class="use-cases">
+                <div class="use-case">
                     <h3>Cloud Provider Selection</h3>
                     <p>Compare jurisdictional risk profiles of different cloud service providers based on their corporate structure, data center locations, and applicable legal frameworks.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Embargo Compliance</h3>
                     <p>Evaluate whether data transfers or service provisions would violate applicable trade restrictions, helping organizations avoid costly compliance violations.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Multi-Region Architecture</h3>
                     <p>Design optimal multi-region deployments by quantifying the risk differences between jurisdictions and implementing appropriate data separation.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Sanction Screening</h3>
                     <p>Assess potential business partnerships and customer relationships against sanction risks to ensure compliance with targeted restrictions.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>M&A Due Diligence</h3>
                     <p>Evaluate the jurisdictional risk exposure of target companies as part of privacy and compliance due diligence in mergers and acquisitions.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Policy Creation</h3>
                     <p>Develop data governance policies with objective risk thresholds for different data types and processing activities based on GLARS scores.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Transfer Firewalls</h3>
                     <p>Implement automated policy enforcement systems that evaluate data transfers against embargo, sanction, and legal risks in real-time.</p>
                 </div>
                 
-                <div style="flex: 1 1 300px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 15px; margin-bottom: 15px;">
+                <div class="use-case">
                     <h3>Compliance Documentation</h3>
                     <p>Generate evidence of due diligence for regulatory requirements by documenting quantified risk assessments and mitigation measures.</p>
                 </div>
@@ -826,114 +721,56 @@
             
             <h2 id="evolution-roadmap">Evolution Roadmap</h2>
             
-            <hr>
-            
             <h3 id="temporal-intelligence-factors">Temporal Intelligence Factors</h3>
             
-            <table>
-                <tr>
-                    <td width="33%" style="text-align:center">
-                        <h4>Legislative Velocity</h4>
-                        <p>Rate of change in legal frameworks</p>
-                    </td>
-                    <td width="33%" style="text-align:center">
-                        <h4>Enforcement Trend Vector</h4>
-                        <p>Directional changes in enforcement</p>
-                    </td>
-                    <td width="33%" style="text-align:center">
-                        <h4>Geopolitical Stability</h4>
-                        <p>Political factors affecting legal changes</p>
-                    </td>
-                </tr>
-            </table>
+            <ul class="tile-grid">
+                <li><strong>Legislative Velocity</strong><span>Rate of change in legal frameworks</span></li>
+                <li><strong>Enforcement Trend Vector</strong><span>Directional changes in enforcement</span></li>
+                <li><strong>Geopolitical Stability</strong><span>Political factors affecting legal changes</span></li>
+            </ul>
             
             <h3 id="industry-context-multipliers">Industry Context Multipliers</h3>
             
-            <table>
-                <tr>
-                    <td style="background-color:rgba(24, 144, 255, 0.1); padding:10px; border-radius:8px; text-align:center">Healthcare<br>1.2-1.5×</td>
-                    <td style="background-color:rgba(24, 144, 255, 0.1); padding:10px; border-radius:8px; text-align:center">Financial<br>1.3-1.6×</td>
-                    <td style="background-color:rgba(24, 144, 255, 0.1); padding:10px; border-radius:8px; text-align:center">Critical Infrastructure<br>1.4-1.7×</td>
-                    <td style="background-color:rgba(24, 144, 255, 0.1); padding:10px; border-radius:8px; text-align:center">Telecommunications<br>1.3-1.5×</td>
-                </tr>
-            </table>
+            <ul class="tile-grid">
+                <li><strong>Healthcare</strong><span class="tile-value">1.2-1.5×</span></li>
+                <li><strong>Financial</strong><span class="tile-value">1.3-1.6×</span></li>
+                <li><strong>Critical Infrastructure</strong><span class="tile-value">1.4-1.7×</span></li>
+                <li><strong>Telecommunications</strong><span class="tile-value">1.3-1.5×</span></li>
+            </ul>
             
             <h3 id="enforcement-history-factors">Enforcement History Factors</h3>
             
-            <table>
-                <tr>
-                    <td width="20%" style="text-align:center">
-                        <h4>FEF</h4>
-                        <p>Foreign Entity Focus</p>
-                    </td>
-                    <td width="20%" style="text-align:center">
-                        <h4>ETE</h4>
-                        <p>Extraterritorial Enforcement</p>
-                    </td>
-                    <td width="20%" style="text-align:center">
-                        <h4>MPA</h4>
-                        <p>Max Penalty Application</p>
-                    </td>
-                    <td width="20%" style="text-align:center">
-                        <h4>IA</h4>
-                        <p>Investigative Aggressiveness</p>
-                    </td>
-                    <td width="20%" style="text-align:center">
-                        <h4>ASR</h4>
-                        <p>Appeal Success Rate</p>
-                    </td>
-                </tr>
-            </table>
+            <ul class="tile-grid">
+                <li><strong>FEF</strong><span>Foreign Entity Focus</span></li>
+                <li><strong>ETE</strong><span>Extraterritorial Enforcement</span></li>
+                <li><strong>MPA</strong><span>Max Penalty Application</span></li>
+                <li><strong>IA</strong><span>Investigative Aggressiveness</span></li>
+                <li><strong>ASR</strong><span>Appeal Success Rate</span></li>
+            </ul>
             
             <h3 id="data-sensitivity-factors">Data Sensitivity Factors</h3>
             
-            <div style="display:flex; justify-content:space-between; text-align:center; margin:20px 0;">
-                <div style="background-color:rgba(255, 59, 48, 0.1); border:1px solid #ff3b30; border-radius:8px; padding:10px; width:18%">
-                    <strong>Critical</strong><br>2.0-2.5×
-                </div>
-                <div style="background-color:rgba(255, 149, 0, 0.1); border:1px solid #ff9500; border-radius:8px; padding:10px; width:18%">
-                    <strong>Sensitive</strong><br>1.5-2.0×
-                </div>
-                <div style="background-color:rgba(0, 122, 255, 0.1); border:1px solid #007aff; border-radius:8px; padding:10px; width:18%">
-                    <strong>Confidential</strong><br>1.2-1.5×
-                </div>
-                <div style="background-color:rgba(88, 86, 214, 0.1); border:1px solid #5856d6; border-radius:8px; padding:10px; width:18%">
-                    <strong>Restricted</strong><br>1.0-1.2×
-                </div>
-                <div style="background-color:rgba(52, 199, 89, 0.1); border:1px solid #34c759; border-radius:8px; padding:10px; width:18%">
-                    <strong>Public</strong><br>0.8-1.0×
-                </div>
-            </div>
+            <ul class="tile-grid">
+                <li class="critical"><strong>Critical</strong><span class="tile-value">2.0-2.5×</span></li>
+                <li class="sensitive"><strong>Sensitive</strong><span class="tile-value">1.5-2.0×</span></li>
+                <li class="confidential"><strong>Confidential</strong><span class="tile-value">1.2-1.5×</span></li>
+                <li class="restricted"><strong>Restricted</strong><span class="tile-value">1.0-1.2×</span></li>
+                <li class="public"><strong>Public</strong><span class="tile-value">0.8-1.0×</span></li>
+            </ul>
             
             <h3 id="jurisdiction-interaction-model">Jurisdiction Interaction Model</h3>
             
-            <table>
-                <tr>
-                    <td style="background-color:rgba(255, 59, 48, 0.1); padding:10px; border-radius:8px;">
-                        <strong>Cooperative Enforcement</strong> (Amplifying)<br>
-                        When jurisdictions have mutual legal assistance treaties
-                    </td>
-                    <td style="background-color:rgba(52, 199, 89, 0.1); padding:10px; border-radius:8px;">
-                        <strong>Legal Conflict</strong> (Mitigating)<br>
-                        When jurisdictions have directly conflicting legal requirements
-                    </td>
-                </tr>
-                <tr>
-                    <td style="background-color:rgba(52, 199, 89, 0.1); padding:10px; border-radius:8px;">
-                        <strong>Blocking Statutes</strong> (Mitigating)<br>
-                        Laws designed to block extraterritorial reach
-                    </td>
-                    <td style="background-color:rgba(255, 59, 48, 0.1); padding:10px; border-radius:8px;">
-                        <strong>Corporate Structure</strong> (Amplifying)<br>
-                        Parent-subsidiary relationships creating exposures
-                    </td>
-                </tr>
-            </table>
+            <ul class="tile-grid">
+                <li class="amplifying"><strong>Cooperative Enforcement</strong><span class="tile-value">Amplifying</span><span>When jurisdictions have mutual legal assistance treaties</span></li>
+                <li class="mitigating"><strong>Legal Conflict</strong><span class="tile-value">Mitigating</span><span>When jurisdictions have directly conflicting legal requirements</span></li>
+                <li class="mitigating"><strong>Blocking Statutes</strong><span class="tile-value">Mitigating</span><span>Laws designed to block extraterritorial reach</span></li>
+                <li class="amplifying"><strong>Corporate Structure</strong><span class="tile-value">Amplifying</span><span>Parent-subsidiary relationships creating exposures</span></li>
+            </ul>
             
             <h2 id="security-considerations">Security Considerations</h2>
             
-            <div style="background-color: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 4px; padding: 20px; margin-bottom: 20px;">
-                <h3 style="margin-top: 0;">Important Security Notice</h3>
+            <div class="callout">
+                <h3>Important Security Notice</h3>
                 
                 <ul>
                     <li><p><strong>Risk Assessment Sensitivity</strong> — GLARS assessments themselves may be sensitive information as they implicitly acknowledge compliance risks and could reveal organisational vulnerabilities.</p></li>
@@ -948,7 +785,7 @@
             
             <h3 id="north-america">North America</h3>
             
-            <ol>
+            <ol class="references">
                 <li>USA PATRIOT Act (Uniting and Strengthening America by Providing Appropriate Tools Required to Intercept and Obstruct Terrorism Act), Pub. L. No. 107-56, 115 Stat. 272 (2001). Available at: <a href="https://www.congress.gov/bill/107th-congress/house-bill/3162">https://www.congress.gov/bill/107th-congress/house-bill/3162</a></li>
                 <li>Foreign Intelligence Surveillance Act of 1978 (FISA), 50 U.S.C. §§ 1801-1885c. Available at: <a href="https://www.govinfo.gov/content/pkg/STATUTE-92/pdf/STATUTE-92-Pg1783.pdf">https://www.govinfo.gov/content/pkg/STATUTE-92/pdf/STATUTE-92-Pg1783.pdf</a></li>
                 <li>Clarifying Lawful Overseas Use of Data Act (US CLOUD Act), H.R. 4943, 115th Congress (2018). Available at: <a href="https://www.congress.gov/bill/115th-congress/house-bill/4943">https://www.congress.gov/bill/115th-congress/house-bill/4943</a></li>
@@ -1005,26 +842,20 @@
             </ol>
         </div>
         
-        <footer>
-            <div class="footer-content">
-                <p>&copy; 2025 GLARS. An open methodology for quantifying jurisdictional risks in data sovereignty assessments.</p>
-                <p class="footer-attribution">This project is a <a href="https://splinters.io" target="_blank" rel="noopener">Splinters.io</a> 001.5 project via <a href="https://www.linkedin.com/in/thecontractor/" target="_blank" rel="noopener">John Carroll</a></p>
+        </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-row">
+                <p>A <a href="https://splinters.io" rel="noopener">Splinters.io</a> 001.5 project</p>
+                <p>By <a href="https://www.linkedin.com/in/thecontractor/" rel="noopener">John Carroll</a></p>
             </div>
-        </footer>
-    </div>
-    
-    <script src="js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script>
-        // On page load, directly render the HTML content
-        document.addEventListener('DOMContentLoaded', function() {
-            // The content is now directly embedded in the page
-            // No need to fetch and parse markdown
-            
-            // Initialize syntax highlighting for code blocks
-            Prism.highlightAll();
-        });
-    </script>
+            <div class="footer-row">
+                <p>&copy; 2025&ndash;2026 GLARS &middot; An open methodology for jurisdictional risk</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
 </body>
 </html>

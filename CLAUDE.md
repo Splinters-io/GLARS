@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 GLARS (Geo-Legal Access Risk Score) is a static website for documenting an objective, apolitical framework for quantifying jurisdictional risks in data sovereignty assessments.
 
 ## Build/Test Commands
-- Local development: `http-server .`
+- Local development: `npx wrangler dev` (clean URLs, redirects and headers as in production)
 - Preview HTML files: Open them directly in a browser
 - Check HTML validity: Use the W3C Validator (https://validator.w3.org/)
 - Check for broken links: `npx broken-link-checker http://localhost:8080`

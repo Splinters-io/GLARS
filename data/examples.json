@@ -1,0 +1,55 @@
+{
+  "examples": [
+    {
+      "id": "uk-us-india",
+      "kind": "Worked example",
+      "title": "UK domain, US provider, data hosted in India",
+      "summary": "A service on a .uk domain, run by a US-headquartered company, storing its data on servers in India. Three jurisdictions touch the same data, so the assessment scores their combined exposure as one profile.",
+      "explainer": [
+        "Each component takes the highest exposure across the three jurisdictions. US law dominates Agency Powers and Extraterritoriality because a US parent company can be compelled to produce data wherever it is stored.",
+        "The core formula gives 73. The Jurisdiction Journey page shows 78 because it also applies the interaction and corporate-control adjustments proposed in the Evolution roadmap, which the calculator does not yet include."
+      ],
+      "values": { "JO": 65, "AP": 85, "TR": 70, "EX": 90, "TP": 40, "EI": 15, "SS": 20 },
+      "rationale": {
+        "JO": "US National Security Letters are issued without prior court approval, and FISA Section 702 is authorised by the FISC at programme level rather than per target.",
+        "AP": "US FISA Section 702 and the CLOUD Act give broad powers to compel US providers.",
+        "TR": "UK Technical Capability Notices can require providers to maintain access capabilities, and India's IT Act Section 69 allows orders requiring decryption assistance.",
+        "EX": "The US CLOUD Act reaches data held by US companies regardless of where it is stored.",
+        "TP": "Gag orders attached to US National Security Letters limit what providers can disclose.",
+        "EI": "No comprehensive embargo applies between these three jurisdictions.",
+        "SS": "Low exposure unless customers or counterparties appear on sanctions lists."
+      },
+      "sources": [
+        { "label": "Clarifying Lawful Overseas Use of Data Act (CLOUD Act)", "url": "https://www.congress.gov/bill/115th-congress/house-bill/4943" },
+        { "label": "Investigatory Powers Act 2016 (UK)", "url": "https://www.legislation.gov.uk/ukpga/2016/25/contents" },
+        { "label": "Information Technology Act 2000 (India)", "url": "https://www.meity.gov.in/content/information-technology-act-2000" }
+      ],
+      "link": { "label": "See the full Jurisdiction Journey", "url": "/journey" }
+    },
+    {
+      "id": "deep-dive-reference",
+      "kind": "Reference vector",
+      "title": "The Deep Dive reference vector",
+      "summary": "The illustrative vector used in the Deep Dive's Vector Notation section. It is not tied to a particular country; it shows how embargo exposure interacts with the legal base score.",
+      "explainer": [
+        "The base score is 72 and Embargo Impact is 70. The GLARS score takes the higher of the two, and because the embargo is itself in the High band, the overall level would be High even if the base score were lower."
+      ],
+      "values": { "JO": 57, "AP": 80, "TR": 68, "EX": 85, "TP": 58, "EI": 70, "SS": 55 },
+      "rationale": {},
+      "sources": [],
+      "link": { "label": "Vector notation in the Deep Dive", "url": "/glars-deep#vector-notation" }
+    },
+    {
+      "id": "illustrative-low",
+      "kind": "Illustrative",
+      "title": "Strong oversight, no trade restrictions",
+      "summary": "An illustrative profile for a jurisdiction with independent prior judicial authorisation, targeted rather than bulk powers, published transparency statistics and no embargo or sanctions exposure.",
+      "explainer": [
+        "These values are illustrative and do not describe a specific country. They show what a Low result looks like: the base score drives the outcome because both trade components are close to zero."
+      ],
+      "values": { "JO": 20, "AP": 35, "TR": 15, "EX": 20, "TP": 25, "EI": 0, "SS": 5 },
+      "rationale": {},
+      "sources": []
+    }
+  ]
+}

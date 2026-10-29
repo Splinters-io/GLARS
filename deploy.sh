@@ -1,5 +1,5 @@
 #!/bin/bash
-# GLARS Cloudflare Pages Deployment Script
+# GLARS Cloudflare deployment script (Workers static assets, see wrangler.jsonc)
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -9,7 +9,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}GLARS Cloudflare Pages Deployment Script${NC}"
+echo -e "${BLUE}GLARS Cloudflare Deployment${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 
@@ -54,7 +54,7 @@ echo ""
 echo -e "${BLUE}Validating project files...${NC}"
 
 # Check for required files
-REQUIRED_FILES=("index.html" "css/style.css" "js/main.js")
+REQUIRED_FILES=("index.html" "css/style.css" "js/main.js" "js/calculator.js" "data/examples.json" "wrangler.jsonc")
 for file in "${REQUIRED_FILES[@]}"; do
     if [ ! -f "$file" ]; then
         echo -e "${RED}ERROR: Required file not found: $file${NC}"
@@ -64,14 +64,12 @@ for file in "${REQUIRED_FILES[@]}"; do
     fi
 done
 
-# Create Pages project if it doesn't exist
 echo ""
-echo -e "${BLUE}Deploying to Cloudflare Pages...${NC}"
-echo -e "${YELLOW}NOTE: If this is your first deployment, you'll be prompted to create a new project.${NC}"
+echo -e "${BLUE}Deploying to Cloudflare...${NC}"
 echo ""
 
-# Deploy using Wrangler
-wrangler pages deploy . --project-name=glars --branch=main
+# Deploy using Wrangler; files listed in .assetsignore are not uploaded
+wrangler deploy
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Deployment failed. Please check the error message above.${NC}"
@@ -81,9 +79,9 @@ fi
 echo ""
 echo -e "${GREEN}Deployment complete!${NC}"
 echo -e "${GREEN}Your GLARS project should now be available at:${NC}"
-echo -e "${BLUE}https://glars.pages.dev${NC}"
+echo -e "${BLUE}https://glars.<your-subdomain>.workers.dev${NC}"
 echo ""
-echo -e "${YELLOW}To use a custom domain, you can configure it in the Cloudflare Dashboard.${NC}"
+echo -e "${YELLOW}Attach www.glars.io under the Worker's Settings > Domains & Routes in the Cloudflare dashboard.${NC}"
 echo ""
 echo -e "${BLUE}Splinters.io 001.5 project via John Carroll${NC}"
 echo -e "${BLUE}========================================${NC}"

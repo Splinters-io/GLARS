@@ -3,42 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLARS | Geo-Legal Access Risk Score</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="description" content="GLARS is a framework for quantifying jurisdictional risks in data sovereignty assessments">
+    <title>GLARS — Geo-Legal Access Risk Score</title>
+    <meta name="description" content="GLARS is an open, evidence-based methodology for quantifying the jurisdictional, embargo and sanctions risks of where data is stored and who controls it.">
+    <link rel="canonical" href="https://www.glars.io/">
+    <meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GLARS">
+    <meta property="og:title" content="GLARS — Geo-Legal Access Risk Score">
+    <meta property="og:description" content="GLARS is an open, evidence-based methodology for quantifying the jurisdictional, embargo and sanctions risks of where data is stored and who controls it.">
+    <meta property="og:url" content="https://www.glars.io/">
+    <meta property="og:image" content="https://www.glars.io/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GLARS — Geo-Legal Access Risk Score">
+    <meta name="twitter:description" content="GLARS is an open, evidence-based methodology for quantifying the jurisdictional, embargo and sanctions risks of where data is stored and who controls it.">
+    <meta name="twitter:image" content="https://www.glars.io/og.png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/theme.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="index.html" class="logo-link"><div class="logo">GLARS<span>.</span></div></a>
-            <div class="header-actions">
-                <a href="journey.html" id="journey-btn" class="top-right-btn">Jurisdiction Journey</a>
-                <a href="evolution.html" id="evolution-btn" class="top-right-btn">Evolution</a>
-                <a href="glars-deep.html" id="deep-btn" class="top-right-btn">Deep Dive</a>
-                <button id="theme-toggle" class="top-right-btn theme-btn" title="Toggle dark/light mode">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
-        </header>
-        
-        <div class="hero-section">
-            <div class="hero-content">
-                <h1>GLARS: Geo-Legal Access Risk Score</h1>
-                <p>An objective, reproducible methodology for quantifying jurisdictional risks in data sovereignty assessments</p>
-            </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="wordmark" aria-label="GLARS home">
+                <span class="wordmark-name">GLARS<span class="wordmark-dot">.</span></span>
+                <span class="wordmark-tag">Geo-Legal Access Risk Score</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="/" aria-current="page">Overview</a>
+                <a href="/journey">Journey</a>
+                <a href="/evolution">Evolution</a>
+                <a href="/glars-deep">Deep Dive</a>
+                <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+            </button>
+            </nav>
         </div>
+    </header>
+
+    <main id="main" class="container">
         
+        <section class="hero-section hero-compact">
+            <div class="hero-content">
+                <span class="eyebrow">GLARS calculator</span>
+                <h1>Geo-Legal Access Risk Score</h1>
+                <p>Rate the legal access powers, embargoes and sanctions that apply to where your data lives and who controls it. The score, risk level and vector update as you go.</p>
+            </div>
+        </section>
+
+        <section class="calculator" id="calculator" aria-label="GLARS calculator">
+            <div class="calc-grid">
+                <div class="calc-main">
+                    <div class="calc-examples">
+                        <label class="eyebrow" for="example-select">Start from an example</label>
+                        <select id="example-select" class="calc-select">
+                            <option value="">Blank assessment</option>
+                        </select>
+                        <article class="example-explainer" id="example-explainer" hidden>
+                            <span class="eyebrow" id="example-kind"></span>
+                            <h2 id="example-title"></h2>
+                            <p class="example-summary" id="example-summary"></p>
+                            <details class="calc-explainer example-more">
+                                <summary>Read the explainer</summary>
+                                <div id="example-body"></div>
+                                <div class="example-sources" id="example-sources" hidden>
+                                    <span class="eyebrow">Sources</span>
+                                    <ul id="example-source-list"></ul>
+                                </div>
+                            </details>
+                        </article>
+                    </div>
+
+                    <form class="calc-inputs" id="glars-form" novalidate>
+                        <fieldset>
+                            <legend>Core legal components</legend>
+                            <p class="calc-legend-note">Weighted into the base score. 0 is lowest risk, 100 is highest.</p>
+                            <div class="calc-field" data-key="JO">
+                                <div class="calc-field-head">
+                                    <label for="f-JO"><span class="calc-code">JO</span> Judicial Oversight</label>
+                                    <span class="calc-weight">Weight 20%</span>
+                                    <input class="calc-number" type="number" id="n-JO" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Judicial Oversight score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-JO" name="JO" min="0" max="100" step="1" value="0" aria-describedby="h-JO">
+                                <p class="calc-hint" id="h-JO">Higher means weaker judicial control over government access.</p>
+                                <p class="calc-rationale" id="r-JO" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>The strength and independence of judicial review governing government access to data.</p>
+                                    <ul><li>Prior judicial authorisation before access</li><li>Independence of courts from the executive</li><li>Specificity and narrowness of access requests</li><li>Availability of meaningful appeal</li></ul>
+                                    <a href="/glars-deep#judicial-oversight">Judicial Oversight in the Deep Dive</a>
+                                </details>
+                            </div>
+                            <div class="calc-field" data-key="AP">
+                                <div class="calc-field-head">
+                                    <label for="f-AP"><span class="calc-code">AP</span> Agency Powers</label>
+                                    <span class="calc-weight">Weight 25%</span>
+                                    <input class="calc-number" type="number" id="n-AP" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Agency Powers score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-AP" name="AP" min="0" max="100" step="1" value="0" aria-describedby="h-AP">
+                                <p class="calc-hint" id="h-AP">Higher means broader legal powers to access data.</p>
+                                <p class="calc-rationale" id="r-AP" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>The breadth and depth of legal authority granted to government agencies to access data.</p>
+                                    <ul><li>Scope of authorised collection</li><li>Bulk versus targeted collection</li><li>Powers to compel service providers</li><li>Claimed authority beyond borders</li></ul>
+                                    <a href="/glars-deep#agency-powers">Agency Powers in the Deep Dive</a>
+                                </details>
+                            </div>
+                            <div class="calc-field" data-key="TR">
+                                <div class="calc-field-head">
+                                    <label for="f-TR"><span class="calc-code">TR</span> Technical Requirements</label>
+                                    <span class="calc-weight">Weight 15%</span>
+                                    <input class="calc-number" type="number" id="n-TR" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Technical Requirements score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-TR" name="TR" min="0" max="100" step="1" value="0" aria-describedby="h-TR">
+                                <p class="calc-hint" id="h-TR">Higher means more mandated access capabilities.</p>
+                                <p class="calc-rationale" id="r-TR" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>Technical capabilities providers must build or maintain to facilitate government access.</p>
+                                    <ul><li>Mandated access mechanisms</li><li>Key escrow or decryption obligations</li><li>Mandatory data retention</li><li>Powers to compel infrastructure changes</li></ul>
+                                    <a href="/glars-deep#technical-requirements">Technical Requirements in the Deep Dive</a>
+                                </details>
+                            </div>
+                            <div class="calc-field" data-key="EX">
+                                <div class="calc-field-head">
+                                    <label for="f-EX"><span class="calc-code">EX</span> Extraterritoriality</label>
+                                    <span class="calc-weight">Weight 25%</span>
+                                    <input class="calc-number" type="number" id="n-EX" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Extraterritoriality score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-EX" name="EX" min="0" max="100" step="1" value="0" aria-describedby="h-EX">
+                                <p class="calc-hint" id="h-EX">Higher means greater legal reach beyond the jurisdiction’s borders.</p>
+                                <p class="calc-rationale" id="r-EX" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>How far the jurisdiction’s laws assert authority over data and providers outside its territory.</p>
+                                    <ul><li>Claims over data stored abroad</li><li>Claims based on provider nationality</li><li>Claims based on data-subject nationality</li><li>Claims based on corporate control</li></ul>
+                                    <a href="/glars-deep#extraterritoriality">Extraterritoriality in the Deep Dive</a>
+                                </details>
+                            </div>
+                            <div class="calc-field" data-key="TP">
+                                <div class="calc-field-head">
+                                    <label for="f-TP"><span class="calc-code">TP</span> Transparency</label>
+                                    <span class="calc-weight">Weight 15%</span>
+                                    <input class="calc-number" type="number" id="n-TP" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Transparency score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-TP" name="TP" min="0" max="100" step="1" value="0" aria-describedby="h-TP">
+                                <p class="calc-hint" id="h-TP">Higher means less visibility into government access.</p>
+                                <p class="calc-rationale" id="r-TP" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>How visible government data-access activity is to the public, providers and affected people.</p>
+                                    <ul><li>Public reporting of access requests</li><li>Notification of affected individuals</li><li>Prevalence of gag orders</li><li>Availability of meaningful statistics</li></ul>
+                                    <a href="/glars-deep#transparency">Transparency in the Deep Dive</a>
+                                </details>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Trade restrictions</legend>
+                            <p class="calc-legend-note">Not weighted: if either is higher than the base score, it becomes the GLARS score.</p>
+                            <div class="calc-field" data-key="EI">
+                                <div class="calc-field-head">
+                                    <label for="f-EI"><span class="calc-code">EI</span> Embargo Impact</label>
+                                    <span class="calc-weight">Max rule</span>
+                                    <input class="calc-number" type="number" id="n-EI" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Embargo Impact score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-EI" name="EI" min="0" max="100" step="1" value="0" aria-describedby="h-EI">
+                                <p class="calc-hint" id="h-EI">Higher means more severe country-level trade restrictions.</p>
+                                <p class="calc-rationale" id="r-EI" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>The severity of trade restrictions that prohibit or limit commercial activity with a country.</p>
+                                    <ul><li>Comprehensiveness of restrictions</li><li>Number of issuing governments</li><li>Enforcement history</li><li>Available exceptions and licences</li><li>Conflicting blocking statutes</li></ul>
+                                    <a href="/glars-deep#embargo-impact">Embargo Impact in the Deep Dive</a>
+                                </details>
+                            </div>
+                            <div class="calc-field" data-key="SS">
+                                <div class="calc-field-head">
+                                    <label for="f-SS"><span class="calc-code">SS</span> Sanction Severity</label>
+                                    <span class="calc-weight">Max rule</span>
+                                    <input class="calc-number" type="number" id="n-SS" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Sanction Severity score">
+                                </div>
+                                <input class="calc-range" type="range" id="f-SS" name="SS" min="0" max="100" step="1" value="0" aria-describedby="h-SS">
+                                <p class="calc-hint" id="h-SS">Higher means more severe targeted sanctions exposure.</p>
+                                <p class="calc-rationale" id="r-SS" hidden></p>
+                                <details class="calc-help">
+                                    <summary>What this measures</summary>
+                                    <p>Targeted financial and economic restrictions on specific entities, individuals or sectors.</p>
+                                    <ul><li>Scope of prohibited activities</li><li>Risk of secondary sanctions</li><li>Penalty levels</li><li>Screening and due-diligence obligations</li><li>Humanitarian exceptions</li></ul>
+                                    <a href="/glars-deep#sanction-severity">Sanction Severity in the Deep Dive</a>
+                                </details>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <aside class="calc-result" aria-label="Result">
+                    <div class="calc-result-inner">
+                        <span class="eyebrow">GLARS score</span>
+                        <div class="calc-score" aria-live="polite" aria-atomic="true">
+                            <output id="score" for="glars-form">0</output><span class="calc-score-max">/100</span>
+                            <span class="level-badge low" id="level">Low</span>
+                        </div>
+                        <p class="calc-level-note" id="level-note"></p>
+
+                        <dl class="calc-breakdown">
+                            <div id="row-base"><dt>Base score</dt><dd id="base">0</dd></div>
+                            <div id="row-EI"><dt>Embargo Impact</dt><dd id="ei">0</dd></div>
+                            <div id="row-SS"><dt>Sanction Severity</dt><dd id="ss">0</dd></div>
+                        </dl>
+                        <p class="calc-driver" id="driver"></p>
+
+                        <div class="calc-vector">
+                            <span class="eyebrow">Vector</span>
+                            <code id="vector"></code>
+                            <div class="calc-actions">
+                                <button type="button" class="calc-button" id="copy-vector">Copy vector</button>
+                                <button type="button" class="calc-button" id="copy-link">Copy link</button>
+                                <button type="button" class="calc-button" id="reset">Reset</button>
+                            </div>
+                            <p class="calc-status" id="copy-status" role="status"></p>
+                        </div>
+
+                        <details class="calc-explainer">
+                            <summary>How this score is calculated</summary>
+                            <pre id="working"></pre>
+                            <p>Levels: Low 0&ndash;40, Medium 41&ndash;65, High 66&ndash;100. A High embargo or sanction makes the overall level High. <a href="/glars-deep#scoring-methodology">Scoring methodology</a></p>
+                        </details>
+
+                        <details class="calc-explainer">
+                            <summary>Load a vector</summary>
+                            <label class="visually-hidden" for="vector-input">GLARS vector</label>
+                            <input class="calc-text" type="text" id="vector-input" spellcheck="false" autocomplete="off" placeholder="GLARS:1.0/B:JO:57/AP:80/...">
+                            <button type="button" class="calc-button" id="load-vector">Load</button>
+                            <p class="calc-status" id="vector-status" role="status"></p>
+                        </details>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="calc-mini" id="calc-mini" aria-hidden="true">
+                <span class="eyebrow">GLARS</span>
+                <strong id="mini-score">0</strong>
+                <span class="level-badge low" id="mini-level">Low</span>
+            </div>
+        </section>
+
         <div class="author-quote">
             <div class="quote-content">
-                <svg class="quote-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                </svg>
                 <p>While the Risk Score might be important to some, the true value of GLARS lies in ensuring that essential questions have answers, and that decision-makers understand the material effects on data custodians, data owners, and those accountable for compliance. It's about ensuring full consideration of data location risks, so informed decisions can be made with a complete picture of jurisdictional implications.</p>
-                <div class="quote-attribution">— John</div>
+                <div class="quote-attribution">John Carroll</div>
             </div>
         </div>
         
@@ -49,7 +270,6 @@
                 
                 <div class="info-card">
                     <div class="info-header">
-                        <div class="info-icon">ℹ️</div>
                         <h3>Data Sovereignty Risk Assessment</h3>
                     </div>
                     <p>GLARS transforms subjective risk assessments into objective, comparable scores, enabling data-driven decision-making for multi-jurisdictional data governance challenges.</p>
@@ -89,32 +309,39 @@
                     <div class="resource-card">
                         <h3>Jurisdiction Journey</h3>
                         <p>Visualize data flows across multiple jurisdictions and understand the complex interplay of legal frameworks affecting data sovereignty.</p>
-                        <a href="journey.html" class="resource-link">Explore the Journey →</a>
+                        <a href="/journey" class="resource-link">Explore the Journey →</a>
                     </div>
                     
                     <div class="resource-card">
                         <h3>GLARS Evolution</h3>
                         <p>Discover the future roadmap for GLARS, including temporal intelligence, industry context, and jurisdiction interaction models.</p>
-                        <a href="evolution.html" class="resource-link">See the Roadmap →</a>
+                        <a href="/evolution" class="resource-link">See the Roadmap →</a>
                     </div>
                     
                     <div class="resource-card">
                         <h3>GLARS Deep Dive</h3>
                         <p>Explore a fully detailed, comprehensive analysis of the GLARS framework with in-depth explanations of all components and methodology.</p>
-                        <a href="glars-deep.html" class="resource-link">Take the Deep Dive →</a>
+                        <a href="/glars-deep" class="resource-link">Take the Deep Dive →</a>
                     </div>
                 </div>
             </section>
         </div>
         
-        <footer>
-            <div class="footer-content">
-                <p>&copy; 2025 GLARS. An open methodology for quantifying jurisdictional risks in data sovereignty assessments.</p>
-                <p class="footer-attribution">This project is a <a href="https://splinters.io" target="_blank" rel="noopener">Splinters.io</a> 001.5 project via <a href="https://www.linkedin.com/in/thecontractor/" target="_blank" rel="noopener">John Carroll</a></p>
+        </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-row">
+                <p>A <a href="https://splinters.io" rel="noopener">Splinters.io</a> 001.5 project</p>
+                <p>By <a href="https://www.linkedin.com/in/thecontractor/" rel="noopener">John Carroll</a></p>
             </div>
-        </footer>
-    </div>
-    
-    <script src="js/main.js"></script>
+            <div class="footer-row">
+                <p>&copy; 2025&ndash;2026 GLARS &middot; An open methodology for jurisdictional risk</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/calculator.js" defer></script>
 </body>
 </html>
