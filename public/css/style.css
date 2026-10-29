@@ -1743,9 +1743,103 @@ td strong {
     margin: 0.5rem 0 0.75rem;
 }
 
+.calc-field-title {
+    flex: 1;
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.calc-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink-light);
+    white-space: nowrap;
+}
+
+.calc-value.is-scored {
+    padding: 0.15rem 0.5rem;
+    color: var(--bg);
+    background: var(--ink);
+}
+
+.calc-what {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.calc-factors {
+    font-size: 0.875rem;
+    color: var(--ink-light);
+}
+
+.calc-manual {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.calc-manual summary {
+    display: inline-block;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    list-style: none;
+}
+
+.calc-manual summary::-webkit-details-marker {
+    display: none;
+}
+
+.calc-manual summary::before {
+    content: '+ ';
+}
+
+.calc-manual[open] summary::before {
+    content: '\2212  ';
+}
+
+.calc-manual summary:hover {
+    color: var(--ink);
+}
+
+.calc-manual[open] {
+    padding: 0.85rem 1rem;
+    background: var(--surface);
+}
+
+.calc-manual-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0.75rem 0 0.25rem;
+}
+
+.calc-manual-row label {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.calc-coverage {
+    margin: 0.75rem 0 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    color: var(--ink);
+    border-left: 3px solid var(--risk-medium);
+    background: var(--surface);
+}
+
 /* Scoring guide inside each component */
 
 .guide-why {
+    font-size: 0.9rem;
     color: var(--ink-mid);
 }
 
@@ -1773,6 +1867,7 @@ td strong {
 
 .guide-q-text {
     margin: 0;
+    font-size: 0.95rem;
     color: var(--ink);
 }
 
@@ -1814,7 +1909,9 @@ td strong {
 
 .guide-result {
     min-height: 1.3em;
-    margin: 0.5rem 0 0.75rem;
+    margin: 0.5rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--ink);
 }

@@ -68,8 +68,9 @@
                 </li>
                 <li class="step">
                     <span class="step-num" aria-hidden="true">2</span>
-                    <h3>Score the seven components</h3>
-                    <p>Use your own judgement, from 0 to 100, where higher always means more risk. Each component has a measuring stick:</p>
+                    <h3>Answer the questions</h3>
+                    <p>Each component has a few short statements. Answer No, Partly or Yes, where &ldquo;Yes&rdquo; always means more risk, and skip anything you can&rsquo;t judge. Your answers set the component&rsquo;s score, with a description of what that score means.</p>
+                    <p>Prefer your own number? Use &ldquo;Set the score yourself&rdquo; and check it against the measuring stick:</p>
                     <dl class="scale">
                         <div><dt>0&ndash;20</dt><dd>Strong protections, or no exposure</dd></div>
                         <div><dt>21&ndash;40</dt><dd>Limited, closely overseen</dd></div>
@@ -77,7 +78,6 @@
                         <div><dt>61&ndash;80</dt><dd>Extensive, weakly checked</dd></div>
                         <div><dt>81&ndash;100</dt><dd>Broad and unchecked</dd></div>
                     </dl>
-                    <p>As you move a slider, the description for that score appears underneath, based on the component&rsquo;s factors. Not sure? Open &ldquo;Measuring stick and questions&rdquo; and answer a few yes/no questions for a suggested score.</p>
                 </li>
                 <li class="step">
                     <span class="step-num" aria-hidden="true">3</span>
@@ -120,90 +120,120 @@
                     <form class="calc-inputs" id="glars-form" novalidate>
                         <fieldset>
                             <legend><span class="step-tag">Step 2</span> Core legal components</legend>
-                            <p class="calc-legend-note">These five are weighted and added together to make the base score.</p>
+                            <p class="calc-legend-note">Answer the questions under each component. These five are weighted and added together to make the base score.</p>
                             <div class="calc-field" data-key="JO">
                                 <div class="calc-field-head">
-                                    <label for="f-JO"><span class="calc-code">JO</span> Judicial Oversight</label>
+                                    <h3 class="calc-field-title" id="t-JO"><span class="calc-code">JO</span> Judicial Oversight</h3>
                                     <span class="calc-weight">Weight 20%</span>
-                                    <input class="calc-number" type="number" id="n-JO" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Judicial Oversight score">
+                                    <output class="calc-value" id="v-JO" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-JO" name="JO" min="0" max="100" step="1" value="0" aria-describedby="h-JO">
-                                <p class="calc-hint" id="h-JO">Higher means weaker judicial control over government access.</p>
-                                <p class="calc-band" id="b-JO" aria-live="polite"></p>
+                                <p class="calc-what">The strength and independence of judicial review governing government access to data.</p>
+                                <div class="calc-assistant" id="q-JO">
+                                    <ul class="calc-factors"><li>Prior judicial authorisation before access</li><li>Independence of courts from the executive</li><li>Specificity and narrowness of access requests</li><li>Availability of meaningful appeal</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-JO" hidden></p>
                                 <p class="calc-rationale" id="r-JO" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>The strength and independence of judicial review governing government access to data.</p>
-                                    <ul><li>Prior judicial authorisation before access</li><li>Independence of courts from the executive</li><li>Specificity and narrowness of access requests</li><li>Availability of meaningful appeal</li></ul>
-                                    <a href="/glars-deep#judicial-oversight">Judicial Oversight in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-JO">Your Judicial Oversight score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-JO" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-JO" name="JO" min="0" max="100" step="1" value="0" aria-labelledby="t-JO">
+                                    <div class="calc-stick" id="s-JO"></div>
+                                    <a href="/glars-deep#scoring-guide-jo">Judicial Oversight scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                             <div class="calc-field" data-key="AP">
                                 <div class="calc-field-head">
-                                    <label for="f-AP"><span class="calc-code">AP</span> Agency Powers</label>
+                                    <h3 class="calc-field-title" id="t-AP"><span class="calc-code">AP</span> Agency Powers</h3>
                                     <span class="calc-weight">Weight 25%</span>
-                                    <input class="calc-number" type="number" id="n-AP" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Agency Powers score">
+                                    <output class="calc-value" id="v-AP" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-AP" name="AP" min="0" max="100" step="1" value="0" aria-describedby="h-AP">
-                                <p class="calc-hint" id="h-AP">Higher means broader legal powers to access data.</p>
-                                <p class="calc-band" id="b-AP" aria-live="polite"></p>
+                                <p class="calc-what">The breadth and depth of legal authority granted to government agencies to access data.</p>
+                                <div class="calc-assistant" id="q-AP">
+                                    <ul class="calc-factors"><li>Scope of authorised collection</li><li>Bulk versus targeted collection</li><li>Powers to compel service providers</li><li>Claimed authority beyond borders</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-AP" hidden></p>
                                 <p class="calc-rationale" id="r-AP" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>The breadth and depth of legal authority granted to government agencies to access data.</p>
-                                    <ul><li>Scope of authorised collection</li><li>Bulk versus targeted collection</li><li>Powers to compel service providers</li><li>Claimed authority beyond borders</li></ul>
-                                    <a href="/glars-deep#agency-powers">Agency Powers in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-AP">Your Agency Powers score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-AP" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-AP" name="AP" min="0" max="100" step="1" value="0" aria-labelledby="t-AP">
+                                    <div class="calc-stick" id="s-AP"></div>
+                                    <a href="/glars-deep#scoring-guide-ap">Agency Powers scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                             <div class="calc-field" data-key="TR">
                                 <div class="calc-field-head">
-                                    <label for="f-TR"><span class="calc-code">TR</span> Technical Requirements</label>
+                                    <h3 class="calc-field-title" id="t-TR"><span class="calc-code">TR</span> Technical Requirements</h3>
                                     <span class="calc-weight">Weight 15%</span>
-                                    <input class="calc-number" type="number" id="n-TR" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Technical Requirements score">
+                                    <output class="calc-value" id="v-TR" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-TR" name="TR" min="0" max="100" step="1" value="0" aria-describedby="h-TR">
-                                <p class="calc-hint" id="h-TR">Higher means more mandated access capabilities.</p>
-                                <p class="calc-band" id="b-TR" aria-live="polite"></p>
+                                <p class="calc-what">Technical capabilities providers must build or maintain to facilitate government access.</p>
+                                <div class="calc-assistant" id="q-TR">
+                                    <ul class="calc-factors"><li>Mandated access mechanisms</li><li>Key escrow or decryption obligations</li><li>Mandatory data retention</li><li>Powers to compel infrastructure changes</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-TR" hidden></p>
                                 <p class="calc-rationale" id="r-TR" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>Technical capabilities providers must build or maintain to facilitate government access.</p>
-                                    <ul><li>Mandated access mechanisms</li><li>Key escrow or decryption obligations</li><li>Mandatory data retention</li><li>Powers to compel infrastructure changes</li></ul>
-                                    <a href="/glars-deep#technical-requirements">Technical Requirements in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-TR">Your Technical Requirements score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-TR" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-TR" name="TR" min="0" max="100" step="1" value="0" aria-labelledby="t-TR">
+                                    <div class="calc-stick" id="s-TR"></div>
+                                    <a href="/glars-deep#scoring-guide-tr">Technical Requirements scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                             <div class="calc-field" data-key="EX">
                                 <div class="calc-field-head">
-                                    <label for="f-EX"><span class="calc-code">EX</span> Extraterritoriality</label>
+                                    <h3 class="calc-field-title" id="t-EX"><span class="calc-code">EX</span> Extraterritoriality</h3>
                                     <span class="calc-weight">Weight 25%</span>
-                                    <input class="calc-number" type="number" id="n-EX" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Extraterritoriality score">
+                                    <output class="calc-value" id="v-EX" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-EX" name="EX" min="0" max="100" step="1" value="0" aria-describedby="h-EX">
-                                <p class="calc-hint" id="h-EX">Higher means greater legal reach beyond the jurisdiction’s borders.</p>
-                                <p class="calc-band" id="b-EX" aria-live="polite"></p>
+                                <p class="calc-what">How far the jurisdiction’s laws assert authority over data and providers outside its territory.</p>
+                                <div class="calc-assistant" id="q-EX">
+                                    <ul class="calc-factors"><li>Claims over data stored abroad</li><li>Claims based on provider nationality</li><li>Claims based on data-subject nationality</li><li>Claims based on corporate control</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-EX" hidden></p>
                                 <p class="calc-rationale" id="r-EX" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>How far the jurisdiction’s laws assert authority over data and providers outside its territory.</p>
-                                    <ul><li>Claims over data stored abroad</li><li>Claims based on provider nationality</li><li>Claims based on data-subject nationality</li><li>Claims based on corporate control</li></ul>
-                                    <a href="/glars-deep#extraterritoriality">Extraterritoriality in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-EX">Your Extraterritoriality score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-EX" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-EX" name="EX" min="0" max="100" step="1" value="0" aria-labelledby="t-EX">
+                                    <div class="calc-stick" id="s-EX"></div>
+                                    <a href="/glars-deep#scoring-guide-ex">Extraterritoriality scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                             <div class="calc-field" data-key="TP">
                                 <div class="calc-field-head">
-                                    <label for="f-TP"><span class="calc-code">TP</span> Transparency</label>
+                                    <h3 class="calc-field-title" id="t-TP"><span class="calc-code">TP</span> Transparency</h3>
                                     <span class="calc-weight">Weight 15%</span>
-                                    <input class="calc-number" type="number" id="n-TP" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Transparency score">
+                                    <output class="calc-value" id="v-TP" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-TP" name="TP" min="0" max="100" step="1" value="0" aria-describedby="h-TP">
-                                <p class="calc-hint" id="h-TP">Higher means less visibility into government access.</p>
-                                <p class="calc-band" id="b-TP" aria-live="polite"></p>
+                                <p class="calc-what">How visible government data-access activity is to the public, providers and affected people.</p>
+                                <div class="calc-assistant" id="q-TP">
+                                    <ul class="calc-factors"><li>Public reporting of access requests</li><li>Notification of affected individuals</li><li>Prevalence of gag orders</li><li>Availability of meaningful statistics</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-TP" hidden></p>
                                 <p class="calc-rationale" id="r-TP" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>How visible government data-access activity is to the public, providers and affected people.</p>
-                                    <ul><li>Public reporting of access requests</li><li>Notification of affected individuals</li><li>Prevalence of gag orders</li><li>Availability of meaningful statistics</li></ul>
-                                    <a href="/glars-deep#transparency">Transparency in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-TP">Your Transparency score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-TP" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-TP" name="TP" min="0" max="100" step="1" value="0" aria-labelledby="t-TP">
+                                    <div class="calc-stick" id="s-TP"></div>
+                                    <a href="/glars-deep#scoring-guide-tp">Transparency scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                         </fieldset>
@@ -213,36 +243,48 @@
                             <p class="calc-legend-note">These two are not added in. If either is higher than the base score, it becomes the GLARS score.</p>
                             <div class="calc-field" data-key="EI">
                                 <div class="calc-field-head">
-                                    <label for="f-EI"><span class="calc-code">EI</span> Embargo Impact</label>
+                                    <h3 class="calc-field-title" id="t-EI"><span class="calc-code">EI</span> Embargo Impact</h3>
                                     <span class="calc-weight">Not weighted</span>
-                                    <input class="calc-number" type="number" id="n-EI" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Embargo Impact score">
+                                    <output class="calc-value" id="v-EI" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-EI" name="EI" min="0" max="100" step="1" value="0" aria-describedby="h-EI">
-                                <p class="calc-hint" id="h-EI">Higher means more severe country-level trade restrictions.</p>
-                                <p class="calc-band" id="b-EI" aria-live="polite"></p>
+                                <p class="calc-what">The severity of trade restrictions that prohibit or limit commercial activity with a country.</p>
+                                <div class="calc-assistant" id="q-EI">
+                                    <ul class="calc-factors"><li>Comprehensiveness of restrictions</li><li>Number of issuing governments</li><li>Enforcement history</li><li>Available exceptions and licences</li><li>Conflicting blocking statutes</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-EI" hidden></p>
                                 <p class="calc-rationale" id="r-EI" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>The severity of trade restrictions that prohibit or limit commercial activity with a country.</p>
-                                    <ul><li>Comprehensiveness of restrictions</li><li>Number of issuing governments</li><li>Enforcement history</li><li>Available exceptions and licences</li><li>Conflicting blocking statutes</li></ul>
-                                    <a href="/glars-deep#embargo-impact">Embargo Impact in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-EI">Your Embargo Impact score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-EI" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-EI" name="EI" min="0" max="100" step="1" value="0" aria-labelledby="t-EI">
+                                    <div class="calc-stick" id="s-EI"></div>
+                                    <a href="/glars-deep#scoring-guide-ei">Embargo Impact scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                             <div class="calc-field" data-key="SS">
                                 <div class="calc-field-head">
-                                    <label for="f-SS"><span class="calc-code">SS</span> Sanction Severity</label>
+                                    <h3 class="calc-field-title" id="t-SS"><span class="calc-code">SS</span> Sanction Severity</h3>
                                     <span class="calc-weight">Not weighted</span>
-                                    <input class="calc-number" type="number" id="n-SS" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Sanction Severity score">
+                                    <output class="calc-value" id="v-SS" aria-live="polite">Not scored</output>
                                 </div>
-                                <input class="calc-range" type="range" id="f-SS" name="SS" min="0" max="100" step="1" value="0" aria-describedby="h-SS">
-                                <p class="calc-hint" id="h-SS">Higher means more severe targeted sanctions exposure.</p>
-                                <p class="calc-band" id="b-SS" aria-live="polite"></p>
+                                <p class="calc-what">Targeted financial and economic restrictions on specific entities, individuals or sectors.</p>
+                                <div class="calc-assistant" id="q-SS">
+                                    <ul class="calc-factors"><li>Scope of prohibited activities</li><li>Risk of secondary sanctions</li><li>Penalty levels</li><li>Screening and due-diligence obligations</li><li>Humanitarian exceptions</li></ul>
+                                </div>
+                                <p class="calc-band" id="b-SS" hidden></p>
                                 <p class="calc-rationale" id="r-SS" hidden></p>
-                                <details class="calc-help">
-                                    <summary>Measuring stick and questions</summary>
-                                    <p>Targeted financial and economic restrictions on specific entities, individuals or sectors.</p>
-                                    <ul><li>Scope of prohibited activities</li><li>Risk of secondary sanctions</li><li>Penalty levels</li><li>Screening and due-diligence obligations</li><li>Humanitarian exceptions</li></ul>
-                                    <a href="/glars-deep#sanction-severity">Sanction Severity in the Deep Dive</a>
+                                <details class="calc-manual">
+                                    <summary>Set the score yourself</summary>
+                                    <div class="calc-manual-row">
+                                        <label for="n-SS">Your Sanction Severity score (0&ndash;100)</label>
+                                        <input class="calc-number" type="number" id="n-SS" min="0" max="100" step="1" value="0" inputmode="numeric">
+                                    </div>
+                                    <input class="calc-range" type="range" id="f-SS" name="SS" min="0" max="100" step="1" value="0" aria-labelledby="t-SS">
+                                    <div class="calc-stick" id="s-SS"></div>
+                                    <a href="/glars-deep#scoring-guide-ss">Sanction Severity scoring guide in the Deep Dive</a>
                                 </details>
                             </div>
                         </fieldset>
@@ -256,9 +298,10 @@
                             <output id="score" for="glars-form">&ndash;</output><span class="calc-score-max">/100</span>
                             <span class="level-badge low" id="level" hidden>Low</span>
                         </div>
-                        <p class="calc-empty" id="result-empty">Score the components, or load an example, to see a result.</p>
+                        <p class="calc-empty" id="result-empty">Answer the questions, or load a worked example, to see a result.</p>
 
                         <div id="result-body" hidden>
+                            <p class="calc-coverage" id="coverage" hidden></p>
                             <p class="calc-level-note" id="level-note"></p>
                             <p class="calc-driver" id="driver"></p>
                             <dl class="calc-breakdown">

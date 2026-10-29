@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var examples = [];
     var activeExample = null;
     var copyTimer = null;
-    var touched = false;
+    var scored = {};
+
+    function scoredCount() {
+        return KEYS.filter(function (k) { return scored[k]; }).length;
+    }
 
     // ---------- Scoring ----------
 
@@ -102,8 +106,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showBand(k, n) {
         var out = $('b-' + k);
+        $('v-' + k).textContent = scored[k] ? n + ' / 100' : 'Not scored';
+        $('v-' + k).classList.toggle('is-scored', !!scored[k]);
         var band = bandFor(k, n);
-        if (!out || !band) return;
+        out.hidden = !(scored[k] && band);
+        if (!band) return;
         out.textContent = '';
         out.appendChild(el('strong', '', n + ' (' + band.min + '–' + band.max + '): '));
         out.appendChild(document.createTextNode(band.text));
@@ -121,8 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function apply(values, isResult) {
-        touched = isResult !== false;
-        KEYS.forEach(function (k) { setField(k, values[k] || 0); });
+        KEYS.forEach(function (k) {
+            scored[k] = isResult !== false;
+            setField(k, values[k] || 0);
+        });
         update();
     }
 
@@ -130,21 +139,21 @@ document.addEventListener('DOMContentLoaded', function () {
         var range = $('f-' + k);
         var number = $('n-' + k);
         range.addEventListener('input', function () {
-            touched = true;
+            scored[k] = true;
             setField(k, range.value);
             noteGuide(k);
             update();
         });
         number.addEventListener('input', function () {
             if (number.value === '') return;
-            touched = true;
+            scored[k] = true;
             range.value = clamp(number.value);
             range.style.setProperty('--fill', range.value + '%');
             showBand(k, clamp(number.value));
             update();
         });
         number.addEventListener('change', function () {
-            touched = true;
+            scored[k] = true;
             setField(k, number.value);
             noteGuide(k);
             update();
@@ -180,10 +189,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function update() {
         var v = read();
         syncRationale(v);
-        if (!touched) {
+        var count = scoredCount();
+        if (!count) {
             showEmpty();
             return;
         }
+        $('coverage').hidden = count === KEYS.length;
+        $('coverage').textContent = count + ' of ' + KEYS.length + ' components scored. Unscored components count as 0, so this result may be too low.';
 
         var r = compute(v);
         var rounded = Math.round(r.score);
@@ -250,34 +262,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderGuide(k, c) {
-        var details = document.querySelector('.calc-field[data-key="' + k + '"] .calc-help');
-        if (!details || !c || !c.questions) return;
-        var link = details.querySelector('a');
-        var summary = details.querySelector('summary');
-        summary.textContent = 'Measuring stick and questions';
-        while (summary.nextSibling) details.removeChild(summary.nextSibling);
+        var host = $('q-' + k);
+        if (!host || !c || !c.questions) return;
+        host.textContent = '';
 
         var why = el('p', 'guide-why');
         why.appendChild(el('strong', '', 'Why it matters: '));
         why.appendChild(document.createTextNode(c.why));
-        details.appendChild(why);
+        host.appendChild(why);
 
-        if (c.bands) {
-            details.appendChild(el('p', 'guide-title', 'Measuring stick'));
-            var dl = el('dl', 'guide-bands');
-            c.bands.forEach(function (b) {
-                var row = el('div');
-                row.setAttribute('data-min', b.min);
-                row.appendChild(el('dt', '', b.min + '–' + b.max));
-                row.appendChild(el('dd', '', b.text));
-                dl.appendChild(row);
-            });
-            details.appendChild(dl);
-        }
-
-        details.appendChild(el('p', 'guide-title', 'Not sure? Answer these'));
         var set = el('fieldset', 'guide-questions');
-        set.appendChild(el('legend', '', '“Yes” always means more risk. Skip anything you can’t judge; your answers are averaged into a suggested score.'));
+        set.appendChild(el('legend', '', 'Answer what you know. “Yes” always means more risk; skip anything you can’t judge.'));
         c.questions.forEach(function (q, i) {
             var row = el('div', 'guide-q');
             var text = el('p', 'guide-q-text', q);
@@ -299,19 +294,32 @@ document.addEventListener('DOMContentLoaded', function () {
             row.appendChild(options);
             set.appendChild(row);
         });
-        details.appendChild(set);
+        host.appendChild(set);
 
         var result = el('p', 'guide-result');
         result.id = 'gr-' + k;
         result.setAttribute('role', 'status');
-        details.appendChild(result);
+        host.appendChild(result);
 
-        if (link) details.appendChild(link);
+        var stick = $('s-' + k);
+        if (stick && c.bands) {
+            stick.textContent = '';
+            stick.appendChild(el('p', 'guide-title', 'Measuring stick'));
+            var dl = el('dl', 'guide-bands');
+            c.bands.forEach(function (b) {
+                var row = el('div');
+                row.setAttribute('data-min', b.min);
+                row.appendChild(el('dt', '', b.min + '–' + b.max));
+                row.appendChild(el('dd', '', b.text));
+                dl.appendChild(row);
+            });
+            stick.appendChild(dl);
+        }
 
         set.addEventListener('change', function () {
             var n = guideScore(k);
             if (n === null) return;
-            touched = true;
+            scored[k] = true;
             setField(k, n);
             update();
             noteGuide(k);
@@ -319,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function guideScore(k) {
-        var checked = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-questions input:checked');
+        var checked = document.querySelectorAll('#q-' + k + ' input:checked');
         if (!checked.length) return null;
         var sum = 0;
         checked.forEach(function (input) { sum += Number(input.value); });
@@ -331,14 +339,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!out) return;
         var n = guideScore(k);
         var current = clamp($('f-' + k).value);
-        var total = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-q').length;
-        var answered = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-questions input:checked').length;
+        var total = document.querySelectorAll('#q-' + k + ' .guide-q').length;
+        var answered = document.querySelectorAll('#q-' + k + ' input:checked').length;
         if (n === null) {
             out.textContent = '';
         } else if (n === current) {
-            out.textContent = 'Your ' + answered + ' of ' + total + ' answers give ' + n + '. You can still adjust the slider.';
+            out.textContent = answered + ' of ' + total + ' answered → ' + n + ' / 100';
         } else {
-            out.textContent = 'Your answers give ' + n + '; the slider is set to ' + current + ' by hand.';
+            out.textContent = 'Your answers give ' + n + '; you have set ' + current + ' yourself.';
         }
     }
 
@@ -515,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if ('IntersectionObserver' in window) {
         var inCalc = false;
         var resultVisible = false;
-        var refresh = function () { mini.classList.toggle('is-visible', touched && inCalc && !resultVisible); };
+        var refresh = function () { mini.classList.toggle('is-visible', scoredCount() > 0 && inCalc && !resultVisible); };
         new IntersectionObserver(function (e) { inCalc = e[0].isIntersecting; refresh(); })
             .observe(form);
         new IntersectionObserver(function (e) { resultVisible = e[0].isIntersecting; refresh(); })
