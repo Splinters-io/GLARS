@@ -1835,6 +1835,43 @@ td strong {
     font-size: 0.9rem;
 }
 
+/* ---------- Juri links ---------- */
+
+.ext-mark {
+    margin-left: 0.2em;
+}
+
+.juri-tip {
+    position: fixed;
+    z-index: 50;
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.8rem 0.95rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    text-align: left;
+    color: var(--bg);
+    background: var(--ink);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+
+.juri-tip strong,
+.juri-tip small {
+    color: inherit;
+}
+
+.juri-tip strong {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.juri-tip small {
+    font-size: 0.75rem;
+    opacity: 0.75;
+}
+
 /* ---------- Calculator ---------- */
 
 .visually-hidden {

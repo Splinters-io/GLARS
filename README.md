@@ -26,7 +26,7 @@ Everything under `public/` is published; nothing else in the repository is.
 - `public/404.html` - Not-found page
 - `public/css/style.css` - All styles; colour tokens are at the top, with a dark theme
 - `public/js/theme.js` - Applies a saved light/dark preference before first paint
-- `public/js/main.js` - Theme toggle and table-of-contents tracking
+- `public/js/main.js` - Theme toggle, table-of-contents tracking, and the hover note on Juri links
 - `public/js/calculator.js` - Calculator scoring, vector parsing and examples
 - `public/js/journey.js` - The "Follow the data" timeline on the Journey page
 - `public/data/examples.json` - Calculator examples and explainers
