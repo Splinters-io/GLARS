@@ -1072,8 +1072,8 @@ td strong {
 }
 
 .tl-stage-head {
-    min-height: 8.5rem;
-    padding-bottom: 0.9rem;
+    min-height: 8rem;
+    padding-bottom: 0.6rem;
 }
 
 .tl-when,
@@ -1113,8 +1113,8 @@ td strong {
    selected path (see timeline.js); everything else dims and blurs. */
 .tl-power {
     position: relative;
-    margin: 0 0 0.35rem;
-    padding: 0.35rem 0.6rem 0.7rem;
+    margin: 0 0 0.2rem;
+    padding: 0.35rem 0.6rem 0.5rem;
     border-left: 2px solid transparent;
     border-right: 2px solid transparent;
     cursor: pointer;
@@ -1150,11 +1150,26 @@ td strong {
     margin: 0.2rem 0 0;
 }
 
+/* Collapsed to name and meta line; the "why it matters here" sentence opens
+   for the power you point at, tab to or tap. Still read by screen readers
+   (it is clipped, not removed) and always shown in print. */
 .tl-power-why {
-    margin: 0.4rem 0 0;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
     font-size: 0.8rem;
     line-height: 1.45;
     color: var(--ink-mid);
+    transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.2s ease;
+}
+
+.tl-power:hover .tl-power-why,
+.tl-power:focus-within .tl-power-why,
+.tl-power.is-origin .tl-power-why {
+    max-height: 14rem;
+    margin-top: 0.4rem;
+    opacity: 1;
 }
 
 .tl-power:focus-visible {
@@ -1306,6 +1321,12 @@ td strong {
 
     .tl-power.is-path {
         border-color: transparent;
+    }
+
+    .tl-power-why {
+        max-height: none;
+        margin-top: 0.4rem;
+        opacity: 1;
     }
 
     .tl-power-links {
