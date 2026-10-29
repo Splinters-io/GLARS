@@ -1,0 +1,273 @@
+{
+  "version": "1.1",
+  "answers": [
+    {
+      "label": "No",
+      "value": 0
+    },
+    {
+      "label": "Partly",
+      "value": 50
+    },
+    {
+      "label": "Yes",
+      "value": 100
+    }
+  ],
+  "components": {
+    "JO": {
+      "why": "Independent judges are the main check between an agency's request and your data. The weaker that check, the easier it is for access to happen without scrutiny.",
+      "questions": [
+        "Agencies can obtain stored data without prior approval from an independent judge or judicial commissioner.",
+        "The body that approves access sits inside, or answers to, the executive.",
+        "Approvals can cover broad categories or whole programmes rather than named targets.",
+        "Providers or affected people have no meaningful way to challenge access in court."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "Every access needs prior approval from an independent court, limited to named targets, with a real route to challenge it."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Independent prior approval for nearly all access; a few narrow exceptions, such as emergencies, are reviewed by a judge afterwards."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Judicial approval for criminal investigations, but national-security access is approved within the executive or at programme level."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Most access is approved within the executive; courts are involved rarely or in secret, with little chance to challenge."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "No independent approval: agencies authorise their own access and it cannot be challenged."
+        }
+      ]
+    },
+    "AP": {
+      "why": "This is how much agencies are legally allowed to collect and from whom. The broader the powers, the more of your data falls within scope.",
+      "questions": [
+        "Agencies can collect in bulk, not only data about specific targets.",
+        "Agencies can compel service providers to hand over data or give technical assistance.",
+        "The grounds for access are broad (such as national security or economic well-being) rather than limited to serious crime.",
+        "Foreign nationals' data has fewer protections than citizens' data."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "Narrow, targeted powers for serious crime only; providers produce specified records and nothing more; everyone's data is equally protected."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Targeted powers with some broader grounds, and limited duties on providers to assist."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Broad national-security grounds and compelled provider assistance, but no bulk collection."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Bulk or programme-level collection with compelled assistance; foreigners' data is less protected."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "Effectively unrestricted collection on broad grounds, including direct bulk access to provider systems."
+        }
+      ]
+    },
+    "TR": {
+      "why": "Mandated capabilities change the system itself. Once a provider must build access in or weaken encryption, the data is exposed whoever is asking.",
+      "questions": [
+        "Providers can be required to build or maintain interception or access capabilities.",
+        "Providers can be required to remove or weaken encryption, or help decrypt data.",
+        "Providers must retain data such as metadata or logs for set periods for government use.",
+        "Authorities can require changes to products or infrastructure, or advance notice of changes."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "No mandated access capabilities, no decryption duties and no general data retention."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Limited retention or assistance duties for specific services; no power to require built-in access."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "General data retention, and duties to help decrypt where the provider holds the keys."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Providers can be required to build or maintain access capabilities, or to give notice before security changes."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "Providers can be ordered to weaken or remove encryption and redesign systems for government access."
+        }
+      ]
+    },
+    "EX": {
+      "why": "Some laws follow the company rather than the data, so storing data in another country does not take it out of reach.",
+      "questions": [
+        "The law claims access to data stored outside the country.",
+        "It applies to providers because of where they are headquartered or incorporated.",
+        "It reaches foreign subsidiaries or affiliates through corporate control.",
+        "It applies based on the nationality or location of the people the data is about."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "Powers apply only to data and providers inside the country."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Reach abroad only through treaties such as mutual legal assistance, with the other country involved."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Direct orders to domestic providers for data they hold abroad, subject to court review or comity checks."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Direct claims over data held abroad by domestic companies and their foreign subsidiaries."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "Claims over any data connected to its nationals, companies or interests, wherever it is held."
+        }
+      ]
+    },
+    "TP": {
+      "why": "Secrecy hides how often powers are used and stops you from knowing your data was accessed, which makes every other risk harder to manage.",
+      "questions": [
+        "The government publishes no meaningful statistics on data-access requests.",
+        "Providers can be prevented from disclosing requests, including indefinitely.",
+        "Affected people are rarely or never notified after access.",
+        "Reports by independent oversight bodies are unpublished or heavily redacted."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "Regular, detailed statistics; time-limited gag orders; notification once investigations end; published oversight reports."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Published statistics and oversight reports; gag orders are common but reviewable; notification is rare."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Aggregate statistics only, long-lasting gag orders and no notification."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Minimal statistics, indefinite gag orders, and oversight reports that are unpublished or heavily redacted."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "No public information about access at all; revealing a request can itself be an offence."
+        }
+      ]
+    },
+    "EI": {
+      "why": "An embargo can make providing or using a service unlawful outright, however well the data itself is protected.",
+      "questions": [
+        "A country-wide embargo restricts trade involving this jurisdiction.",
+        "The restrictions cover technology, IT or data services specifically.",
+        "Several major governments impose restrictions.",
+        "Few licences or exceptions are available.",
+        "Blocking statutes create conflicting legal obligations."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "No embargo affects services involving this jurisdiction."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "Narrow restrictions on specific goods or technologies, not data services; licences are readily available."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Restrictions on some technology or IT services from at least one major government; licences are possible."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Broad restrictions on technology and data services from several governments, with few licences."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "A comprehensive embargo prohibiting nearly all transactions, including data services, with conflicting blocking statutes."
+        }
+      ]
+    },
+    "SS": {
+      "why": "Targeted sanctions can prohibit dealing with specific organisations or people, and some penalties reach companies outside the sanctioning country.",
+      "questions": [
+        "Providers, partners or sectors you would rely on are, or are likely to be, on sanctions lists.",
+        "Secondary sanctions can penalise foreign companies for dealing with listed parties.",
+        "Penalties for violations are severe, such as large fines or criminal liability.",
+        "Screening and due-diligence obligations are heavy.",
+        "Few exemptions exist for essential or humanitarian services."
+      ],
+      "bands": [
+        {
+          "min": 0,
+          "max": 20,
+          "text": "No relevant organisations or sectors are sanctioned; routine screening is enough."
+        },
+        {
+          "min": 21,
+          "max": 40,
+          "text": "A few listed parties; standard screening manages the risk."
+        },
+        {
+          "min": 41,
+          "max": 60,
+          "text": "Key organisations or relevant sectors are sanctioned; enhanced due diligence is needed."
+        },
+        {
+          "min": 61,
+          "max": 80,
+          "text": "Extensive sanctions on relevant sectors, with a risk of secondary sanctions."
+        },
+        {
+          "min": 81,
+          "max": 100,
+          "text": "Sweeping sanctions with secondary reach, severe criminal penalties and few exemptions."
+        }
+      ]
+    }
+  }
+}

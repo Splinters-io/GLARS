@@ -70,6 +70,7 @@
                 <li><a href="#terminology">Terminology</a></li>
                 <li><a href="#glars-core-components">GLARS Core Components</a></li>
                 <li><a href="#embargo-and-sanctions-components">Embargo and Sanctions Components</a></li>
+                <li><a href="#scoring-guide">Scoring Guide</a></li>
                 <li><a href="#scoring-methodology">Scoring Methodology</a></li>
                 <li><a href="#risk-levels">Risk Levels</a></li>
                 <li><a href="#transfer-risk-assessment">Transfer Risk Assessment</a></li>
@@ -425,6 +426,187 @@
             
             <p><strong>Scoring</strong>: 0-100, where higher scores indicate more severe sanctions and higher risk.</p>
             
+            <h2 id="scoring-guide">Scoring Guide</h2>
+
+            <p>Assessors use their own judgement, but each score should be checkable against a shared measuring stick. For every component, the bands below describe what a jurisdiction at that level looks like in terms of the component&rsquo;s factors. The questions are an optional aid: answer No, Partly or Yes (scored 0, 50 and 100, where &ldquo;Yes&rdquo; always means more risk), skip anything you cannot judge, and average the answers for a suggested score.</p>
+
+            <h3 id="scoring-guide-jo">Judicial Oversight (JO)</h3>
+
+            <p><strong>Why it matters</strong>: Independent judges are the main check between an agency&#x27;s request and your data. The weaker that check, the easier it is for access to happen without scrutiny.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>Every access needs prior approval from an independent court, limited to named targets, with a real route to challenge it.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Independent prior approval for nearly all access; a few narrow exceptions, such as emergencies, are reviewed by a judge afterwards.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Judicial approval for criminal investigations, but national-security access is approved within the executive or at programme level.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Most access is approved within the executive; courts are involved rarely or in secret, with little chance to challenge.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>No independent approval: agencies authorise their own access and it cannot be challenged.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>Agencies can obtain stored data without prior approval from an independent judge or judicial commissioner.</li>
+                <li>The body that approves access sits inside, or answers to, the executive.</li>
+                <li>Approvals can cover broad categories or whole programmes rather than named targets.</li>
+                <li>Providers or affected people have no meaningful way to challenge access in court.</li>
+            </ol>
+
+            <h3 id="scoring-guide-ap">Agency Powers (AP)</h3>
+
+            <p><strong>Why it matters</strong>: This is how much agencies are legally allowed to collect and from whom. The broader the powers, the more of your data falls within scope.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>Narrow, targeted powers for serious crime only; providers produce specified records and nothing more; everyone&#x27;s data is equally protected.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Targeted powers with some broader grounds, and limited duties on providers to assist.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Broad national-security grounds and compelled provider assistance, but no bulk collection.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Bulk or programme-level collection with compelled assistance; foreigners&#x27; data is less protected.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>Effectively unrestricted collection on broad grounds, including direct bulk access to provider systems.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>Agencies can collect in bulk, not only data about specific targets.</li>
+                <li>Agencies can compel service providers to hand over data or give technical assistance.</li>
+                <li>The grounds for access are broad (such as national security or economic well-being) rather than limited to serious crime.</li>
+                <li>Foreign nationals&#x27; data has fewer protections than citizens&#x27; data.</li>
+            </ol>
+
+            <h3 id="scoring-guide-tr">Technical Requirements (TR)</h3>
+
+            <p><strong>Why it matters</strong>: Mandated capabilities change the system itself. Once a provider must build access in or weaken encryption, the data is exposed whoever is asking.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>No mandated access capabilities, no decryption duties and no general data retention.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Limited retention or assistance duties for specific services; no power to require built-in access.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>General data retention, and duties to help decrypt where the provider holds the keys.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Providers can be required to build or maintain access capabilities, or to give notice before security changes.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>Providers can be ordered to weaken or remove encryption and redesign systems for government access.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>Providers can be required to build or maintain interception or access capabilities.</li>
+                <li>Providers can be required to remove or weaken encryption, or help decrypt data.</li>
+                <li>Providers must retain data such as metadata or logs for set periods for government use.</li>
+                <li>Authorities can require changes to products or infrastructure, or advance notice of changes.</li>
+            </ol>
+
+            <h3 id="scoring-guide-ex">Extraterritoriality (EX)</h3>
+
+            <p><strong>Why it matters</strong>: Some laws follow the company rather than the data, so storing data in another country does not take it out of reach.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>Powers apply only to data and providers inside the country.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Reach abroad only through treaties such as mutual legal assistance, with the other country involved.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Direct orders to domestic providers for data they hold abroad, subject to court review or comity checks.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Direct claims over data held abroad by domestic companies and their foreign subsidiaries.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>Claims over any data connected to its nationals, companies or interests, wherever it is held.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>The law claims access to data stored outside the country.</li>
+                <li>It applies to providers because of where they are headquartered or incorporated.</li>
+                <li>It reaches foreign subsidiaries or affiliates through corporate control.</li>
+                <li>It applies based on the nationality or location of the people the data is about.</li>
+            </ol>
+
+            <h3 id="scoring-guide-tp">Transparency (TP)</h3>
+
+            <p><strong>Why it matters</strong>: Secrecy hides how often powers are used and stops you from knowing your data was accessed, which makes every other risk harder to manage.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>Regular, detailed statistics; time-limited gag orders; notification once investigations end; published oversight reports.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Published statistics and oversight reports; gag orders are common but reviewable; notification is rare.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Aggregate statistics only, long-lasting gag orders and no notification.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Minimal statistics, indefinite gag orders, and oversight reports that are unpublished or heavily redacted.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>No public information about access at all; revealing a request can itself be an offence.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>The government publishes no meaningful statistics on data-access requests.</li>
+                <li>Providers can be prevented from disclosing requests, including indefinitely.</li>
+                <li>Affected people are rarely or never notified after access.</li>
+                <li>Reports by independent oversight bodies are unpublished or heavily redacted.</li>
+            </ol>
+
+            <h3 id="scoring-guide-ei">Embargo Impact (EI)</h3>
+
+            <p><strong>Why it matters</strong>: An embargo can make providing or using a service unlawful outright, however well the data itself is protected.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>No embargo affects services involving this jurisdiction.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>Narrow restrictions on specific goods or technologies, not data services; licences are readily available.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Restrictions on some technology or IT services from at least one major government; licences are possible.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Broad restrictions on technology and data services from several governments, with few licences.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>A comprehensive embargo prohibiting nearly all transactions, including data services, with conflicting blocking statutes.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>A country-wide embargo restricts trade involving this jurisdiction.</li>
+                <li>The restrictions cover technology, IT or data services specifically.</li>
+                <li>Several major governments impose restrictions.</li>
+                <li>Few licences or exceptions are available.</li>
+                <li>Blocking statutes create conflicting legal obligations.</li>
+            </ol>
+
+            <h3 id="scoring-guide-ss">Sanction Severity (SS)</h3>
+
+            <p><strong>Why it matters</strong>: Targeted sanctions can prohibit dealing with specific organisations or people, and some penalties reach companies outside the sanctioning country.</p>
+
+            <div class="table-scroll">
+                <table>
+                    <thead><tr><th>Score</th><th>What it looks like</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>0&ndash;20</strong></td><td>No relevant organisations or sectors are sanctioned; routine screening is enough.</td></tr>
+                        <tr><td><strong>21&ndash;40</strong></td><td>A few listed parties; standard screening manages the risk.</td></tr>
+                        <tr><td><strong>41&ndash;60</strong></td><td>Key organisations or relevant sectors are sanctioned; enhanced due diligence is needed.</td></tr>
+                        <tr><td><strong>61&ndash;80</strong></td><td>Extensive sanctions on relevant sectors, with a risk of secondary sanctions.</td></tr>
+                        <tr><td><strong>81&ndash;100</strong></td><td>Sweeping sanctions with secondary reach, severe criminal penalties and few exemptions.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>Questions</strong>:</p>
+            <ol>
+                <li>Providers, partners or sectors you would rely on are, or are likely to be, on sanctions lists.</li>
+                <li>Secondary sanctions can penalise foreign companies for dealing with listed parties.</li>
+                <li>Penalties for violations are severe, such as large fines or criminal liability.</li>
+                <li>Screening and due-diligence obligations are heavy.</li>
+                <li>Few exemptions exist for essential or humanitarian services.</li>
+            </ol>
+
             <h2 id="scoring-methodology">Scoring Methodology</h2>
             
             <p>The GLARS framework uses a multi-layered approach to calculate risk scores.</p>

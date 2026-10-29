@@ -4,7 +4,8 @@
  *   Base  = JO×0.20 + AP×0.25 + TR×0.15 + EX×0.25 + TP×0.15
  *   GLARS = max(Base, EI, SS)
  *   A High embargo or sanction makes the overall level High.
- * Examples are loaded from /data/examples.json.
+ * Examples are loaded from /data/examples.json and the per-component
+ * scoring questions from /data/scoring-guide.json.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -93,11 +94,30 @@ document.addEventListener('DOMContentLoaded', function () {
         return Math.max(0, Math.min(100, n));
     }
 
+    var bands = {};
+
+    function bandFor(k, n) {
+        return (bands[k] || []).filter(function (b) { return n >= b.min && n <= b.max; })[0] || null;
+    }
+
+    function showBand(k, n) {
+        var out = $('b-' + k);
+        var band = bandFor(k, n);
+        if (!out || !band) return;
+        out.textContent = '';
+        out.appendChild(el('strong', '', n + ' (' + band.min + '–' + band.max + '): '));
+        out.appendChild(document.createTextNode(band.text));
+        document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-bands > div').forEach(function (row) {
+            row.classList.toggle('is-current', Number(row.getAttribute('data-min')) === band.min);
+        });
+    }
+
     function setField(k, value) {
         var n = clamp(value);
         $('f-' + k).value = n;
         $('n-' + k).value = n;
         $('f-' + k).style.setProperty('--fill', n + '%');
+        showBand(k, n);
     }
 
     function apply(values, isResult) {
@@ -112,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
         range.addEventListener('input', function () {
             touched = true;
             setField(k, range.value);
+            noteGuide(k);
             update();
         });
         number.addEventListener('input', function () {
@@ -119,11 +140,13 @@ document.addEventListener('DOMContentLoaded', function () {
             touched = true;
             range.value = clamp(number.value);
             range.style.setProperty('--fill', range.value + '%');
+            showBand(k, clamp(number.value));
             update();
         });
         number.addEventListener('change', function () {
             touched = true;
             setField(k, number.value);
+            noteGuide(k);
             update();
         });
     });
@@ -215,6 +238,115 @@ document.addEventListener('DOMContentLoaded', function () {
         ].join('\n');
     }
 
+    // ---------- Scoring guide ----------
+
+    var answerValues = [];
+
+    function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
+    }
+
+    function renderGuide(k, c) {
+        var details = document.querySelector('.calc-field[data-key="' + k + '"] .calc-help');
+        if (!details || !c || !c.questions) return;
+        var link = details.querySelector('a');
+        var summary = details.querySelector('summary');
+        summary.textContent = 'Measuring stick and questions';
+        while (summary.nextSibling) details.removeChild(summary.nextSibling);
+
+        var why = el('p', 'guide-why');
+        why.appendChild(el('strong', '', 'Why it matters: '));
+        why.appendChild(document.createTextNode(c.why));
+        details.appendChild(why);
+
+        if (c.bands) {
+            details.appendChild(el('p', 'guide-title', 'Measuring stick'));
+            var dl = el('dl', 'guide-bands');
+            c.bands.forEach(function (b) {
+                var row = el('div');
+                row.setAttribute('data-min', b.min);
+                row.appendChild(el('dt', '', b.min + '–' + b.max));
+                row.appendChild(el('dd', '', b.text));
+                dl.appendChild(row);
+            });
+            details.appendChild(dl);
+        }
+
+        details.appendChild(el('p', 'guide-title', 'Not sure? Answer these'));
+        var set = el('fieldset', 'guide-questions');
+        set.appendChild(el('legend', '', '“Yes” always means more risk. Skip anything you can’t judge; your answers are averaged into a suggested score.'));
+        c.questions.forEach(function (q, i) {
+            var row = el('div', 'guide-q');
+            var text = el('p', 'guide-q-text', q);
+            text.id = 'gq-' + k + '-' + i;
+            row.appendChild(text);
+            var options = el('div', 'guide-options');
+            options.setAttribute('role', 'radiogroup');
+            options.setAttribute('aria-labelledby', text.id);
+            answerValues.forEach(function (a) {
+                var label = el('label', 'guide-option');
+                var input = document.createElement('input');
+                input.type = 'radio';
+                input.name = 'g-' + k + '-' + i;
+                input.value = a.value;
+                label.appendChild(input);
+                label.appendChild(document.createTextNode(' ' + a.label));
+                options.appendChild(label);
+            });
+            row.appendChild(options);
+            set.appendChild(row);
+        });
+        details.appendChild(set);
+
+        var result = el('p', 'guide-result');
+        result.id = 'gr-' + k;
+        result.setAttribute('role', 'status');
+        details.appendChild(result);
+
+        if (link) details.appendChild(link);
+
+        set.addEventListener('change', function () {
+            var n = guideScore(k);
+            if (n === null) return;
+            touched = true;
+            setField(k, n);
+            update();
+            noteGuide(k);
+        });
+    }
+
+    function guideScore(k) {
+        var checked = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-questions input:checked');
+        if (!checked.length) return null;
+        var sum = 0;
+        checked.forEach(function (input) { sum += Number(input.value); });
+        return Math.round(sum / checked.length);
+    }
+
+    function noteGuide(k) {
+        var out = $('gr-' + k);
+        if (!out) return;
+        var n = guideScore(k);
+        var current = clamp($('f-' + k).value);
+        var total = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-q').length;
+        var answered = document.querySelectorAll('.calc-field[data-key="' + k + '"] .guide-questions input:checked').length;
+        if (n === null) {
+            out.textContent = '';
+        } else if (n === current) {
+            out.textContent = 'Your ' + answered + ' of ' + total + ' answers give ' + n + '. You can still adjust the slider.';
+        } else {
+            out.textContent = 'Your answers give ' + n + '; the slider is set to ' + current + ' by hand.';
+        }
+    }
+
+    function clearGuides() {
+        document.querySelectorAll('.guide-questions input:checked').forEach(function (input) { input.checked = false; });
+        KEYS.forEach(function (k) { if ($('gr-' + k)) $('gr-' + k).textContent = ''; });
+    }
+
     // ---------- Examples ----------
 
     function safeUrl(url) {
@@ -292,6 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function selectExample(id) {
         var ex = examples.filter(function (e) { return e.id === id; })[0] || null;
+        clearGuides();
         markTemplate(ex ? ex.id : '');
         renderExample(ex);
         if (ex) {
@@ -353,6 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
         var ex = matchingExample(parsed.values);
+        clearGuides();
         markTemplate(ex ? ex.id : '');
         renderExample(ex);
         apply(parsed.values);
@@ -396,9 +530,25 @@ document.addEventListener('DOMContentLoaded', function () {
         apply({}, false);
     }
 
-    fetch('/data/examples.json')
-        .then(function (res) { return res.ok ? res.json() : { examples: [] }; })
-        .catch(function () { return { examples: [] }; })
+    function getJSON(url, fallback) {
+        return fetch(url)
+            .then(function (res) { return res.ok ? res.json() : fallback; })
+            .catch(function () { return fallback; });
+    }
+
+    getJSON('/data/scoring-guide.json', null).then(function (g) {
+        if (!g || !g.components) return;
+        answerValues = g.answers || [];
+        KEYS.forEach(function (k) {
+            var c = g.components[k];
+            if (!c) return;
+            bands[k] = c.bands || [];
+            renderGuide(k, c);
+            showBand(k, clamp($('f-' + k).value));
+        });
+    });
+
+    getJSON('/data/examples.json', { examples: [] })
         .then(function (data) {
             examples = (data.examples || []).filter(function (e) { return e.id && e.title && e.values; });
             var group = $('example-buttons');

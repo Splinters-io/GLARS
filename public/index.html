@@ -69,13 +69,15 @@
                 <li class="step">
                     <span class="step-num" aria-hidden="true">2</span>
                     <h3>Score the seven components</h3>
-                    <p>Set each from 0 to 100, where higher always means more risk:</p>
+                    <p>Use your own judgement, from 0 to 100, where higher always means more risk. Each component has a measuring stick:</p>
                     <dl class="scale">
-                        <div><dt>0</dt><dd>No such power or restriction</dd></div>
-                        <div><dt>50</dt><dd>Exists, but limited or overseen</dd></div>
-                        <div><dt>100</dt><dd>Broad and unchecked</dd></div>
+                        <div><dt>0&ndash;20</dt><dd>Strong protections, or no exposure</dd></div>
+                        <div><dt>21&ndash;40</dt><dd>Limited, closely overseen</dd></div>
+                        <div><dt>41&ndash;60</dt><dd>Significant, with some checks</dd></div>
+                        <div><dt>61&ndash;80</dt><dd>Extensive, weakly checked</dd></div>
+                        <div><dt>81&ndash;100</dt><dd>Broad and unchecked</dd></div>
                     </dl>
-                    <p>Open &ldquo;What this measures&rdquo; under any component for the factors to weigh.</p>
+                    <p>As you move a slider, the description for that score appears underneath, based on the component&rsquo;s factors. Not sure? Open &ldquo;Measuring stick and questions&rdquo; and answer a few yes/no questions for a suggested score.</p>
                 </li>
                 <li class="step">
                     <span class="step-num" aria-hidden="true">3</span>
@@ -127,9 +129,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-JO" name="JO" min="0" max="100" step="1" value="0" aria-describedby="h-JO">
                                 <p class="calc-hint" id="h-JO">Higher means weaker judicial control over government access.</p>
+                                <p class="calc-band" id="b-JO" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-JO" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>The strength and independence of judicial review governing government access to data.</p>
                                     <ul><li>Prior judicial authorisation before access</li><li>Independence of courts from the executive</li><li>Specificity and narrowness of access requests</li><li>Availability of meaningful appeal</li></ul>
                                     <a href="/glars-deep#judicial-oversight">Judicial Oversight in the Deep Dive</a>
@@ -143,9 +146,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-AP" name="AP" min="0" max="100" step="1" value="0" aria-describedby="h-AP">
                                 <p class="calc-hint" id="h-AP">Higher means broader legal powers to access data.</p>
+                                <p class="calc-band" id="b-AP" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-AP" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>The breadth and depth of legal authority granted to government agencies to access data.</p>
                                     <ul><li>Scope of authorised collection</li><li>Bulk versus targeted collection</li><li>Powers to compel service providers</li><li>Claimed authority beyond borders</li></ul>
                                     <a href="/glars-deep#agency-powers">Agency Powers in the Deep Dive</a>
@@ -159,9 +163,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-TR" name="TR" min="0" max="100" step="1" value="0" aria-describedby="h-TR">
                                 <p class="calc-hint" id="h-TR">Higher means more mandated access capabilities.</p>
+                                <p class="calc-band" id="b-TR" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-TR" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>Technical capabilities providers must build or maintain to facilitate government access.</p>
                                     <ul><li>Mandated access mechanisms</li><li>Key escrow or decryption obligations</li><li>Mandatory data retention</li><li>Powers to compel infrastructure changes</li></ul>
                                     <a href="/glars-deep#technical-requirements">Technical Requirements in the Deep Dive</a>
@@ -175,9 +180,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-EX" name="EX" min="0" max="100" step="1" value="0" aria-describedby="h-EX">
                                 <p class="calc-hint" id="h-EX">Higher means greater legal reach beyond the jurisdiction’s borders.</p>
+                                <p class="calc-band" id="b-EX" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-EX" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>How far the jurisdiction’s laws assert authority over data and providers outside its territory.</p>
                                     <ul><li>Claims over data stored abroad</li><li>Claims based on provider nationality</li><li>Claims based on data-subject nationality</li><li>Claims based on corporate control</li></ul>
                                     <a href="/glars-deep#extraterritoriality">Extraterritoriality in the Deep Dive</a>
@@ -191,9 +197,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-TP" name="TP" min="0" max="100" step="1" value="0" aria-describedby="h-TP">
                                 <p class="calc-hint" id="h-TP">Higher means less visibility into government access.</p>
+                                <p class="calc-band" id="b-TP" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-TP" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>How visible government data-access activity is to the public, providers and affected people.</p>
                                     <ul><li>Public reporting of access requests</li><li>Notification of affected individuals</li><li>Prevalence of gag orders</li><li>Availability of meaningful statistics</li></ul>
                                     <a href="/glars-deep#transparency">Transparency in the Deep Dive</a>
@@ -212,9 +219,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-EI" name="EI" min="0" max="100" step="1" value="0" aria-describedby="h-EI">
                                 <p class="calc-hint" id="h-EI">Higher means more severe country-level trade restrictions.</p>
+                                <p class="calc-band" id="b-EI" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-EI" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>The severity of trade restrictions that prohibit or limit commercial activity with a country.</p>
                                     <ul><li>Comprehensiveness of restrictions</li><li>Number of issuing governments</li><li>Enforcement history</li><li>Available exceptions and licences</li><li>Conflicting blocking statutes</li></ul>
                                     <a href="/glars-deep#embargo-impact">Embargo Impact in the Deep Dive</a>
@@ -228,9 +236,10 @@
                                 </div>
                                 <input class="calc-range" type="range" id="f-SS" name="SS" min="0" max="100" step="1" value="0" aria-describedby="h-SS">
                                 <p class="calc-hint" id="h-SS">Higher means more severe targeted sanctions exposure.</p>
+                                <p class="calc-band" id="b-SS" aria-live="polite"></p>
                                 <p class="calc-rationale" id="r-SS" hidden></p>
                                 <details class="calc-help">
-                                    <summary>What this measures</summary>
+                                    <summary>Measuring stick and questions</summary>
                                     <p>Targeted financial and economic restrictions on specific entities, individuals or sectors.</p>
                                     <ul><li>Scope of prohibited activities</li><li>Risk of secondary sanctions</li><li>Penalty levels</li><li>Screening and due-diligence obligations</li><li>Humanitarian exceptions</li></ul>
                                     <a href="/glars-deep#sanction-severity">Sanction Severity in the Deep Dive</a>
