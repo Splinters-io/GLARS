@@ -1017,9 +1017,8 @@ td strong {
 .tl-key.high { background: var(--risk-high); }
 .tl-key.medium { background: var(--risk-medium); }
 
-.tl-key-link {
-    font-weight: 700;
-    color: var(--ink);
+.tl-hint {
+    color: var(--ink-mid);
 }
 
 .tl-stages {
@@ -1110,17 +1109,23 @@ td strong {
     border-left: 1px solid var(--border);
 }
 
+/* Each power has a left and right edge that lights up when it is on the
+   selected path (see timeline.js); everything else dims and blurs. */
 .tl-power {
     position: relative;
-    margin: 0;
-    padding: 0 0 1.1rem;
+    margin: 0 0 0.35rem;
+    padding: 0.35rem 0.6rem 0.7rem;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    cursor: pointer;
+    transition: opacity 0.2s ease, filter 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .tl-power::before {
     content: '';
     position: absolute;
-    top: 0.42rem;
-    left: calc(-1rem - 4.5px);
+    top: 0.77rem;
+    left: calc(-1rem - 2px - 4.5px);
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -1152,16 +1157,41 @@ td strong {
     color: var(--ink-mid);
 }
 
-.tl-power-links {
-    margin: 0.35rem 0 0;
-    font-size: 0.75rem;
-    line-height: 1.4;
+.tl-power:focus-visible {
+    outline: 2px solid var(--rule);
+    outline-offset: 2px;
 }
 
-.tl-at {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--ink-light);
+.tl-stages.has-path .tl-power:not(.is-path),
+.tl-stages.has-path .tl-stage:not(.is-path) .tl-stage-head {
+    opacity: 0.35;
+    filter: blur(1.5px);
+}
+
+.tl-stage-head {
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.tl-power.is-path {
+    border-left-color: var(--rule);
+    border-right-color: var(--rule);
+}
+
+.tl-power.is-origin {
+    background: var(--surface);
+}
+
+/* The path in words: for screen readers on screen, printed on paper */
+.tl-power-links {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .tl-refs {
@@ -1178,11 +1208,6 @@ td strong {
 
 .tl-ref::before { content: '['; }
 .tl-ref::after { content: ']'; }
-
-.tl-power:target {
-    outline: 2px solid var(--rule);
-    outline-offset: 4px;
-}
 
 .timeline-summary {
     max-width: var(--measure);
@@ -1271,6 +1296,28 @@ td strong {
 @media print {
     .tl-power {
         break-inside: avoid;
+    }
+
+    .tl-stages.has-path .tl-power,
+    .tl-stages.has-path .tl-stage-head {
+        opacity: 1;
+        filter: none;
+    }
+
+    .tl-power.is-path {
+        border-color: transparent;
+    }
+
+    .tl-power-links {
+        position: static;
+        width: auto;
+        height: auto;
+        margin: 0.3rem 0 0;
+        overflow: visible;
+        clip: auto;
+        white-space: normal;
+        font-size: 0.75rem;
+        color: var(--ink-mid);
     }
 
     /* Keep a stage heading with its first power: the invisible block below

@@ -28,6 +28,7 @@ Everything under `public/` is published; nothing else in the repository is.
 - `public/js/theme.js` - Applies a saved light/dark preference before first paint
 - `public/js/main.js` - Theme toggle, table-of-contents tracking, and the hover note on Juri links
 - `public/js/calculator.js` - Calculator scoring, vector parsing and examples
+- `public/js/timeline.js` - Highlights a power's path on the Journey timeline (optional: the timeline reads fine without it)
 - `public/js/perspective.js` - The Perspective score: the Base score adjusted for where the question is asked from
 - `public/data/examples.json` - Calculator examples and explainers
 - `public/data/scoring-guide.json` - Per-component questions and measuring-stick bands
