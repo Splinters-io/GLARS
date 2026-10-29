@@ -24,6 +24,6 @@ GLARS (Geo-Legal Access Risk Score) is a static website for documenting an objec
   - Clean, modular functions with meaningful names
   - DOM manipulation wrapped in DOMContentLoaded
   - Error handling with try/catch for async operations
-- File Structure: Maintain separation of concerns (HTML, CSS, JS)
+- File Structure: Maintain separation of concerns (HTML, CSS, JS). Published files live in `public/`
 - Documentation: Update README.md when making significant changes
 - Imports: No external dependencies beyond basic utility libraries

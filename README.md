@@ -17,22 +17,24 @@ GLARS is an objective, apolitical framework for quantifying jurisdictional risks
 
 ## Project Structure
 
-- `index.html` - Calculator and overview (home page)
-- `journey.html` - Multi-jurisdiction data journey worked example (`/journey`)
-- `evolution.html` - GLARS Evolution roadmap (`/evolution`)
-- `glars-deep.html` - Full methodology (`/glars-deep`)
+Everything under `public/` is published; nothing else in the repository is.
+
+- `public/index.html` - Calculator and overview (home page)
+- `public/journey.html` - Multi-jurisdiction data journey worked example (`/journey`)
+- `public/evolution.html` - GLARS Evolution roadmap (`/evolution`)
+- `public/glars-deep.html` - Full methodology (`/glars-deep`)
+- `public/legal.html` - Notices and privacy (`/legal`)
+- `public/404.html` - Not-found page
+- `public/css/style.css` - All styles; colour tokens are at the top, with a dark theme
+- `public/js/theme.js` - Applies a saved light/dark preference before first paint
+- `public/js/main.js` - Theme toggle and table-of-contents tracking
+- `public/js/calculator.js` - Calculator scoring, vector parsing and examples
+- `public/data/examples.json` - Calculator examples and explainers
+- `public/fonts/` - Self-hosted Source Serif 4, Inter and JetBrains Mono (latin subsets, SIL OFL)
+- `public/_headers` - Security headers and caching (Cloudflare)
+- `public/_redirects` - Path redirects (Cloudflare)
 - `glars-deep.md` - Markdown source the Deep Dive was written from
-- `404.html` - Not-found page
-- `css/style.css` - All styles; colour tokens are at the top, with a dark theme
-- `js/theme.js` - Applies a saved light/dark preference before first paint
-- `js/main.js` - Theme toggle and table-of-contents tracking
-- `js/calculator.js` - Calculator scoring, vector parsing and examples
-- `data/examples.json` - Calculator examples and explainers
-- `fonts/` - Self-hosted Source Serif 4, Inter and JetBrains Mono (latin subsets, SIL OFL)
-- `_headers` - Security headers and caching (Cloudflare)
-- `_redirects` - Path redirects (Cloudflare)
-- `wrangler.jsonc` - Cloudflare Workers static-assets config
-- `.assetsignore` - Repository files that are not published
+- `wrangler.jsonc` - Cloudflare Workers static-assets config and the `glars.io` custom domain
 
 The site loads nothing from third parties, which lets `_headers` set a strict Content Security Policy (`'self'` only). Keep scripts and styles in their own files: inline `<script>` blocks and `style="..."` attributes are blocked.
 
@@ -49,7 +51,7 @@ Levels are Low (0–40), Medium (41–65) and High (66–100), and a High embarg
 
 ### Adding an example
 
-Add an object to the `examples` array in `data/examples.json`. Examples appear in the order listed, and the first one loads by default.
+Add an object to the `examples` array in `public/data/examples.json`. Examples appear in the order listed, and the first one loads by default.
 
 ```json
 {

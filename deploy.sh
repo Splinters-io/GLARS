@@ -54,7 +54,7 @@ echo ""
 echo -e "${BLUE}Validating project files...${NC}"
 
 # Check for required files
-REQUIRED_FILES=("index.html" "css/style.css" "js/main.js" "js/calculator.js" "data/examples.json" "wrangler.jsonc")
+REQUIRED_FILES=("wrangler.jsonc" "public/index.html" "public/css/style.css" "public/js/main.js" "public/js/calculator.js" "public/data/examples.json")
 for file in "${REQUIRED_FILES[@]}"; do
     if [ ! -f "$file" ]; then
         echo -e "${RED}ERROR: Required file not found: $file${NC}"
@@ -68,7 +68,7 @@ echo ""
 echo -e "${BLUE}Deploying to Cloudflare...${NC}"
 echo ""
 
-# Deploy using Wrangler; files listed in .assetsignore are not uploaded
+# Deploy using Wrangler; only the public/ directory is uploaded
 wrangler deploy
 
 if [ $? -ne 0 ]; then
