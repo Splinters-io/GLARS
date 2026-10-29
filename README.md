@@ -20,7 +20,7 @@ GLARS is an objective, apolitical framework for quantifying jurisdictional risks
 Everything under `public/` is published; nothing else in the repository is.
 
 - `public/index.html` - What GLARS is, how to use the calculator, the calculator, and the roadmap (home page)
-- `public/journey.html` - Multi-jurisdiction data journey worked example (`/journey`)
+- `public/journey.html` - Multi-jurisdiction data journey worked example (`/journey`), with the "Follow the data" timeline written as static HTML
 - `public/glars-deep.html` - Full methodology (`/glars-deep`)
 - `public/legal.html` - Notices and privacy (`/legal`)
 - `public/404.html` - Not-found page
@@ -29,11 +29,9 @@ Everything under `public/` is published; nothing else in the repository is.
 - `public/js/main.js` - Theme toggle, table-of-contents tracking, and the hover note on Juri links
 - `public/js/calculator.js` - Calculator scoring, vector parsing and examples
 - `public/js/perspective.js` - The Perspective score: the Base score adjusted for where the question is asked from
-- `public/js/journey.js` - The "Follow the data" timeline on the Journey page
 - `public/data/examples.json` - Calculator examples and explainers
 - `public/data/scoring-guide.json` - Per-component questions and measuring-stick bands
 - `public/data/perspective.json` - Perspective inputs: treaty facts, default weights and World Bank WGI 2025 values (CC BY 4.0)
-- `public/data/journey.json` - Journey stages, the powers at each stage and the links between them
 - `public/fonts/` - Self-hosted Source Serif 4, Inter and JetBrains Mono (latin subsets, SIL OFL)
 - `public/_headers` - Security headers and caching (Cloudflare)
 - `public/_redirects` - Path redirects (Cloudflare)

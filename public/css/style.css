@@ -954,14 +954,16 @@ td strong {
     color: var(--bg);
 }
 
-/* ---------- Journey map (Follow the data) ---------- */
+/* ---------- Journey timeline (Follow the data) ----------
+   Static: every stage, power and connection is visible at once, on screen
+   and on paper. Time runs left to right, or top to bottom on narrow screens
+   and in print. */
 
-.flow {
+.timeline {
     margin: 2.5rem 0 3.5rem;
 }
 
-.flow-head,
-.flow-evidence-head {
+.timeline-head {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -971,127 +973,56 @@ td strong {
     border-top: 2px solid var(--rule);
 }
 
-.flow-head h2,
-.flow-evidence-head h2 {
+.timeline-head h2 {
     margin: 0;
 }
 
-.flow-evidence-head {
-    margin-top: 2.5rem;
-}
-
-.flow-meta {
+.timeline-meta {
     margin: 0;
     font-family: var(--font-mono);
     font-size: 0.72rem;
     color: var(--ink-light);
 }
 
-.flow-lede {
+.timeline-lede {
     max-width: var(--measure);
     margin: 0.85rem 0 0;
 }
 
-.flow-filters {
+.timeline-legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 2rem;
-    margin: 1.5rem 0 1.25rem;
-}
-
-.flow-filter {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.35rem;
-}
-
-.flow-filter-label {
-    margin-right: 0.4rem;
+    gap: 0.4rem 1.5rem;
+    margin: 1.25rem 0 1.75rem;
+    padding: 0;
+    list-style: none;
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     color: var(--ink-light);
 }
 
-.flow-chip,
-.flow-jump-button {
-    padding: 0.35rem 0.7rem;
-    font: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
+.timeline-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+}
+
+.tl-key {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.tl-key.high { background: var(--risk-high); }
+.tl-key.medium { background: var(--risk-medium); }
+
+.tl-key-link {
+    font-weight: 700;
     color: var(--ink);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    cursor: pointer;
 }
 
-.flow-chip:hover,
-.flow-jump-button:hover {
-    border-color: var(--rule);
-}
-
-.flow-chip[aria-pressed="true"] {
-    color: var(--bg);
-    background: var(--ink);
-    border-color: var(--ink);
-}
-
-.flow-chip-count {
-    margin-left: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    opacity: 0.75;
-}
-
-.flow-chart {
-    position: relative;
-    padding: 1.5rem 1.25rem 1.25rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-}
-
-.flow-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
-
-.flow-lines path {
-    fill: none;
-    transition: opacity 0.15s ease;
-}
-
-.flow-axis {
-    stroke: var(--rule);
-    stroke-width: 1.5;
-}
-
-.flow-branch {
-    stroke: var(--border);
-    stroke-width: 1.25;
-}
-
-.flow-link {
-    stroke: var(--border);
-    stroke-width: 1.25;
-    stroke-dasharray: 3 4;
-}
-
-.flow-lines .is-on {
-    stroke: var(--ink);
-    stroke-width: 1.75;
-}
-
-.flow-lines .is-dim {
-    opacity: 0.25;
-}
-
-.flow-stages {
+.tl-stages {
     position: relative;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1101,223 +1032,173 @@ td strong {
     list-style: none;
 }
 
-.flow-stage {
-    margin: 0;
-}
-
-.flow-powers {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.flow-powers li {
-    margin: 0;
-}
-
-.flow-stage-head,
-.flow-node {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0.45rem 0.25rem 0.45rem 1.9rem;
-    font: inherit;
-    text-align: left;
-    color: var(--ink);
-    background: none;
-    border: 0;
-    border-radius: 0;
-    cursor: pointer;
-    transition: opacity 0.15s ease, background-color 0.15s ease;
-}
-
-.flow-stage-head {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 10rem;
-    padding-top: 1.75rem;
-    padding-bottom: 1.25rem;
-}
-
-.flow-dot {
+/* The time axis, with an arrowhead */
+.tl-stages::before {
+    content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--ink-light);
+    top: 6px;
+    left: 0;
+    right: 6px;
+    height: 2px;
+    background: var(--rule);
 }
 
-.flow-dot-stage {
+.tl-stages::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 0;
+    border: 5px solid transparent;
+    border-left: 7px solid var(--rule);
+    border-right: 0;
+}
+
+.tl-stage {
+    position: relative;
+    margin: 0;
+    padding-top: 1.75rem;
+}
+
+/* The stage marker on the axis */
+.tl-stage::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
     background: var(--ink);
-    box-shadow: 0 0 0 3px var(--bg);
+    box-shadow: 0 0 0 4px var(--bg);
 }
 
-.flow-node .flow-dot {
-    left: 16px;
-    top: calc(0.45rem + 0.6rem - 4px);
-    box-shadow: 0 0 0 3px var(--bg);
+.tl-stage-head {
+    min-height: 8.5rem;
+    padding-bottom: 0.9rem;
 }
 
-.flow-node[data-level="high"] .flow-dot { background: var(--risk-high); }
-.flow-node[data-level="medium"] .flow-dot { background: var(--risk-medium); }
-
-.flow-when,
-.flow-where,
-.flow-node-sub {
+.tl-when,
+.tl-where,
+.tl-power-meta {
     display: block;
     font-family: var(--font-mono);
     font-size: 0.66rem;
     color: var(--ink-light);
 }
 
-.flow-when {
+.tl-when {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.flow-stage-title {
-    display: block;
-    margin-top: 0.35rem;
-    font-family: var(--font-serif);
+.tl-stage-title {
+    margin: 0.35rem 0 0;
     font-size: 1.05rem;
+    line-height: 1.25;
+}
+
+.tl-where {
+    margin-top: 0.45rem;
+}
+
+/* Each stage's powers hang from a rail under its marker */
+.tl-powers {
+    margin: 0 0 0 6px;
+    padding: 0 0 0 1rem;
+    list-style: none;
+    border-left: 1px solid var(--border);
+}
+
+.tl-power {
+    position: relative;
+    margin: 0;
+    padding: 0 0 1.1rem;
+}
+
+.tl-power::before {
+    content: '';
+    position: absolute;
+    top: 0.42rem;
+    left: calc(-1rem - 4.5px);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ink-light);
+    box-shadow: 0 0 0 3px var(--bg);
+}
+
+.tl-power.high::before { background: var(--risk-high); }
+.tl-power.medium::before { background: var(--risk-medium); }
+.tl-power.high .tl-level { color: var(--risk-high); }
+.tl-power.medium .tl-level { color: var(--risk-medium); }
+
+.tl-power-name {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.25;
 }
 
-.flow-where {
-    margin-top: 0.45rem;
+.tl-power-meta {
+    margin: 0.2rem 0 0;
 }
 
-.flow-node-name {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-.flow-node-sub {
-    margin-top: 0.2rem;
-}
-
-.flow-stage-head:hover,
-.flow-node:hover,
-.flow-stage-head.is-on,
-.flow-node.is-on {
-    background: var(--surface);
-}
-
-.flow-stage-head[aria-pressed="true"] .flow-stage-title,
-.flow-node[aria-pressed="true"] .flow-node-name {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 3px;
-}
-
-.flow-node.is-dim {
-    opacity: 0.3;
-}
-
-.flow-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.75rem;
-    margin: 0.85rem 0 0;
-    padding: 0;
-    list-style: none;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--ink-light);
-}
-
-.flow-legend li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0;
-}
-
-.flow-key {
-    display: inline-block;
-    width: 1.6rem;
-    border-top: 1.5px solid var(--border);
-}
-
-.flow-key-on {
-    border-top: 2px solid var(--ink);
-}
-
-.flow-key-link {
-    border-top-style: dashed;
-}
-
-.flow-summary {
-    max-width: var(--measure);
-    margin: 1rem 0 0;
+.tl-power-why {
+    margin: 0.4rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
     color: var(--ink-mid);
 }
 
-.flow-evidence {
-    margin-top: 1rem;
+.tl-power-links {
+    margin: 0.35rem 0 0;
+    font-size: 0.75rem;
+    line-height: 1.4;
 }
 
-.flow-evidence-empty {
-    color: var(--ink-light);
-}
-
-.flow-card {
-    padding: 1.25rem 1.5rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-}
-
-.flow-card-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
-}
-
-.flow-card-head h3 {
-    margin: 0;
-}
-
-.flow-card-tag {
+.tl-at {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     color: var(--ink-light);
 }
 
-.flow-card-meta {
-    margin: 0.4rem 0 1rem;
+.tl-refs {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--ink-light);
+    font-size: 0.6rem;
+    font-weight: 400;
+    vertical-align: super;
 }
 
-.flow-evidence-row {
+.tl-ref {
+    margin-left: 0.2em;
+    text-decoration: none;
+}
+
+.tl-ref::before { content: '['; }
+.tl-ref::after { content: ']'; }
+
+.tl-power:target {
+    outline: 2px solid var(--rule);
+    outline-offset: 4px;
+}
+
+.timeline-summary {
     max-width: var(--measure);
+    margin: 0.5rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--ink-mid);
 }
 
-.flow-evidence-row .calc-code {
-    min-width: 0;
+.timeline-sources {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
 }
 
-.flow-jump {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    vertical-align: middle;
-}
-
-.flow-sources-label {
-    margin: 1.25rem 0 0.35rem;
+.timeline-sources-title {
+    margin: 0 0 0.35rem;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 700;
@@ -1326,10 +1207,16 @@ td strong {
     color: var(--ink-light);
 }
 
-.flow-sources {
+.timeline-sources ol {
     margin: 0;
-    padding-left: 1.1rem;
-    font-size: 0.9rem;
+    padding-left: 1.5rem;
+    columns: 2 22rem;
+    column-gap: 2rem;
+}
+
+.timeline-sources li {
+    margin: 0 0 0.25rem;
+    break-inside: avoid;
 }
 
 .journey-detail-title {
@@ -1338,33 +1225,72 @@ td strong {
     border-top: 2px solid var(--rule);
 }
 
-@media (max-width: 900px) {
-    .flow-stages {
+/* Narrow screens and print: time runs top to bottom */
+@media (max-width: 900px), print {
+    .tl-stages {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .flow-stage {
-        padding-bottom: 1.25rem;
+    .tl-stages::before {
+        top: 0;
+        bottom: 6px;
+        left: 6px;
+        right: auto;
+        width: 2px;
+        height: auto;
     }
 
-    .flow-stage:last-child {
-        padding-bottom: 0;
+    .tl-stages::after {
+        top: auto;
+        bottom: 0;
+        left: 2px;
+        right: auto;
+        border: 5px solid transparent;
+        border-top: 7px solid var(--rule);
+        border-bottom: 0;
     }
 
-    .flow-stage-head {
+    .tl-stage {
+        padding: 0 0 1.25rem 2rem;
+    }
+
+    .tl-stage::before {
+        top: 0.1rem;
+    }
+
+    .tl-stage-head {
         min-height: 0;
-        padding-top: 0;
         padding-bottom: 0.6rem;
     }
 
-    .flow-chart {
-        padding: 1.25rem 1rem;
+    .tl-powers {
+        margin-left: 0;
     }
 }
 
-@media (max-width: 560px) {
-    .flow-card {
-        padding: 1rem 1.1rem;
+@media print {
+    .tl-power {
+        break-inside: avoid;
+    }
+
+    /* Keep a stage heading with its first power: the invisible block below
+       the heading needs room on the same page, so a heading with no space
+       under it moves to the next page instead of being left alone. */
+    .tl-stage-head {
+        break-inside: avoid;
+    }
+
+    .tl-stage-head::after {
+        content: '';
+        display: block;
+        height: 7rem;
+        margin-bottom: -7rem;
+    }
+
+    .tl-stage::before,
+    .tl-power::before {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
     }
 }
 

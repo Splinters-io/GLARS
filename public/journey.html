@@ -58,28 +58,163 @@
             </div>
         </div>
         
-        <section id="follow-the-data" class="flow" aria-labelledby="flow-title" hidden>
-            <div class="flow-head">
-                <h2 id="flow-title">Follow the data.</h2>
-                <p class="flow-meta">example.co.uk &middot; illustrative</p>
+        <section id="follow-the-data" class="timeline" aria-labelledby="timeline-title">
+            <div class="timeline-head">
+                <h2 id="timeline-title">Follow the data.</h2>
+                <p class="timeline-meta">example.co.uk &middot; illustrative</p>
             </div>
-            <p class="flow-lede">A UK customer signs up to a <code>.uk</code> service. The company running it is American and stores its data in India. Time runs along the line, from sign-up to a demand for the record. Each point off the line is a power that can reach the record at that stage.</p>
-            <div class="flow-filters"></div>
-            <div class="flow-chart">
-                <svg class="flow-lines" aria-hidden="true" focusable="false"></svg>
-                <ol class="flow-stages" aria-label="Stages of the data journey, in time order"></ol>
-            </div>
-            <ul class="flow-legend" aria-hidden="true">
-                <li><span class="flow-key flow-key-on"></span>Selected path</li>
-                <li><span class="flow-key"></span>Stage to power</li>
-                <li><span class="flow-key flow-key-link"></span>Link between powers</li>
+            <p class="timeline-lede">A UK customer signs up to a <code>.uk</code> service. The company running it is American and stores its data in India. Time runs along the line, from sign-up to a demand for the record; under each stage are the powers that can reach the record at that point.</p>
+            <ul class="timeline-legend" aria-label="Key">
+                <li><span class="tl-key high" aria-hidden="true"></span>High</li>
+                <li><span class="tl-key medium" aria-hidden="true"></span>Medium</li>
+                <li><span class="tl-key-link" aria-hidden="true">&harr;</span>Connects to a power at another stage</li>
             </ul>
-            <p class="flow-summary"></p>
-            <div class="flow-evidence-head">
-                <h2>Evidence, on request.</h2>
-                <p class="flow-meta">Choose any stage or power</p>
+            <ol class="tl-stages">
+                <li class="tl-stage" id="stage-signup">
+                    <div class="tl-stage-head">
+                        <span class="tl-when">01 &middot; Sign-up</span>
+                        <h3 class="tl-stage-title">A UK customer signs up at example.co.uk</h3>
+                        <span class="tl-where">UK</span>
+                    </div>
+                    <ul class="tl-powers">
+                        <li class="tl-power medium" id="power-nominet">
+                            <h4 class="tl-power-name">Domain suspension</h4>
+                            <p class="tl-power-meta">UK &middot; <span class="tl-level">Medium</span> &middot; Availability</p>
+                            <p class="tl-power-why">This can take the service offline at the moment of sign-up, without touching the data. It affects availability rather than access, so it sits outside the core score.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tl-stage" id="stage-transit">
+                    <div class="tl-stage-head">
+                        <span class="tl-when">02 &middot; In transit</span>
+                        <h3 class="tl-stage-title">The record crosses international networks</h3>
+                        <span class="tl-where">UK · US · IN</span>
+                    </div>
+                    <ul class="tl-powers">
+                        <li class="tl-power high" id="power-ipa">
+                            <h4 class="tl-power-name">Investigatory Powers Act 2016 <span class="tl-refs"><a class="tl-ref" href="#tl-src-1" aria-label="Source 1">1</a><a class="tl-ref" href="#tl-src-2" aria-label="Source 2">2</a></span></h4>
+                            <p class="tl-power-meta">UK &middot; <span class="tl-level">High</span> &middot; Interception</p>
+                            <p class="tl-power-why">Bulk interception warrants can cover communications leaving the UK, so the record can be collected before it reaches India.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-fiveeyes">Five Eyes intelligence sharing</a> <span class="tl-at">(02)</span>, <a href="#power-daa">UK-US Data Access Agreement</a> <span class="tl-at">(05)</span></p>
+                        </li>
+                        <li class="tl-power medium" id="power-eo12333">
+                            <h4 class="tl-power-name">Executive Order 12333 <span class="tl-refs"><a class="tl-ref" href="#tl-src-3" aria-label="Source 3">3</a></span></h4>
+                            <p class="tl-power-meta">US &middot; <span class="tl-level">Medium</span> &middot; Signals intelligence</p>
+                            <p class="tl-power-why">The US can collect the record on international networks outside the US, before the US company ever touches it.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-fiveeyes">Five Eyes intelligence sharing</a> <span class="tl-at">(02)</span></p>
+                        </li>
+                        <li class="tl-power high" id="power-fiveeyes">
+                            <h4 class="tl-power-name">Five Eyes intelligence sharing <span class="tl-refs"><a class="tl-ref" href="#tl-src-4" aria-label="Source 4">4</a></span></h4>
+                            <p class="tl-power-meta">UK · US &middot; <span class="tl-level">High</span> &middot; Sharing</p>
+                            <p class="tl-power-why">Whatever either country collects in transit can end up with the other, so the record is exposed to both through a single interception.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-eo12333">Executive Order 12333</a> <span class="tl-at">(02)</span>, <a href="#power-ipa">Investigatory Powers Act 2016</a> <span class="tl-at">(02)</span>, <a href="#power-fisa702">FISA Section 702</a> <span class="tl-at">(04)</span></p>
+                        </li>
+                        <li class="tl-power medium" id="power-telecom">
+                            <h4 class="tl-power-name">Telecommunications Act 2023 <span class="tl-refs"><a class="tl-ref" href="#tl-src-5" aria-label="Source 5">5</a></span></h4>
+                            <p class="tl-power-meta">IN &middot; <span class="tl-level">Medium</span> &middot; Interception</p>
+                            <p class="tl-power-why">Once the record enters Indian networks it can be intercepted on Indian orders, with review inside the executive rather than by a court.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tl-stage" id="stage-rest">
+                    <div class="tl-stage-head">
+                        <span class="tl-when">03 &middot; At rest</span>
+                        <h3 class="tl-stage-title">Stored in an Indian data centre</h3>
+                        <span class="tl-where">IN</span>
+                    </div>
+                    <ul class="tl-powers">
+                        <li class="tl-power high" id="power-itact">
+                            <h4 class="tl-power-name">IT Act 2000, section 69 <span class="tl-refs"><a class="tl-ref" href="#tl-src-6" aria-label="Source 6">6</a></span></h4>
+                            <p class="tl-power-meta">IN &middot; <span class="tl-level">High</span> &middot; Access and decryption</p>
+                            <p class="tl-power-why">The stored record can be monitored or decrypted on government direction, and the hosting provider must help.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-conflict">Conflict of laws</a> <span class="tl-at">(05)</span>, <a href="#power-corporate">Corporate control</a> <span class="tl-at">(05)</span></p>
+                        </li>
+                        <li class="tl-power medium" id="power-dpdp">
+                            <h4 class="tl-power-name">DPDP Act 2023 <span class="tl-refs"><a class="tl-ref" href="#tl-src-7" aria-label="Source 7">7</a></span></h4>
+                            <p class="tl-power-meta">IN &middot; <span class="tl-level">Medium</span> &middot; Exemptions</p>
+                            <p class="tl-power-why">The data protection law that should protect the record also lets the government exempt itself and call for information.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-conflict">Conflict of laws</a> <span class="tl-at">(05)</span></p>
+                        </li>
+                        <li class="tl-power medium" id="power-rbi">
+                            <h4 class="tl-power-name">RBI payment-data rule <span class="tl-refs"><a class="tl-ref" href="#tl-src-8" aria-label="Source 8">8</a></span></h4>
+                            <p class="tl-power-meta">IN &middot; <span class="tl-level">Medium</span> &middot; Localisation</p>
+                            <p class="tl-power-why">If the record includes payment data it must stay in India, which keeps it within Indian powers and limits where it can be moved.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tl-stage" id="stage-control">
+                    <div class="tl-stage-head">
+                        <span class="tl-when">04 &middot; In use</span>
+                        <h3 class="tl-stage-title">Run by the US operator</h3>
+                        <span class="tl-where">US</span>
+                    </div>
+                    <ul class="tl-powers">
+                        <li class="tl-power high" id="power-cloudact">
+                            <h4 class="tl-power-name">CLOUD Act <span class="tl-refs"><a class="tl-ref" href="#tl-src-9" aria-label="Source 9">9</a></span></h4>
+                            <p class="tl-power-meta">US &middot; <span class="tl-level">High</span> &middot; Compelled disclosure</p>
+                            <p class="tl-power-why">Because the operator is a US company, a US order can require it to produce the record held in India.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-conflict">Conflict of laws</a> <span class="tl-at">(05)</span>, <a href="#power-corporate">Corporate control</a> <span class="tl-at">(05)</span>, <a href="#power-daa">UK-US Data Access Agreement</a> <span class="tl-at">(05)</span></p>
+                        </li>
+                        <li class="tl-power high" id="power-fisa702">
+                            <h4 class="tl-power-name">FISA Section 702 <span class="tl-refs"><a class="tl-ref" href="#tl-src-10" aria-label="Source 10">10</a><a class="tl-ref" href="#tl-src-11" aria-label="Source 11">11</a></span></h4>
+                            <p class="tl-power-meta">US &middot; <span class="tl-level">High</span> &middot; Targeted collection</p>
+                            <p class="tl-power-why">The UK customer is a non-US person, so the US operator can be compelled to help collect their record.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-fiveeyes">Five Eyes intelligence sharing</a> <span class="tl-at">(02)</span></p>
+                        </li>
+                        <li class="tl-power high" id="power-nsl">
+                            <h4 class="tl-power-name">National Security Letters <span class="tl-refs"><a class="tl-ref" href="#tl-src-12" aria-label="Source 12">12</a></span></h4>
+                            <p class="tl-power-meta">US &middot; <span class="tl-level">High</span> &middot; Secret demands</p>
+                            <p class="tl-power-why">The operator can be ordered to hand over records about the account and be barred from telling the customer.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li class="tl-stage" id="stage-demand">
+                    <div class="tl-stage-head">
+                        <span class="tl-when">05 &middot; On demand</span>
+                        <h3 class="tl-stage-title">An agency asks for the record</h3>
+                        <span class="tl-where">UK · US · IN</span>
+                    </div>
+                    <ul class="tl-powers">
+                        <li class="tl-power high" id="power-daa">
+                            <h4 class="tl-power-name">UK-US Data Access Agreement <span class="tl-refs"><a class="tl-ref" href="#tl-src-13" aria-label="Source 13">13</a></span></h4>
+                            <p class="tl-power-meta">UK · US &middot; <span class="tl-level">High</span> &middot; Cross-border orders</p>
+                            <p class="tl-power-why">A UK agency can serve its order directly on the US operator, without going through the US government.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-ipa">Investigatory Powers Act 2016</a> <span class="tl-at">(02)</span>, <a href="#power-cloudact">CLOUD Act</a> <span class="tl-at">(04)</span></p>
+                        </li>
+                        <li class="tl-power high" id="power-corporate">
+                            <h4 class="tl-power-name">Corporate control</h4>
+                            <p class="tl-power-meta">US → IN &middot; <span class="tl-level">High</span> &middot; Reach through ownership</p>
+                            <p class="tl-power-why">Keeping the record in India does not keep it out of US reach: the demand goes to the parent company, which controls the Indian servers.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-itact">IT Act 2000, section 69</a> <span class="tl-at">(03)</span>, <a href="#power-cloudact">CLOUD Act</a> <span class="tl-at">(04)</span></p>
+                        </li>
+                        <li class="tl-power medium" id="power-conflict">
+                            <h4 class="tl-power-name">Conflict of laws</h4>
+                            <p class="tl-power-meta">US · IN &middot; <span class="tl-level">Medium</span> &middot; Conflicting duties</p>
+                            <p class="tl-power-why">The operator may face penalties whichever way it decides, and the customer has little say in the outcome.</p>
+                            <p class="tl-power-links"><span aria-hidden="true">&harr;</span> Connects to <a href="#power-dpdp">DPDP Act 2023</a> <span class="tl-at">(03)</span>, <a href="#power-itact">IT Act 2000, section 69</a> <span class="tl-at">(03)</span>, <a href="#power-cloudact">CLOUD Act</a> <span class="tl-at">(04)</span></p>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p class="timeline-summary">A record stored in India is still within UK and US reach: the networks it crosses and the company that runs it bring in their law at different moments. Domain suspension and the RBI rule are not scored in the core components; they are shown because they affect the data at that stage.</p>
+            <div class="timeline-sources">
+                <h3 class="timeline-sources-title">Sources</h3>
+                <ol>
+                    <li id="tl-src-1"><a href="https://www.legislation.gov.uk/ukpga/2016/25/contents" rel="noopener">Investigatory Powers Act 2016</a></li>
+                    <li id="tl-src-2"><a href="https://www.legislation.gov.uk/ukpga/2024/9/contents" rel="noopener">Investigatory Powers (Amendment) Act 2024</a></li>
+                    <li id="tl-src-3"><a href="https://www.archives.gov/federal-register/codification/executive-order/12333.html" rel="noopener">Executive Order 12333</a></li>
+                    <li id="tl-src-4"><a href="https://ukdefencejournal.org.uk/the-five-eyes-the-intelligence-alliance-of-the-anglosphere/" rel="noopener">The Five Eyes (UK Defence Journal)</a></li>
+                    <li id="tl-src-5"><a href="https://dot.gov.in/acts-rules" rel="noopener">Department of Telecommunications: Acts and rules</a></li>
+                    <li id="tl-src-6"><a href="https://www.meity.gov.in/content/information-technology-act-2000" rel="noopener">Information Technology Act 2000</a></li>
+                    <li id="tl-src-7"><a href="https://www.meity.gov.in/data-protection-framework" rel="noopener">MeitY: Data protection framework</a></li>
+                    <li id="tl-src-8"><a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11244" rel="noopener">RBI: Storage of payment system data</a></li>
+                    <li id="tl-src-9"><a href="https://www.congress.gov/bill/115th-congress/house-bill/4943" rel="noopener">CLOUD Act (H.R. 4943, in the Consolidated Appropriations Act 2018)</a></li>
+                    <li id="tl-src-10"><a href="https://www.congress.gov/bill/110th-congress/house-bill/6304" rel="noopener">FISA Amendments Act 2008</a></li>
+                    <li id="tl-src-11"><a href="https://www.congress.gov/bill/118th-congress/house-bill/7888" rel="noopener">Reforming Intelligence and Securing America Act 2024</a></li>
+                    <li id="tl-src-12"><a href="https://www.congress.gov/bill/107th-congress/house-bill/3162" rel="noopener">USA PATRIOT Act (expanded NSL powers)</a></li>
+                    <li id="tl-src-13"><a href="https://www.gov.uk/government/publications/ukusa-agreement-on-access-to-electronic-data-for-the-purpose-of-countering-serious-crime-cs-usa-no62019" rel="noopener">UK-USA Agreement on Access to Electronic Data</a></li>
+                </ol>
             </div>
-            <div class="flow-evidence" aria-live="polite"></div>
         </section>
 
         <div class="journey-container">
@@ -368,6 +503,5 @@ GLARS = max(Base 73.25, EI 15, SS 20) = 73</p>
     </footer>
 
     <script src="/js/main.js" defer></script>
-    <script src="/js/journey.js" defer></script>
 </body>
 </html>
