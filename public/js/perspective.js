@@ -108,6 +108,7 @@
         if (ei >= score && ei > legal) driver = 'EI';
         if (ss >= score && ss > legal && ss >= ei) driver = 'SS';
         return {
+            base: base, v: v,
             score: score, level: levelFor(score), M: M, product: product, clamped: product !== M,
             legal: legal, ei: ei, ss: ss, driver: driver, factors: factors, same: state.asker === state.held
         };
@@ -216,34 +217,88 @@
         } else if (!r.factors.length) {
             list.appendChild(el('li', 'persp-none', 'No agreements, adequacy findings or governance gap apply between these two jurisdictions.'));
         }
+        // Each factor, with its source, is itemised in the weight receipt below
+
+        renderReceipt(r, rounded);
+        $('p-changed').hidden = tokens().filter(function (t) { return /^[WR]:/.test(t); }).length === 0;
+    }
+
+    // ---------- Weight receipt ----------
+    // Every number in the Perspective score, what kind of number it is, and
+    // where it comes from.
+
+    var KIND = {
+        computed: 'Calculated',
+        scored: 'Your scores',
+        treaty: 'Treaty fact · GLARS default weight',
+        measured: 'Measured · World Bank WGI',
+        changed: 'Your change',
+        judgement: 'Your judgement',
+        rule: 'GLARS rule'
+    };
+
+    function receiptRow(list, label, value, kind, basis, source, total) {
+        var li = el('li', total ? 'receipt-total' : '');
+        var line = el('div', 'receipt-line');
+        line.appendChild(el('span', 'receipt-label', label));
+        line.appendChild(el('span', 'receipt-leader'));
+        line.appendChild(el('span', 'receipt-value', value));
+        li.appendChild(line);
+        var note = el('p', 'receipt-note');
+        if (kind) note.appendChild(el('span', 'receipt-kind receipt-kind-' + kind, KIND[kind]));
+        if (basis) note.appendChild(document.createTextNode((kind ? ' · ' : '') + basis + ' '));
+        if (source && /^https:\/\//.test(source.url)) {
+            var a = el('a', '', 'Source');
+            a.href = source.url;
+            a.rel = 'noopener';
+            a.title = source.label;
+            note.appendChild(a);
+        }
+        li.appendChild(note);
+        list.appendChild(li);
+    }
+
+    // Short basis for each factor; the factor list above has the full explanation
+    function factorBasis(f) {
+        var fx = data.factors;
+        if (f.id === 'FVEY') return 'Both are Five Eyes members (' + fx.FVEY.members.join(', ') + ').';
+        if (f.id === 'CLOUD') return f.detail.replace(/^.*In force since/, 'Agreement in force since');
+        if (f.id === 'ADQ') return f.detail;
+        if (f.id === 'GOV') return f.detail.replace(/ Average gap.*$/, '') + ' 1 + k × gap / 100, k = ' + f.k + '.';
+        return f.detail;
+    }
+
+    function renderReceipt(r, rounded) {
+        var list = $('p-receipt-body');
+        list.textContent = '';
+        var v = r.v;
+        receiptRow(list, 'Base score', round2(r.base).toFixed(2), 'scored',
+            'JO ' + v.JO + '×0.20 + AP ' + v.AP + '×0.25 + TR ' + v.TR + '×0.15 + EX ' + v.EX + '×0.25 + TP ' + v.TP + '×0.15.');
+
         r.factors.forEach(function (f) {
-            var li = el('li');
-            var head = el('div', 'persp-factor-head');
-            head.appendChild(el('strong', '', f.label));
-            head.appendChild(el('span', 'persp-mult' + (f.weight > 1 ? ' up' : f.weight < 1 ? ' down' : ''), '×' + f.weight.toFixed(2)));
-            li.appendChild(head);
-            li.appendChild(el('p', '', f.detail));
-            if (f.source && /^https:\/\//.test(f.source.url)) {
-                var a = el('a', '', f.source.label);
-                a.href = f.source.url;
-                a.rel = 'noopener';
-                var p = el('p', 'persp-source');
-                p.appendChild(document.createTextNode('Source: '));
-                p.appendChild(a);
-                li.appendChild(p);
-            }
-            list.appendChild(li);
+            var changed = (f.id in state.w) && state.w[f.id] !== data.factors[f.id].weight;
+            var kind = changed ? 'changed' : (f.id === 'GOV' ? 'measured' : 'treaty');
+            var basis = factorBasis(f);
+            if (changed) basis = 'Default ' + data.factors[f.id].weight + (f.id === 'GOV' ? ' for k' : '') + '. ' + basis;
+            receiptRow(list, '× ' + f.label, f.weight.toFixed(2), kind, basis, f.source);
         });
 
-        var lines = [];
-        lines.push('M      = ' + (r.factors.length ? r.factors.map(function (f) { return f.weight.toFixed(2); }).join(' × ') : '1') +
-            ' = ' + round2(r.product) + (r.clamped ? ', limited to ' + round2(r.M) : ''));
-        lines.push('Legal  = Base × M = ' + round2(r.legal));
-        lines.push('EI     = ' + round2(r.ei) + (state.r.EI !== 1 ? ' (relevance ' + state.r.EI + ')' : ''));
-        lines.push('SS     = ' + round2(r.ss) + (state.r.SS !== 1 ? ' (relevance ' + state.r.SS + ')' : ''));
-        lines.push('GLARS-P = max(Legal, EI, SS) = ' + rounded);
-        $('p-working').textContent = lines.join('\n');
-        $('p-changed').hidden = tokens().filter(function (t) { return /^[WR]:/.test(t); }).length === 0;
+        receiptRow(list, '= Multiplier', round2(r.M).toFixed(2), 'rule',
+            (r.clamped ? 'Factors multiply to ' + round2(r.product) + '; ' : '') + 'limited to ' + data.clamp[0] + '–' + data.clamp[1] + '.');
+        receiptRow(list, 'Legal score', round2(r.legal).toFixed(2), 'computed', 'Base score × multiplier.');
+
+        ['EI', 'SS'].forEach(function (k) {
+            var rel = state.r[k];
+            receiptRow(list, k === 'EI' ? 'Embargo Impact' : 'Sanction Severity', String(round2(k === 'EI' ? r.ei : r.ss)),
+                rel !== 1 ? 'judgement' : 'scored',
+                rel !== 1 ? 'Scored ' + v[k] + ' × ' + rel + ', how far it binds you.' : 'Scored ' + v[k] + ', counted in full.');
+        });
+
+        receiptRow(list, 'Perspective score', String(rounded), '',
+            'Highest of the legal score, Embargo Impact and Sanction Severity' +
+            (Math.max(r.legal, r.ei, r.ss) > 100 ? ', capped at 100' : ', rounded') + ': ' + r.level.charAt(0).toUpperCase() + r.level.slice(1) + '.', null, true);
+
+        $('p-receipt-data').textContent = 'Inputs: perspective data v' + data.version + ' (' + data.updated + '); ' + data.governance.label + ', ' + data.governance.licence + '.';
     }
 
     function init() {

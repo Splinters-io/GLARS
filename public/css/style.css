@@ -2619,6 +2619,83 @@ td strong {
     color: var(--ink-mid);
 }
 
+/* Weight receipt: every number and where it comes from, like a till receipt */
+.receipt-title {
+    margin: 1rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+}
+
+.receipt {
+    margin: 0.75rem 0 0.25rem;
+    padding: 0.75rem 0.85rem;
+    list-style: none;
+    background: var(--surface);
+    border-top: 2px dashed var(--border);
+    border-bottom: 2px dashed var(--border);
+    font-size: 0.8rem;
+}
+
+.receipt li {
+    margin: 0 0 0.55rem;
+}
+
+.receipt-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+}
+
+.receipt-label {
+    font-weight: 700;
+}
+
+.receipt-leader {
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: 1px dotted var(--ink-light);
+    transform: translateY(-0.25em);
+}
+
+.receipt-value {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.receipt-note {
+    margin: 0.15rem 0 0;
+    color: var(--ink-mid);
+    line-height: 1.45;
+}
+
+.receipt-kind {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+}
+
+.receipt-kind-measured { color: var(--risk-low); }
+.receipt-kind-changed,
+.receipt-kind-judgement { color: var(--risk-medium); }
+
+.receipt .receipt-total {
+    margin: 0.75rem 0 0;
+    padding-top: 0.6rem;
+    border-top: 2px solid var(--rule);
+}
+
+.receipt-total .receipt-line {
+    font-size: 0.95rem;
+}
+
 .persp-weights {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;

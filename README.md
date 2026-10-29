@@ -59,7 +59,7 @@ M        = clamp(product of the factors that apply, 0.8, 1.3)
 GLARS-P  = min(100, max(Base × M, EI × rEI, SS × rSS))
 ```
 
-Factors are Five Eyes sharing, CLOUD Act agreements and adequacy findings (treaty facts with GLARS default weights) and the governance gap from the World Bank Worldwide Governance Indicators. Defaults are in `public/data/perspective.json`; users can change any weight, and the link carries the changes as `P:`, `J:`, `W:` and `R:` tokens. To refresh the WGI values, rebuild `governance.values` from the World Bank API indicators `GOV_WGI_RL.SC` and `GOV_WGI_PV.SC` (source 3) and update `governance.label` and `year`.
+Factors are Five Eyes sharing, CLOUD Act agreements and adequacy findings (treaty facts with GLARS default weights) and the governance gap from the World Bank Worldwide Governance Indicators. The calculator shows a **weight receipt**: every number in the Perspective score, whether it is a measured value, a treaty fact with a GLARS default weight, the user's own score, change or judgement, or a GLARS rule, and its source. Defaults are in `public/data/perspective.json`; users can change any weight, and the link carries the changes as `P:`, `J:`, `W:` and `R:` tokens. To refresh the WGI values, rebuild `governance.values` from the World Bank API indicators `GOV_WGI_RL.SC` and `GOV_WGI_PV.SC` (source 3) and update `governance.label` and `year`.
 
 The current vector is written to the URL fragment, so any assessment can be shared as a link, for example `/#GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55`. Components left out of a vector stay unscored, so a partial assessment (such as one from Juri before every component is assessed) loads as partial.
 
