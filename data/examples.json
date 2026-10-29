@@ -7,12 +7,12 @@
       "summary": "A service on a .uk domain, run by a US-headquartered company, storing its data on servers in India. Three jurisdictions touch the same data, so the assessment scores their combined exposure as one profile.",
       "explainer": [
         "Each component takes the highest exposure across the three jurisdictions. US law dominates Agency Powers and Extraterritoriality because a US parent company can be compelled to produce data wherever it is stored.",
-        "The core formula gives 73. The Jurisdiction Journey page shows 78 because it also applies the interaction and corporate-control adjustments proposed in the Evolution roadmap, which the calculator does not yet include."
+        "The core formula gives 73. Interaction effects such as the UK-US Data Access Agreement and Five Eyes intelligence sharing would raise this further under the Jurisdiction Interaction Model proposed in the Evolution roadmap, which is not yet part of the score."
       ],
       "values": { "JO": 65, "AP": 85, "TR": 70, "EX": 90, "TP": 40, "EI": 15, "SS": 20 },
       "rationale": {
         "JO": "US National Security Letters are issued without prior court approval, and FISA Section 702 is authorised by the FISC at programme level rather than per target.",
-        "AP": "US FISA Section 702 and the CLOUD Act give broad powers to compel US providers.",
+        "AP": "The CLOUD Act and FISA Section 702 give broad powers to compel US providers. Section 702's statutory authority lapsed in June 2026, but collection continues under court certifications valid into 2027.",
         "TR": "UK Technical Capability Notices can require providers to maintain access capabilities, and India's IT Act Section 69 allows orders requiring decryption assistance.",
         "EX": "The US CLOUD Act reaches data held by US companies regardless of where it is stored.",
         "TP": "Gag orders attached to US National Security Letters limit what providers can disclose.",

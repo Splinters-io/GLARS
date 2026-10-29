@@ -1604,6 +1604,22 @@ td strong {
     font-size: 0.875rem;
 }
 
+.calc-disclaimer,
+.calc-note {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+}
+
+.calc-disclaimer {
+    margin: -0.5rem 0 1.25rem;
+    padding: 0.6rem 0.75rem;
+    border-left: 2px solid var(--border);
+}
+
+.calc-note {
+    margin: 0.6rem 0 0;
+}
+
 .calc-breakdown {
     margin: 0;
     border-top: 1px solid var(--border);
@@ -1876,4 +1892,13 @@ td strong {
         background: none;
         color: #000;
     }
+}
+
+.hero-content .review-date {
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-light);
 }

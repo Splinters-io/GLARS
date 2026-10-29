@@ -54,6 +54,7 @@
                 <span class="eyebrow">Worked example</span>
                 <h1>Multi-Jurisdiction Data Journey</h1>
                 <p>Visualizing the complex interplay of legal frameworks in cross-border data flows</p>
+                <p class="review-date">Legal position last reviewed October 2026. Illustrative, not legal advice.</p>
             </div>
         </div>
         
@@ -70,7 +71,7 @@
                         </div>
                     </div>
                     
-                    <p>A .uk domain suggests UK registration, creating the first legal jurisdiction touchpoint regardless of where the site is hosted or managed.</p>
+                    <p>A .uk domain places the domain itself under UK law and the UK registry, Nominet. On its own it gives UK authorities no access to data hosted elsewhere, but it signals a UK-facing service, which brings the operator closer to the reach of UK investigatory powers.</p>
                     
                     <div class="jurisdiction-agencies">
                         <h4>UK Government Agencies with Legal Authority</h4>
@@ -85,15 +86,15 @@
                     <div class="jurisdiction-factors">
                         <div class="jurisdiction-factor factor-high">
                             <div>
-                                <strong>Investigatory Powers Act</strong><span class="risk-badge-small risk-badge-high">High</span>
-                                <div>Grants GCHQ and MI5 broad data access powers with technical capability notices.</div>
+                                <strong>Investigatory Powers Act 2016</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Interception, equipment interference and bulk powers, with warrants approved by a Judicial Commissioner. Technical capability notices can require providers to maintain access capabilities. Amended in 2024.</div>
                             </div>
                         </div>
                         
                         <div class="jurisdiction-factor factor-medium">
                             <div>
-                                <strong>UK Data Security Act</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
-                                <div>Grants UK Home Office authority to mandate data security standards for companies with .uk domains.</div>
+                                <strong>Domain suspension</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Nominet can suspend .uk domains at the request of UK law enforcement, taking the service offline without touching the data itself.</div>
                             </div>
                         </div>
                     </div>
@@ -132,6 +133,13 @@
                         
                         <div class="jurisdiction-factor factor-high">
                             <div>
+                                <strong>FISA Section 702</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Targeting of non-US persons abroad with compelled help from US providers. The statutory authority lapsed in June 2026, but collection continues under court certifications approved in March 2026.</div>
+                            </div>
+                        </div>
+
+                        <div class="jurisdiction-factor factor-high">
+                            <div>
                                 <strong>National Security Letters</strong><span class="risk-badge-small risk-badge-high">High</span>
                                 <div>Enables FBI to issue secret demands for data with gag orders, limiting transparency.</div>
                             </div>
@@ -140,7 +148,7 @@
                         <div class="jurisdiction-factor factor-medium">
                             <div>
                                 <strong>Executive Order 12333</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
-                                <div>Authorizes NSA signals intelligence collection outside the US with minimal oversight.</div>
+                                <div>Authorizes NSA signals intelligence collection outside the US, with oversight largely within the executive branch.</div>
                             </div>
                         </div>
                     </div>
@@ -173,21 +181,28 @@
                         <div class="jurisdiction-factor factor-high">
                             <div>
                                 <strong>Information Technology Act</strong><span class="risk-badge-small risk-badge-high">High</span>
-                                <div>Section 69 enables Indian CERT and Intelligence Bureau to intercept and decrypt data.</div>
+                                <div>Section 69 lets the government direct interception, monitoring or decryption of information by authorised agencies such as the Intelligence Bureau. Intermediaries must assist.</div>
                             </div>
                         </div>
                         
                         <div class="jurisdiction-factor factor-medium">
                             <div>
                                 <strong>Data Localization Requirements</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
-                                <div>Reserve Bank of India mandates local storage and processing for payment data.</div>
+                                <div>The Reserve Bank of India requires payment system data to be stored only in India.</div>
                             </div>
                         </div>
                         
                         <div class="jurisdiction-factor factor-medium">
                             <div>
-                                <strong>Telecommunications Interception</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
-                                <div>NATGRID can access telecommunications data with authorization from Home Secretary.</div>
+                                <strong>Telecommunications Act 2023</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Section 20 and the 2024 interception rules let the Union Home Secretary order interception of messages, reviewed by a committee of senior officials.</div>
+                            </div>
+                        </div>
+
+                        <div class="jurisdiction-factor factor-medium">
+                            <div>
+                                <strong>Digital Personal Data Protection Act 2023</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
+                                <div>Rules notified in November 2025 phase in until May 2027. The government can exempt its own agencies on security grounds and require organisations to provide information.</div>
                             </div>
                         </div>
                     </div>
@@ -201,22 +216,29 @@
                     <div class="jurisdiction-factors">
                         <div id="jurisdiction-factors" class="jurisdiction-factor factor-high">
                             <div>
-                                <strong>UK-US Mutual Legal Assistance</strong><span class="risk-badge-small risk-badge-high">High</span>
-                                <div>Five Eyes agreement enables NSA, GCHQ, and CSE to share intelligence across borders.</div>
+                                <strong>UK-US Data Access Agreement</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>In force since October 2022 under the CLOUD Act. Each country's authorities can serve orders for serious-crime investigations directly on the other's providers.</div>
+                            </div>
+                        </div>
+
+                        <div class="jurisdiction-factor factor-high">
+                            <div>
+                                <strong>Five Eyes intelligence sharing</strong><span class="risk-badge-small risk-badge-high">High</span>
+                                <div>Under the UKUSA arrangements GCHQ and the NSA share signals intelligence, so data collected by one can reach the other.</div>
                             </div>
                         </div>
                         
                         <div class="jurisdiction-factor factor-high">
                             <div>
                                 <strong>Corporate Control Leverage</strong><span class="risk-badge-small risk-badge-high">High</span>
-                                <div>DOJ can compel US parent company to access data in India, bypassing local jurisdictions.</div>
+                                <div>US authorities can compel a US parent company to produce data held by its Indian operations.</div>
                             </div>
                         </div>
                         
                         <div class="jurisdiction-factor factor-medium">
                             <div>
                                 <strong>Jurisdictional Conflicts</strong><span class="risk-badge-small risk-badge-medium">Medium</span>
-                                <div>Competing claims between GCHQ/MI5, FBI/NSA, and Indian CERT/NATGRID create legal uncertainty.</div>
+                                <div>A US order to produce data held in India may conflict with Indian law, leaving the provider unable to comply with both.</div>
                             </div>
                         </div>
                     </div>
@@ -225,21 +247,22 @@
             
             <!-- GLARS Vector Notation -->
             <h3>GLARS Vector Representation</h3>
-            <div class="vector-notation">
-                GLARS:1.0/JO:65/AP:85/TR:70/EX:90/TP:40/EI:15/SS:20/J:UK-US:1.3/J:US-IN:1.1/J:UK-IN:0.9/CC:US/DS:IN/TLD:UK/T:HEF:1.2/I:corporate:1.4
-            </div>
+            <div class="vector-notation">GLARS:1.0/B:JO:65/AP:85/TR:70/EX:90/TP:40/EI:15/SS:20</div>
+            <p>Proposed extensions from the <a href="/evolution#enhancement-5">Evolution roadmap</a>, not yet part of the score: <code>J:UK-US:1.3/J:US-IN:1.1/J:UK-IN:0.9/CC:US/DS:IN/TLD:UK</code></p>
+            <p><a href="/#GLARS:1.0/B:JO:65/AP:85/TR:70/EX:90/TP:40/EI:15/SS:20">Open this assessment in the calculator</a></p>
             
             <div class="formula-card">
                 <h3>Risk Assessment Analysis</h3>
                 <div class="formula">
-                    <p class="formula-text">GLARS = max(UK, US, India) + JurisInteraction(UK, US) + CorpControl(US) = 78</p>
+                    <p class="formula-text">Base  = (65 × 0.20) + (85 × 0.25) + (70 × 0.15) + (90 × 0.25) + (40 × 0.15) = 73.25
+GLARS = max(Base 73.25, EI 15, SS 20) = 73</p>
                 </div>
                 <div class="formula-explanation">
                     <div class="example-rows">
                         <div>
-                            <div class="example-header">GLARS Base Score</div>
-                            <div>78/100 <span class="risk-badge risk-badge-high">High</span></div>
-                            <p>Legal framework assessment across all three jurisdictions using maximum risk approach.</p>
+                            <div class="example-header">GLARS Score</div>
+                            <div>73/100 <span class="risk-badge risk-badge-high">High</span></div>
+                            <p>Each component takes the highest exposure across the three jurisdictions, then the core formula applies.</p>
                         </div>
                         
                         <div>
@@ -250,8 +273,8 @@
                         
                         <div>
                             <div class="example-header">Interaction Effect</div>
-                            <div>Five Eyes Cooperation <span class="risk-badge risk-badge-high">Amplifying</span></div>
-                            <p>UK-US intelligence sharing creates multiplicative rather than additive risk.</p>
+                            <div>UK-US cooperation <span class="risk-badge risk-badge-high">Amplifying</span></div>
+                            <p>Under the proposed Jurisdiction Interaction Model, the Data Access Agreement and Five Eyes sharing would raise the score further. This is not yet part of the core score.</p>
                         </div>
                     </div>
                 </div>
@@ -313,6 +336,7 @@
             </div>
             <div class="footer-row">
                 <p>&copy; 2025&ndash;2026 GLARS &middot; An open methodology for jurisdictional risk</p>
+                <p>Not legal advice &middot; <a href="/legal">Notices &amp; privacy</a></p>
             </div>
         </div>
     </footer>
