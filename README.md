@@ -91,4 +91,6 @@ or `npx wrangler deploy`. The `routes` entry in `wrangler.jsonc` attaches `glars
 
 ## License
 
-© 2025–2026 GLARS. An open methodology for quantifying jurisdictional risks in data sovereignty assessments.
+- **Methodology and content** (page text, `glars-deep.md`, `public/data/examples.json`, images): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md).
+- **Code** (`public/js/`, `public/css/`, `deploy.sh`, `wrangler.jsonc`): MIT. See [`LICENSE`](LICENSE).
+- **Fonts** in `public/fonts/`: SIL Open Font License 1.1, by their respective authors.
