@@ -261,7 +261,7 @@ GLARS uses a vector string format to enable precise communication of risk assess
 ### Format
 
 ```
-GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55/T:HEF:1.1/TV:1.05/GS:0.95/E:IRM:1.1/DSF:1.2/OE:1.05
+GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55/T:HEF:1.1/TV:1.05/LS:0.95/E:IRM:1.1/DSF:1.2/OE:1.05
 ```
 
 ### Components
@@ -351,8 +351,8 @@ GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55/T:HEF:1.1/TV:1.05/GS:0.95/
 <p>Directional changes in enforcement</p>
 </td>
 <td width="33%" style="text-align:center">
-<h4>Geopolitical Stability</h4>
-<p>Political factors affecting legal changes</p>
+<h4>Legal Stability</h4>
+<p>Scheduled expiries, pending court challenges and use of emergency legislation</p>
 </td>
 </tr>
 </table>
