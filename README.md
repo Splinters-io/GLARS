@@ -19,9 +19,8 @@ GLARS is an objective, apolitical framework for quantifying jurisdictional risks
 
 Everything under `public/` is published; nothing else in the repository is.
 
-- `public/index.html` - Calculator and overview (home page)
+- `public/index.html` - What GLARS is, how to use the calculator, the calculator, and the roadmap (home page)
 - `public/journey.html` - Multi-jurisdiction data journey worked example (`/journey`)
-- `public/evolution.html` - GLARS Evolution roadmap (`/evolution`)
 - `public/glars-deep.html` - Full methodology (`/glars-deep`)
 - `public/legal.html` - Notices and privacy (`/legal`)
 - `public/404.html` - Not-found page

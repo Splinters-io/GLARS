@@ -37,7 +37,6 @@
             <nav class="site-nav" aria-label="Primary">
                 <a href="/" aria-current="page">Overview</a>
                 <a href="/journey">Journey</a>
-                <a href="/evolution">Evolution</a>
                 <a href="/glars-deep">Deep Dive</a>
                 <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark theme">
                 <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -51,21 +50,56 @@
         
         <section class="hero-section hero-compact">
             <div class="hero-content">
-                <span class="eyebrow">GLARS calculator</span>
+                <span class="eyebrow">What GLARS is</span>
                 <h1>Geo-Legal Access Risk Score</h1>
-                <p>Rate the legal access powers, embargoes and sanctions that apply to where your data lives and who controls it. The score, risk level and vector update as you go.</p>
-                <p class="hero-aside">Assessing a domain or IP address? <a href="https://juri.host" rel="noopener">Juri</a> applies GLARS automatically, working out hosting, CDN, corporate and TLD jurisdictions for you.</p>
+                <p>GLARS is an open methodology for scoring how exposed your data is to government access, embargoes and sanctions, based on where it is stored and who controls it.</p>
+                <p class="hero-detail">It rates seven components using published law rather than politics, and combines them into one score from 0 to 100 with a Low, Medium or High risk level, so hosting and provider choices can be compared like for like. <a href="/glars-deep">Read the full methodology</a></p>
             </div>
         </section>
 
-        <section class="calculator" id="calculator" aria-label="GLARS calculator">
+        <section class="how-to" id="how-to" aria-labelledby="how-to-title">
+            <h2 id="how-to-title">How to use the calculator</h2>
+            <ol class="steps">
+                <li class="step">
+                    <span class="step-num" aria-hidden="true">1</span>
+                    <h3>Decide what you&rsquo;re assessing</h3>
+                    <p>List the jurisdictions that can reach your data: where it is stored, where the provider&rsquo;s parent company is based, and where the domain is registered. Assessing several together? Give each component the highest score among them.</p>
+                    <p class="step-aside">Assessing a domain or IP address? <a href="https://juri.host" rel="noopener">Juri</a> works these out for you.</p>
+                </li>
+                <li class="step">
+                    <span class="step-num" aria-hidden="true">2</span>
+                    <h3>Score the seven components</h3>
+                    <p>Set each from 0 to 100, where higher always means more risk:</p>
+                    <dl class="scale">
+                        <div><dt>0</dt><dd>No such power or restriction</dd></div>
+                        <div><dt>50</dt><dd>Exists, but limited or overseen</dd></div>
+                        <div><dt>100</dt><dd>Broad and unchecked</dd></div>
+                    </dl>
+                    <p>Open &ldquo;What this measures&rdquo; under any component for the factors to weigh.</p>
+                </li>
+                <li class="step">
+                    <span class="step-num" aria-hidden="true">3</span>
+                    <h3>Read the result</h3>
+                    <p>You get a score out of 100, a Low, Medium or High risk level, what set the score, and the controls recommended for that level.</p>
+                </li>
+                <li class="step">
+                    <span class="step-num" aria-hidden="true">4</span>
+                    <h3>Save or share</h3>
+                    <p>Copy the vector to record the assessment, or copy a link that reopens the calculator with the same scores.</p>
+                </li>
+            </ol>
+            <p class="how-to-tip">New to GLARS? Pick a worked example at the top of the calculator to see a completed assessment and the reasoning behind each score, then change it to fit your case.</p>
+        </section>
+
+        <section class="calculator" id="calculator" aria-labelledby="calc-title">
+            <h2 class="calc-title" id="calc-title">Calculator</h2>
             <div class="calc-grid">
                 <div class="calc-main">
                     <div class="calc-examples">
-                        <label class="eyebrow" for="example-select">Start from an example</label>
-                        <select id="example-select" class="calc-select">
-                            <option value="">Blank assessment</option>
-                        </select>
+                        <span class="eyebrow" id="templates-label">Start blank, or from a worked example</span>
+                        <div class="template-buttons" id="example-buttons" role="group" aria-labelledby="templates-label">
+                            <button type="button" class="template-button" data-example="" aria-pressed="true">Blank</button>
+                        </div>
                         <article class="example-explainer" id="example-explainer" hidden>
                             <span class="eyebrow" id="example-kind"></span>
                             <h2 id="example-title"></h2>
@@ -83,8 +117,8 @@
 
                     <form class="calc-inputs" id="glars-form" novalidate>
                         <fieldset>
-                            <legend>Core legal components</legend>
-                            <p class="calc-legend-note">Weighted into the base score. 0 is lowest risk, 100 is highest.</p>
+                            <legend><span class="step-tag">Step 2</span> Core legal components</legend>
+                            <p class="calc-legend-note">These five are weighted and added together to make the base score.</p>
                             <div class="calc-field" data-key="JO">
                                 <div class="calc-field-head">
                                     <label for="f-JO"><span class="calc-code">JO</span> Judicial Oversight</label>
@@ -168,12 +202,12 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>Trade restrictions</legend>
-                            <p class="calc-legend-note">Not weighted: if either is higher than the base score, it becomes the GLARS score.</p>
+                            <legend><span class="step-tag">Step 2</span> Trade restrictions</legend>
+                            <p class="calc-legend-note">These two are not added in. If either is higher than the base score, it becomes the GLARS score.</p>
                             <div class="calc-field" data-key="EI">
                                 <div class="calc-field-head">
                                     <label for="f-EI"><span class="calc-code">EI</span> Embargo Impact</label>
-                                    <span class="calc-weight">Max rule</span>
+                                    <span class="calc-weight">Not weighted</span>
                                     <input class="calc-number" type="number" id="n-EI" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Embargo Impact score">
                                 </div>
                                 <input class="calc-range" type="range" id="f-EI" name="EI" min="0" max="100" step="1" value="0" aria-describedby="h-EI">
@@ -189,7 +223,7 @@
                             <div class="calc-field" data-key="SS">
                                 <div class="calc-field-head">
                                     <label for="f-SS"><span class="calc-code">SS</span> Sanction Severity</label>
-                                    <span class="calc-weight">Max rule</span>
+                                    <span class="calc-weight">Not weighted</span>
                                     <input class="calc-number" type="number" id="n-SS" min="0" max="100" step="1" value="0" inputmode="numeric" aria-label="Sanction Severity score">
                                 </div>
                                 <input class="calc-range" type="range" id="f-SS" name="SS" min="0" max="100" step="1" value="0" aria-describedby="h-SS">
@@ -208,44 +242,50 @@
 
                 <aside class="calc-result" aria-label="Result">
                     <div class="calc-result-inner">
-                        <span class="eyebrow">GLARS score</span>
+                        <span class="eyebrow"><span class="step-tag">Step 3</span> Your result</span>
                         <div class="calc-score" aria-live="polite" aria-atomic="true">
-                            <output id="score" for="glars-form">0</output><span class="calc-score-max">/100</span>
-                            <span class="level-badge low" id="level">Low</span>
+                            <output id="score" for="glars-form">&ndash;</output><span class="calc-score-max">/100</span>
+                            <span class="level-badge low" id="level" hidden>Low</span>
                         </div>
-                        <p class="calc-level-note" id="level-note"></p>
+                        <p class="calc-empty" id="result-empty">Score the components, or load an example, to see a result.</p>
+
+                        <div id="result-body" hidden>
+                            <p class="calc-level-note" id="level-note"></p>
+                            <p class="calc-driver" id="driver"></p>
+                            <dl class="calc-breakdown">
+                                <div id="row-base"><dt>Base score</dt><dd id="base">0</dd></div>
+                                <div id="row-EI"><dt>Embargo Impact</dt><dd id="ei">0</dd></div>
+                                <div id="row-SS"><dt>Sanction Severity</dt><dd id="ss">0</dd></div>
+                            </dl>
+
+                            <details class="calc-explainer">
+                                <summary>How this score is calculated</summary>
+                                <pre id="working"></pre>
+                                <p>Levels: Low 0&ndash;40, Medium 41&ndash;65, High 66&ndash;100. A High embargo or sanction makes the overall level High. <a href="/glars-deep#scoring-methodology">Scoring methodology</a></p>
+                            </details>
+                        </div>
+
                         <p class="calc-disclaimer">Illustrative only and not legal advice. GLARS is not a sanctions-screening tool; check official lists. <a href="/legal">Notices</a></p>
+                    </div>
 
-                        <dl class="calc-breakdown">
-                            <div id="row-base"><dt>Base score</dt><dd id="base">0</dd></div>
-                            <div id="row-EI"><dt>Embargo Impact</dt><dd id="ei">0</dd></div>
-                            <div id="row-SS"><dt>Sanction Severity</dt><dd id="ss">0</dd></div>
-                        </dl>
-                        <p class="calc-driver" id="driver"></p>
-
-                        <div class="calc-vector">
-                            <span class="eyebrow">Vector</span>
+                    <div class="calc-result-inner calc-save">
+                        <span class="eyebrow"><span class="step-tag">Step 4</span> Save or share</span>
+                        <div id="save-body" hidden>
                             <code id="vector"></code>
                             <div class="calc-actions">
                                 <button type="button" class="calc-button" id="copy-vector">Copy vector</button>
                                 <button type="button" class="calc-button" id="copy-link">Copy link</button>
-                                <button type="button" class="calc-button" id="reset">Reset</button>
+                                <button type="button" class="calc-button" id="reset">Start again</button>
                             </div>
                             <p class="calc-note">Links carry the scores in the address. Your browser history keeps them, and anyone you send a link to can see the assessment.</p>
                             <p class="calc-status" id="copy-status" role="status"></p>
                         </div>
 
                         <details class="calc-explainer">
-                            <summary>How this score is calculated</summary>
-                            <pre id="working"></pre>
-                            <p>Levels: Low 0&ndash;40, Medium 41&ndash;65, High 66&ndash;100. A High embargo or sanction makes the overall level High. <a href="/glars-deep#scoring-methodology">Scoring methodology</a></p>
-                        </details>
-
-                        <details class="calc-explainer">
-                            <summary>Load a vector</summary>
+                            <summary>Open a saved vector</summary>
                             <label class="visually-hidden" for="vector-input">GLARS vector</label>
                             <input class="calc-text" type="text" id="vector-input" spellcheck="false" autocomplete="off" placeholder="GLARS:1.0/B:JO:57/AP:80/...">
-                            <button type="button" class="calc-button" id="load-vector">Load</button>
+                            <button type="button" class="calc-button" id="load-vector">Open</button>
                             <p class="calc-status" id="vector-status" role="status"></p>
                         </details>
                     </div>
@@ -254,9 +294,42 @@
 
             <div class="calc-mini" id="calc-mini" aria-hidden="true">
                 <span class="eyebrow">GLARS</span>
-                <strong id="mini-score">0</strong>
+                <strong id="mini-score">&ndash;</strong>
                 <span class="level-badge low" id="mini-level">Low</span>
             </div>
+        </section>
+
+        <section class="roadmap" id="roadmap" aria-labelledby="roadmap-title">
+            <h2 id="roadmap-title">What&rsquo;s next: five proposed enhancements</h2>
+            <p class="roadmap-intro">Today&rsquo;s score is a static, country-level baseline. These proposals would make it reflect context and change over time. None of them is part of the score yet, and because several are multipliers, how to keep results within 0&ndash;100 is still an open question.</p>
+            <ol class="roadmap-list">
+                <li id="enhancement-1">
+                    <span class="step-num" aria-hidden="true">1</span>
+                    <h3>Temporal intelligence</h3>
+                    <p>Adjust for change over time: how fast relevant law is moving, which way enforcement is trending, and how likely an abrupt legal shift is.</p>
+                </li>
+                <li id="enhancement-2">
+                    <span class="step-num" aria-hidden="true">2</span>
+                    <h3>Industry context</h3>
+                    <p>Apply sector multipliers to specific components, for example healthcare 1.2&ndash;1.5&times;, financial services 1.3&ndash;1.6&times;, critical infrastructure 1.4&ndash;1.7&times;.</p>
+                </li>
+                <li id="enhancement-3">
+                    <span class="step-num" aria-hidden="true">3</span>
+                    <h3>Enforcement history</h3>
+                    <p>Calibrate written law against how it is used: focus on foreign entities, enforcement abroad, penalties imposed, and how often appeals succeed.</p>
+                </li>
+                <li id="enhancement-4">
+                    <span class="step-num" aria-hidden="true">4</span>
+                    <h3>Data sensitivity</h3>
+                    <p>Weight the score by the data at stake, from public material (0.8&ndash;1.0&times;) to critical data such as biometrics or national-security information (2.0&ndash;2.5&times;).</p>
+                </li>
+                <li id="enhancement-5">
+                    <span class="step-num" aria-hidden="true">5</span>
+                    <h3>Jurisdiction interactions</h3>
+                    <p>Replace &ldquo;take the highest&rdquo; with how jurisdictions combine. Cooperation such as the UK-US Data Access Agreement amplifies risk; conflicts and blocking laws such as GDPR Article 48 or the EU Data Act can reduce it.</p>
+                </li>
+            </ol>
+            <p class="roadmap-cta">Have evidence or a view on these? <a href="https://www.linkedin.com/in/thecontractor/" rel="noopener">Message John Carroll on LinkedIn</a>.</p>
         </section>
 
         <div class="author-quote">
@@ -267,17 +340,6 @@
         </div>
         
         <div class="main-content">
-            <section class="content-section">
-                <h2>What is GLARS?</h2>
-                <p>The Geo-Legal Access Risk Scoring (GLARS) framework provides a structured methodology for assessing the legal, embargo, and sanctions risks associated with data storage and transfer across jurisdictional boundaries.</p>
-                
-                <div class="info-card">
-                    <div class="info-header">
-                        <h3>Data Sovereignty Risk Assessment</h3>
-                    </div>
-                    <p>GLARS transforms subjective risk assessments into objective, comparable scores, enabling data-driven decision-making for multi-jurisdictional data governance challenges.</p>
-                </div>
-            </section>
             
             <section class="content-section">
                 <h2>An Objective, Apolitical Framework</h2>
@@ -313,12 +375,6 @@
                         <h3>Jurisdiction Journey</h3>
                         <p>Visualize data flows across multiple jurisdictions and understand the complex interplay of legal frameworks affecting data sovereignty.</p>
                         <a href="/journey" class="resource-link">Explore the Journey →</a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>GLARS Evolution</h3>
-                        <p>Discover the future roadmap for GLARS, including temporal intelligence, industry context, and jurisdiction interaction models.</p>
-                        <a href="/evolution" class="resource-link">See the Roadmap →</a>
                     </div>
                     
                     <div class="resource-card">

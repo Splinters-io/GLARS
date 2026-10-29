@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var examples = [];
     var activeExample = null;
     var copyTimer = null;
+    var touched = false;
 
     // ---------- Scoring ----------
 
@@ -99,7 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
         $('f-' + k).style.setProperty('--fill', n + '%');
     }
 
-    function apply(values) {
+    function apply(values, isResult) {
+        touched = isResult !== false;
         KEYS.forEach(function (k) { setField(k, values[k] || 0); });
         update();
     }
@@ -108,16 +110,19 @@ document.addEventListener('DOMContentLoaded', function () {
         var range = $('f-' + k);
         var number = $('n-' + k);
         range.addEventListener('input', function () {
+            touched = true;
             setField(k, range.value);
             update();
         });
         number.addEventListener('input', function () {
             if (number.value === '') return;
+            touched = true;
             range.value = clamp(number.value);
             range.style.setProperty('--fill', range.value + '%');
             update();
         });
         number.addEventListener('change', function () {
+            touched = true;
             setField(k, number.value);
             update();
         });
@@ -134,10 +139,36 @@ document.addEventListener('DOMContentLoaded', function () {
         el.textContent = LEVELS[level].label;
     }
 
+    function showEmpty() {
+        $('score').textContent = '–';
+        $('mini-score').textContent = '–';
+        $('level').hidden = true;
+        $('mini-level').hidden = true;
+        $('result-empty').hidden = false;
+        $('result-body').hidden = true;
+        $('save-body').hidden = true;
+        try {
+            history.replaceState(null, '', location.pathname + location.search);
+        } catch (e) {
+            /* Not available: nothing to clear. */
+        }
+    }
+
     function update() {
         var v = read();
+        syncRationale(v);
+        if (!touched) {
+            showEmpty();
+            return;
+        }
+
         var r = compute(v);
         var rounded = Math.round(r.score);
+        $('level').hidden = false;
+        $('mini-level').hidden = false;
+        $('result-empty').hidden = true;
+        $('result-body').hidden = false;
+        $('save-body').hidden = false;
 
         $('score').textContent = rounded;
         $('mini-score').textContent = rounded;
@@ -169,8 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } catch (e) {
             /* file:// or sandboxed: sharing via URL just won't work. */
         }
-
-        syncRationale(v);
     }
 
     function working(v, r) {
@@ -201,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        $('example-kind').textContent = ex.kind || 'Example';
+        $('example-kind').textContent = (ex.kind || 'Example') + ' · loaded into the calculator';
         $('example-title').textContent = ex.title;
         $('example-summary').textContent = ex.summary || '';
 
@@ -251,15 +280,25 @@ document.addEventListener('DOMContentLoaded', function () {
             el.textContent = note && matches ? note : '';
         });
         if (ex) {
-            $('example-kind').textContent = (ex.kind || 'Example') + (changed ? ' · values changed' : '');
+            $('example-kind').textContent = (ex.kind || 'Example') + (changed ? ' · you have changed some scores' : ' · loaded into the calculator');
         }
+    }
+
+    function markTemplate(id) {
+        document.querySelectorAll('#example-buttons .template-button').forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b.getAttribute('data-example') === (id || '')));
+        });
     }
 
     function selectExample(id) {
         var ex = examples.filter(function (e) { return e.id === id; })[0] || null;
-        $('example-select').value = ex ? ex.id : '';
+        markTemplate(ex ? ex.id : '');
         renderExample(ex);
-        if (ex) apply(ex.values);
+        if (ex) {
+            apply(ex.values);
+        } else {
+            apply({}, false);
+        }
     }
 
     function matchingExample(values) {
@@ -268,12 +307,9 @@ document.addEventListener('DOMContentLoaded', function () {
         })[0] || null;
     }
 
-    $('example-select').addEventListener('change', function () {
-        if (this.value) {
-            selectExample(this.value);
-        } else {
-            renderExample(null);
-        }
+    $('example-buttons').addEventListener('click', function (e) {
+        var button = e.target.closest('.template-button');
+        if (button) selectExample(button.getAttribute('data-example'));
     });
 
     // ---------- Actions ----------
@@ -306,9 +342,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     $('reset').addEventListener('click', function () {
-        $('example-select').value = '';
-        renderExample(null);
-        apply({});
+        selectExample('');
+        $('calculator').scrollIntoView({ block: 'start' });
     });
 
     function loadVector(text, quiet) {
@@ -318,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
         var ex = matchingExample(parsed.values);
-        $('example-select').value = ex ? ex.id : '';
+        markTemplate(ex ? ex.id : '');
         renderExample(ex);
         apply(parsed.values);
         if (!quiet) {
@@ -346,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if ('IntersectionObserver' in window) {
         var inCalc = false;
         var resultVisible = false;
-        var refresh = function () { mini.classList.toggle('is-visible', inCalc && !resultVisible); };
+        var refresh = function () { mini.classList.toggle('is-visible', touched && inCalc && !resultVisible); };
         new IntersectionObserver(function (e) { inCalc = e[0].isIntersecting; refresh(); })
             .observe(form);
         new IntersectionObserver(function (e) { resultVisible = e[0].isIntersecting; refresh(); })
@@ -358,11 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function start() {
         var hash = decodeURIComponent(location.hash.slice(1));
         if (hash && loadVector(hash, true)) return;
-        if (examples.length) {
-            selectExample(examples[0].id);
-        } else {
-            apply({});
-        }
+        apply({}, false);
     }
 
     fetch('/data/examples.json')
@@ -370,12 +401,15 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(function () { return { examples: [] }; })
         .then(function (data) {
             examples = (data.examples || []).filter(function (e) { return e.id && e.title && e.values; });
-            var select = $('example-select');
+            var group = $('example-buttons');
             examples.forEach(function (e) {
-                var opt = document.createElement('option');
-                opt.value = e.id;
-                opt.textContent = e.title;
-                select.appendChild(opt);
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'template-button';
+                b.setAttribute('data-example', e.id);
+                b.setAttribute('aria-pressed', 'false');
+                b.textContent = e.title;
+                group.appendChild(b);
             });
             start();
         });

@@ -230,6 +230,10 @@ img, svg {
     max-width: 100%;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 ::selection {
     background: var(--ink);
     color: var(--bg);
@@ -557,10 +561,10 @@ img, svg {
     margin: 1.5rem 0;
 }
 
-.hero-content .hero-aside {
+.hero-content .hero-detail {
     margin-top: 1rem;
-    font-size: 0.95rem;
-    color: var(--ink-light);
+    font-size: 1rem;
+    max-width: 62ch;
 }
 
 /* ---------- Quote ---------- */
@@ -1259,6 +1263,164 @@ td strong {
     color: var(--ink);
 }
 
+/* ---------- How to use ---------- */
+
+.how-to {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.how-to > h2,
+.calc-title {
+    padding-top: 1rem;
+    border-top: 3px solid var(--rule);
+    margin-bottom: 1.5rem;
+}
+
+.steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.step {
+    margin: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 0.85rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--ink);
+}
+
+.step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.step p {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+
+.step .step-aside {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+    color: var(--ink-light);
+}
+
+.scale {
+    margin: 0.5rem 0 0.75rem;
+    border-top: 1px solid var(--border);
+}
+
+.scale > div {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.scale dt {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.how-to-tip {
+    margin-top: 1.25rem;
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+}
+
+.step-tag {
+    display: inline-block;
+    margin-right: 0.4rem;
+    padding: 0.05rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    vertical-align: 0.2em;
+    color: var(--bg);
+    background: var(--ink);
+}
+
+@media (max-width: 1000px) {
+    .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Roadmap ---------- */
+
+.roadmap {
+    margin-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.roadmap > h2 {
+    padding-top: 1rem;
+    border-top: 3px solid var(--rule);
+}
+
+.roadmap-intro {
+    max-width: var(--measure);
+}
+
+.roadmap-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 1.25rem;
+}
+
+.roadmap-list li {
+    margin: 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 1.5rem;
+}
+
+.roadmap-list .step-num {
+    background: transparent;
+    color: var(--ink);
+    border: 2px solid var(--rule);
+}
+
+.roadmap-list h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.roadmap-list p {
+    font-size: 0.9rem;
+}
+
 /* ---------- Calculator ---------- */
 
 .visually-hidden {
@@ -1288,8 +1450,6 @@ td strong {
 }
 
 .calc-examples {
-    border-top: 3px solid var(--rule);
-    padding-top: 1.25rem;
     margin-bottom: 1.75rem;
 }
 
@@ -1324,6 +1484,35 @@ td strong {
 .calc-text:hover,
 .calc-number:hover {
     border-color: var(--ink-light);
+}
+
+.template-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.template-button {
+    padding: 0.55rem 0.85rem;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.template-button:hover {
+    border-color: var(--rule);
+}
+
+.template-button[aria-pressed="true"] {
+    color: var(--bg);
+    background: var(--ink);
+    border-color: var(--ink);
 }
 
 .example-explainer {
@@ -1591,6 +1780,24 @@ td strong {
     color: var(--ink-light);
 }
 
+.calc-empty {
+    margin: 0.75rem 0 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-light);
+}
+
+.calc-save {
+    margin-top: 1rem;
+}
+
+.calc-save #vector {
+    margin-top: 0.25rem;
+}
+
+.calc-result-inner .calc-disclaimer {
+    margin: 1.25rem 0 0;
+}
+
 .calc-score .level-badge {
     margin-left: auto;
     align-self: center;
@@ -1677,7 +1884,7 @@ td strong {
     color: var(--ink-light);
 }
 
-.calc-vector code {
+.calc-save code {
     display: block;
     padding: 0.75rem 0.85rem;
     background: var(--surface);
@@ -1804,7 +2011,6 @@ td strong {
 
     .calc-result {
         position: static;
-        order: -1;
     }
 
     .calc-mini {
