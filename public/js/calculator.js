@@ -4,7 +4,8 @@
  *   Base  = JO×0.20 + AP×0.25 + TR×0.15 + EX×0.25 + TP×0.15
  *   GLARS = max(Base, EI, SS)
  * Examples are loaded from /data/examples.json and the per-component
- * scoring questions from /data/scoring-guide.json.
+ * scoring questions from /data/scoring-guide.json. The Perspective score
+ * (where the question is asked from) is in perspective.js.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     var $ = function (id) { return document.getElementById(id); };
+    var perspective = window.GLARSPerspective || null;
     var examples = [];
     var activeExample = null;
     var copyTimer = null;
@@ -56,8 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Only scored components are written, so a partial assessment stays partial.
     function toVector(v) {
-        return 'GLARS:' + VERSION + '/B:' + KEYS.filter(function (k) { return scored[k]; })
-            .map(function (k) { return k + ':' + v[k]; }).join('/');
+        var parts = KEYS.filter(function (k) { return scored[k]; })
+            .map(function (k) { return k + ':' + v[k]; });
+        if (perspective) parts = parts.concat(perspective.tokens());
+        return 'GLARS:' + VERSION + '/B:' + parts.join('/');
     }
 
     function parseVector(text) {
@@ -67,11 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         var values = {};
         var ignored = [];
+        var view = [];
         tokens.slice(1).forEach(function (raw) {
             var token = raw.replace(/^B:/, '');
             var m = /^([A-Z]{2}):(\d{1,3}(?:\.\d+)?)$/.exec(token);
             if (m && KEYS.indexOf(m[1]) !== -1) {
                 values[m[1]] = Math.min(100, Math.round(parseFloat(m[2])));
+            } else if (perspective && perspective.isToken(token)) {
+                view.push(token);
             } else if (raw) {
                 ignored.push(raw);
             }
@@ -82,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (missing.length === KEYS.length) {
             return { error: 'No component scores found, e.g. GLARS:1.0/B:JO:57/AP:80/…' };
         }
-        return { values: values, ignored: ignored, missing: missing };
+        return { values: values, ignored: ignored, missing: missing, perspective: view };
     }
 
     // ---------- Inputs ----------
@@ -173,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function showEmpty() {
+        if (perspective) perspective.clear();
         $('score').textContent = '–';
         $('mini-score').textContent = '–';
         $('level').hidden = true;
@@ -225,6 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
             SS: 'Sanction Severity exceeds the legal base score, so it sets the GLARS score.'
         }[r.driver];
         $('driver').textContent = driverText;
+
+        if (perspective) perspective.update(r, v);
 
         var vector = toVector(v);
         $('vector').textContent = vector;
@@ -497,6 +507,7 @@ document.addEventListener('DOMContentLoaded', function () {
         clearGuides();
         markTemplate(ex ? ex.id : '');
         renderExample(ex);
+        if (perspective) perspective.applyTokens(parsed.perspective);
         apply(parsed.values);
         if (!quiet) {
             var notes = [];
@@ -533,7 +544,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ---------- Start ----------
 
+    // Perspective inputs (asker, held in, weights) recalculate everything.
+    // Ignored until start() has read the link, so an early update can't clear it.
+    var started = false;
+    if (perspective) perspective.setOnChange(function () { if (started) update(); });
+
     function start() {
+        started = true;
         var hash = decodeURIComponent(location.hash.slice(1));
         if (hash && loadVector(hash, true)) return;
         apply({}, false);

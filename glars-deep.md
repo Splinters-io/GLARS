@@ -232,6 +232,29 @@ GLARS scores are calibrated to three risk levels, each with specific implication
 
 **Recommended controls**: Data localization in lower-risk jurisdictions, entity separation, zero-knowledge architectures, or avoidance of jurisdiction entirely.
 
+## Perspective Score
+
+The GLARS score describes a jurisdiction and is the same for everyone, so assessments can be compared. Where the question is asked from also matters: a UK organisation storing data in the US faces intelligence sharing and direct-access agreements that a German organisation does not, and counter-sanctions that bind one asker mean nothing to another. Like the Environmental score in CVSS, the Perspective score adjusts the Base score for the asker without changing it.
+
+```
+M        = clamp(product of the factors that apply, 0.8, 1.3)
+GLARS-P  = min(100, max(Base × M, EI × rEI, SS × rSS))
+```
+
+| Factor | Applies when | Default | Source |
+|--------|--------------|---------|--------|
+| **Five Eyes sharing** (FVEY) | The asker and the data's jurisdiction are different members of the UKUSA partnership (Australia, Canada, New Zealand, the UK, the US) | ×1.10 | Treaty fact |
+| **CLOUD Act agreement** (CLOUD) | An executive agreement is in force between the two: UK–US since October 2022, Australia–US since January 2024 | ×1.05 | Treaty fact |
+| **Adequacy finding** (ADQ) | The asker's jurisdiction has an adequacy decision (EU/EEA) or adequacy regulations (UK) for the data's jurisdiction; some cover only part of it, such as certified organisations in the US | ×0.95 | Official lists |
+| **Governance gap** (GOV) | The data's jurisdiction scores lower than the asker's on the World Bank Rule of Law and Political Stability indicators: 1 + k × average gap / 100, never below 1 | k = 0.5 | Measured (WGI) |
+| **Embargo and sanctions relevance** (rEI, rSS) | How far the embargoes and sanctions you scored bind you, from 0 (not at all, such as another country's counter-sanctions) to 1 (in full) | 1 | Asker's judgement |
+
+**Measured and judged inputs.** The governance gap uses the World Bank Worldwide Governance Indicators (2026 release, 2025 data; governance scores 0–100), licensed CC BY 4.0. Which agreements and adequacy findings exist are facts from official texts. The size of each multiplier is a GLARS default rather than a published measure, so every weight can be changed in the calculator, and changed weights travel with the shared link.
+
+**Example.** A UK asker with the Base score of 73 for data held in the US: Five Eyes ×1.10, CLOUD Act agreement ×1.05, UK adequacy for certified US organisations ×0.95 and a governance gap of ×1.05 give M = 1.15, so the Perspective score is 84. A German asker for the same data gets 74: EU adequacy and a governance gap apply, but not Five Eyes or the CLOUD Act agreement.
+
+This is a first step towards the Jurisdiction Interaction Model: it covers the relationship between the asker and one jurisdiction, not yet how several jurisdictions holding the same data combine.
+
 ## Transfer Risk Assessment
 
 A key extension of the GLARS framework is the ability to evaluate risk between jurisdictions.
@@ -270,6 +293,7 @@ GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55/T:HEF:1.1/TV:1.05/LS:0.95/
 | **Base metrics (B)** | Core legal components | JO=57, AP=80, TR=68, EX=85, TP=58 |
 | **Trade restrictions** | Embargo and sanction metrics | EI=70 (Embargo Impact), SS=55 (Sanction Severity) |
 | **Temporal metrics (T)** | Time-based risk factors | HEF=1.1 (Historical Enforcement), TV=1.05 (Trend Vector) |
+| **Perspective (P, J, W, R)** | Asker's jurisdiction, where the data is held, any changed weights and sanctions relevance | P:GB, J:US, W:FVEY:1.2, R:SS:0 |
 | **Environmental metrics (E)** | Context-specific multipliers | IRM=1.1 (Industry Risk), DSF=1.2 (Data Sensitivity) |
 
 ## Implementation Guidance

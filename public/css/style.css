@@ -2546,6 +2546,94 @@ td strong {
     color: var(--ink-mid);
 }
 
+/* Perspective score: the Base score adjusted for where the question is asked from */
+
+.calc-perspective {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--rule);
+}
+
+.calc-perspective h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.15rem;
+}
+
+.persp-fields {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0.85rem 0;
+}
+
+.persp-fields label {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.persp-fields .calc-select {
+    width: 100%;
+}
+
+.persp-score output {
+    font-size: clamp(2.5rem, 6vw, 3.25rem);
+}
+
+.persp-changed {
+    font-weight: 600;
+}
+
+.persp-factors {
+    margin: 0.75rem 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border);
+}
+
+.persp-factors li {
+    margin: 0;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+}
+
+.persp-factors p {
+    margin: 0.25rem 0 0;
+    color: var(--ink-mid);
+}
+
+.persp-factors .persp-source {
+    font-size: 0.8rem;
+}
+
+.persp-factor-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.persp-mult {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.persp-mult.up { color: var(--risk-high); }
+.persp-mult.down { color: var(--risk-low); }
+
+.persp-none {
+    color: var(--ink-mid);
+}
+
+.persp-weights {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.45rem 0.75rem;
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+}
+
 .calc-breakdown dd {
     font-family: var(--font-mono);
     font-weight: 700;

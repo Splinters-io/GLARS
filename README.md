@@ -28,9 +28,11 @@ Everything under `public/` is published; nothing else in the repository is.
 - `public/js/theme.js` - Applies a saved light/dark preference before first paint
 - `public/js/main.js` - Theme toggle, table-of-contents tracking, and the hover note on Juri links
 - `public/js/calculator.js` - Calculator scoring, vector parsing and examples
+- `public/js/perspective.js` - The Perspective score: the Base score adjusted for where the question is asked from
 - `public/js/journey.js` - The "Follow the data" timeline on the Journey page
 - `public/data/examples.json` - Calculator examples and explainers
 - `public/data/scoring-guide.json` - Per-component questions and measuring-stick bands
+- `public/data/perspective.json` - Perspective inputs: treaty facts, default weights and World Bank WGI 2025 values (CC BY 4.0)
 - `public/data/journey.json` - Journey stages, the powers at each stage and the links between them
 - `public/fonts/` - Self-hosted Source Serif 4, Inter and JetBrains Mono (latin subsets, SIL OFL)
 - `public/_headers` - Security headers and caching (Cloudflare)
@@ -49,7 +51,18 @@ Base  = JO×0.20 + AP×0.25 + TR×0.15 + EX×0.25 + TP×0.15
 GLARS = max(Base, EI, SS)
 ```
 
-Levels are Low (0–40), Medium (41–65) and High (66–100). The current vector is written to the URL fragment, so any assessment can be shared as a link, for example `/#GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55`. Components left out of a vector stay unscored, so a partial assessment (such as one from Juri before every component is assessed) loads as partial.
+Levels are Low (0–40), Medium (41–65) and High (66–100).
+
+The **Perspective score** adjusts the Base score for where the question is asked from and where the data is held:
+
+```
+M        = clamp(product of the factors that apply, 0.8, 1.3)
+GLARS-P  = min(100, max(Base × M, EI × rEI, SS × rSS))
+```
+
+Factors are Five Eyes sharing, CLOUD Act agreements and adequacy findings (treaty facts with GLARS default weights) and the governance gap from the World Bank Worldwide Governance Indicators. Defaults are in `public/data/perspective.json`; users can change any weight, and the link carries the changes as `P:`, `J:`, `W:` and `R:` tokens. To refresh the WGI values, rebuild `governance.values` from the World Bank API indicators `GOV_WGI_RL.SC` and `GOV_WGI_PV.SC` (source 3) and update `governance.label` and `year`.
+
+The current vector is written to the URL fragment, so any assessment can be shared as a link, for example `/#GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55`. Components left out of a vector stay unscored, so a partial assessment (such as one from Juri before every component is assessed) loads as partial.
 
 ### Adding an example
 
