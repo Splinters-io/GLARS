@@ -49,7 +49,7 @@ Base  = JO×0.20 + AP×0.25 + TR×0.15 + EX×0.25 + TP×0.15
 GLARS = max(Base, EI, SS)
 ```
 
-Levels are Low (0–40), Medium (41–65) and High (66–100). The current vector is written to the URL fragment, so any assessment can be shared as a link, for example `/#GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55`.
+Levels are Low (0–40), Medium (41–65) and High (66–100). The current vector is written to the URL fragment, so any assessment can be shared as a link, for example `/#GLARS:1.0/B:JO:57/AP:80/TR:68/EX:85/TP:58/EI:70/SS:55`. Components left out of a vector stay unscored, so a partial assessment (such as one from Juri before every component is assessed) loads as partial.
 
 ### Adding an example
 

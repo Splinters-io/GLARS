@@ -54,8 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return { base: base, score: score, level: level, driver: driver };
     }
 
+    // Only scored components are written, so a partial assessment stays partial.
     function toVector(v) {
-        return 'GLARS:' + VERSION + '/B:' + KEYS.map(function (k) { return k + ':' + v[k]; }).join('/');
+        return 'GLARS:' + VERSION + '/B:' + KEYS.filter(function (k) { return scored[k]; })
+            .map(function (k) { return k + ':' + v[k]; }).join('/');
     }
 
     function parseVector(text) {
@@ -74,11 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 ignored.push(raw);
             }
         });
+        // Components left out stay unscored (for example, ones a tool such as
+        // Juri has not assessed yet).
         var missing = KEYS.filter(function (k) { return !(k in values); });
-        if (missing.length) {
-            return { error: 'Missing ' + missing.join(', ') + '.' };
+        if (missing.length === KEYS.length) {
+            return { error: 'No component scores found, e.g. GLARS:1.0/B:JO:57/AP:80/…' };
         }
-        return { values: values, ignored: ignored };
+        return { values: values, ignored: ignored, missing: missing };
     }
 
     // ---------- Inputs ----------
@@ -126,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function apply(values, isResult) {
         KEYS.forEach(function (k) {
-            scored[k] = isResult !== false;
+            scored[k] = isResult !== false && k in values;
             setField(k, values[k] || 0);
         });
         update();
@@ -495,9 +499,10 @@ document.addEventListener('DOMContentLoaded', function () {
         renderExample(ex);
         apply(parsed.values);
         if (!quiet) {
-            $('vector-status').textContent = parsed.ignored.length
-                ? 'Loaded. Not yet scored by the calculator: ' + parsed.ignored.join(', ')
-                : 'Loaded.';
+            var notes = [];
+            if (parsed.missing.length) notes.push('Not scored yet: ' + parsed.missing.join(', ') + '.');
+            if (parsed.ignored.length) notes.push('Not yet scored by the calculator: ' + parsed.ignored.join(', ') + '.');
+            $('vector-status').textContent = ['Loaded.'].concat(notes).join(' ');
         }
         return true;
     }
