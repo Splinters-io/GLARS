@@ -490,7 +490,6 @@ img, svg {
     padding: 1.5rem;
 }
 
-.resource-cards,
 .components-grid,
 .factor-grid,
 .enforcement-categories,
@@ -549,6 +548,19 @@ img, svg {
     .principles-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+
+.resource-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.hero-content .hero-aside {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--ink-light);
 }
 
 /* ---------- Quote ---------- */
