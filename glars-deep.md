@@ -190,9 +190,7 @@ GLARSScore = max(BaseScore, EmbargoImpact, SanctionSeverity)
 
 > The final GLARS score takes the highest risk value from legal frameworks, embargoes, or sanctions, as each dimension independently can create prohibitive risks.
 
-### Special Rule for Embargoes and Sanctions
-
-**Important**: If any applicable embargo or sanction has a High risk level, the overall risk level is automatically elevated to High regardless of the numerical score. This reflects the serious compliance implications of violating trade restrictions.
+Because the final score is the highest of the three, a High embargo or sanction score always produces a High GLARS result. No separate rule is needed.
 
 ## Risk Levels
 

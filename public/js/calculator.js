@@ -3,7 +3,6 @@
  * Implements the scoring methodology in the Deep Dive:
  *   Base  = JO×0.20 + AP×0.25 + TR×0.15 + EX×0.25 + TP×0.15
  *   GLARS = max(Base, EI, SS)
- *   A High embargo or sanction makes the overall level High.
  * Examples are loaded from /data/examples.json and the per-component
  * scoring questions from /data/scoring-guide.json.
  */
@@ -47,14 +46,12 @@ document.addEventListener('DOMContentLoaded', function () {
         var base = CORE.reduce(function (sum, k) { return sum + v[k] * WEIGHTS[k]; }, 0);
         var score = Math.max(base, v.EI, v.SS);
         var level = levelFor(score);
-        var tradeHigh = levelFor(v.EI) === 'high' || levelFor(v.SS) === 'high';
-        if (tradeHigh) level = 'high';
 
         var driver = 'base';
         if (v.EI >= score && v.EI > base) driver = 'EI';
         if (v.SS >= score && v.SS > base && v.SS >= v.EI) driver = 'SS';
 
-        return { base: base, score: score, level: level, driver: driver, tradeHigh: tradeHigh };
+        return { base: base, score: score, level: level, driver: driver };
     }
 
     function toVector(v) {
@@ -223,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function () {
             EI: 'Embargo Impact exceeds the legal base score, so it sets the GLARS score.',
             SS: 'Sanction Severity exceeds the legal base score, so it sets the GLARS score.'
         }[r.driver];
-        if (r.tradeHigh) driverText += ' A High embargo or sanction makes the overall level High.';
         $('driver').textContent = driverText;
 
         var vector = toVector(v);
