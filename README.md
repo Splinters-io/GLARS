@@ -85,7 +85,7 @@ The site is served by Cloudflare as Workers static assets. To deploy:
 ./deploy.sh
 ```
 
-or `npx wrangler deploy`. Attach `www.glars.io` to the Worker under Settings > Domains & Routes, and add a redirect rule in the zone from `glars.io` to `https://www.glars.io`.
+or `npx wrangler deploy`. The `routes` entry in `wrangler.jsonc` attaches `glars.io` as a custom domain, and Cloudflare creates the DNS record and certificate on first deploy. The zone must be on the same Cloudflare account.
 
 ## License
 

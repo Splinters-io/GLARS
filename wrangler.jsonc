@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "glars",
   "compatibility_date": "2026-10-01",
+  "routes": [
+    { "pattern": "glars.io", "custom_domain": true }
+  ],
   "assets": {
     "directory": ".",
     "html_handling": "auto-trailing-slash",
