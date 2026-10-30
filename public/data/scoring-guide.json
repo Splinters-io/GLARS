@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "answers": [
     {
       "label": "No",
@@ -49,6 +49,10 @@
           "max": 100,
           "text": "No independent approval: agencies authorise their own access and it cannot be challenged."
         }
+      ],
+      "rules": [
+        "Approval by a prosecutor counts as approval within the executive, unless the prosecutor is shown to be independent of government and the access can be challenged in court.",
+        "Executive approval of national-security access stays in 41–60 where criminal access needs a judge and some independent check exists. It moves to 61–80 where high-volume access, such as communications data for all agencies or bulk collection, also has no independent check."
       ]
     },
     "AP": {
@@ -85,6 +89,10 @@
           "max": 100,
           "text": "Effectively unrestricted collection on broad grounds, including direct bulk access to provider systems."
         }
+      ],
+      "rules": [
+        "A score of 61 or more needs a documented bulk or programme-level power, set out in law or officially acknowledged. Unconfirmed reports can move a score only within its band.",
+        "Foreign-intelligence interception of communications crossing the border, such as cable or signals intelligence, counts as bulk collection in every country alike."
       ]
     },
     "TR": {
@@ -121,6 +129,9 @@
           "max": 100,
           "text": "Providers can be ordered to weaken or remove encryption and redesign systems for government access."
         }
+      ],
+      "rules": [
+        "A standing duty to keep standard lawful-interception interfaces for executing warrants sits in 41–60. 61–80 is for orders to build new or bespoke capabilities, real-time or direct agency access to networks (including agency equipment in operators' networks), and duties to give notice of security changes."
       ]
     },
     "EX": {
@@ -157,6 +168,11 @@
           "max": 100,
           "text": "Claims over any data connected to its nationals, companies or interests, wherever it is held."
         }
+      ],
+      "rules": [
+        "A country that reaches data abroad only through mutual legal assistance or similar treaties scores 21–40, not 0–20.",
+        "Authorised remote access to computers or accounts abroad counts as reach over data held abroad: 41–60 with judicial approval, 61–80 without.",
+        "The extraterritorial scope of data-protection law (such as GDPR Article 3(2)) is not a government access power. It can raise EX by at most 5 points within its band."
       ]
     },
     "TP": {
@@ -193,6 +209,9 @@
           "max": 100,
           "text": "No public information about access at all; revealing a request can itself be an offence."
         }
+      ],
+      "rules": [
+        "A disclosure offence or gag rule on its own is a 61–80 factor. 81–100 also needs the absence of any official statistics, oversight reporting or notification."
       ]
     },
     "EI": {

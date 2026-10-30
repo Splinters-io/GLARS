@@ -324,6 +324,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 dl.appendChild(row);
             });
             stick.appendChild(dl);
+            if (c.rules && c.rules.length) {
+                stick.appendChild(el('p', 'guide-title', 'Scoring rules'));
+                var ul = el('ul', 'guide-rules');
+                c.rules.forEach(function (r) { ul.appendChild(el('li', '', r)); });
+                stick.appendChild(ul);
+            }
         }
 
         set.addEventListener('change', function () {
