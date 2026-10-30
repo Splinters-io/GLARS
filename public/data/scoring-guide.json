@@ -171,7 +171,7 @@
       ],
       "rules": [
         "A country that reaches data abroad only through mutual legal assistance or similar treaties scores 21–40, not 0–20.",
-        "Authorised remote access to computers or accounts abroad counts as reach over data held abroad: 41–60 with judicial approval, 61–80 without.",
+        "A power set out in law to obtain data held abroad without the other country's cooperation counts, whether it compels a provider or allows police or intelligence services remote access to computers or accounts abroad: 41–60 with judicial approval, 61–80 without.",
         "The extraterritorial scope of data-protection law (such as GDPR Article 3(2)) is not a government access power. It can raise EX by at most 5 points within its band."
       ]
     },
